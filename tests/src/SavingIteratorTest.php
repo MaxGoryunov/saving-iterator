@@ -1,13 +1,14 @@
 <?php
 
-namespace MaxGoryunov\SavingIterator\Tests;
+namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use IteratorIterator;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass MaxGoryunov/SavingIterator/SavingIterator
+ * @coversDefaultClass MaxGoryunov\SavingIterator\Src\SavingIterator
  */
 class SavingIteratorTest extends TestCase
 {
@@ -18,6 +19,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
+     * 
+     * @small
      *
      * @return void
      */
@@ -32,5 +35,21 @@ class SavingIteratorTest extends TestCase
             $output[$key] = $value;
         }
         $this->assertEquals($input, $output);
+    }
+
+    /**
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testSavesValuesToCache(): void
+    {
+        $input = [1, 2, 3, 4, 5, 6];
     }
 }
