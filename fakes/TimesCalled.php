@@ -41,12 +41,13 @@ class TimesCalled
      *
      * @return int
      */
-    public function value(): int {
+    public function value(): int
+    {
         return $this->times;
     }
 
     /**
-     * Undocumented function
+     * Sends calls through itself and counts how many times a specific method was called.
      *
      * @param string $name
      * @param array  $arguments
