@@ -4,6 +4,8 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
 use IteratorIterator;
+use MaxGoryunov\SavingIterator\Fakes\TimesCalled;
+use MaxGoryunov\SavingIterator\Fakes\TransparentIterator;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
 use PHPUnit\Framework\TestCase;
 
@@ -48,8 +50,23 @@ class SavingIteratorTest extends TestCase
      *
      * @return void
      */
-    public function testSavesValuesToCache(): void
+    public function testDoesNotCallOriginIfValuesAreInCache(): void
     {
-        $input = [1, 2, 3, 4, 5, 6];
+        $input  = [1, 2, 3, 4, 5, 6];
+        $called = new TimesCalled(
+            new ArrayIterator($input),
+            "next"
+        );
+        $iterator = new SavingIterator(
+            new TransparentIterator(
+                $called
+            )
+        );
+        for ($i = 0; $i < rand(0, 10); $i++) {
+            foreach ($iterator as $key => $value) {
+
+            }
+        }
+        $this->assertEquals(count($input), $called->value());
     }
 }

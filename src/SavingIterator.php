@@ -15,6 +15,12 @@ class SavingIterator implements Iterator
     private Iterator $origin;
 
     /**
+     * Cached values from the inner iterator
+     * 
+     * @var array
+     */
+    private array $saved = [];
+    /**
      * Ctor.
      *
      * @param Iterator $iterator
@@ -29,7 +35,10 @@ class SavingIterator implements Iterator
      */
     public function current(): mixed
     {
-        return $this->origin->current();
+        if (($this->origin->valid()) && (!isset($this->saved[$this->origin->key()]))) {
+            $this->saved[$this->origin->key()] = $this->origin->current();
+        }
+        return current($this->saved);
     }
 
     /**
@@ -37,7 +46,10 @@ class SavingIterator implements Iterator
      */
     public function key(): mixed
     {
-        return $this->origin->key();
+        if (($this->origin->valid()) && (!isset($this->saved[$this->origin->key()]))) {
+            $this->saved[$this->origin->key()] = $this->origin->current();
+        }
+        return key($this->saved);
     }
 
     /**
@@ -53,7 +65,10 @@ class SavingIterator implements Iterator
      */
     public function next(): void
     {
-        $this->origin->next();
+        if ($this->origin->valid()) {
+            $this->origin->next();
+        }
+        next($this->saved);
     }
 
     /**
@@ -61,6 +76,6 @@ class SavingIterator implements Iterator
      */
     public function rewind(): void
     {
-        $this->origin->rewind();
+        reset($this->saved);
     }
 }
