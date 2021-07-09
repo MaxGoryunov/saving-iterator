@@ -11,9 +11,15 @@
          failOnWarning="true"
          verbose="true"
          colors="true">
+    <testsuites>
+        <testsuite name="All Tests">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./src/</directory>
+            <directory suffix=".php">./fakes/</directory>
         </include>
         <exclude>
             <directory>.vscode</directory>
