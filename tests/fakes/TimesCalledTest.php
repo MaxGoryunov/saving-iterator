@@ -3,7 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Fakes;
 
 use ArrayIterator;
-use MaxGoryunov\SavingIterator\Fakes\TimesCalled;
+use Fakes\TimesCalled;
 use PHPUnit\Framework\TestCase;
 
 /**
