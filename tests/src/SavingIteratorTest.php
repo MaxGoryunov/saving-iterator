@@ -110,7 +110,6 @@ class SavingIteratorTest extends TestCase
      */
     public function testContinuesSuccessfullyAfterBeingInterrupted(): void
     {
-        $this->markTestIncomplete();
         $input = [13, 15, 34, 54, 37, 654, 83];
         $iterator = new SavingIterator(
             new ArrayIterator($input)
@@ -120,7 +119,6 @@ class SavingIteratorTest extends TestCase
                 break;
             }
         }
-        var_dump(iterator_to_array($iterator));
         $this->assertEquals($input, iterator_to_array($iterator));
     }
 }
