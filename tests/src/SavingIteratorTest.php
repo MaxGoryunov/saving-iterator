@@ -16,6 +16,7 @@ class SavingIteratorTest extends TestCase
 {
 
     /**
+     * @covers ::__construct
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -47,6 +48,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::next
      * 
      * @small
+     * 
+     * @runInSeparateProcess
      *
      * @return void
      */

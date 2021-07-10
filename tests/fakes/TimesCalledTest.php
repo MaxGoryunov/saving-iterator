@@ -15,6 +15,7 @@ class TimesCalledTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::__call
+     * @covers ::value
      * 
      * @small
      *
@@ -39,6 +40,7 @@ class TimesCalledTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::__call
+     * @covers ::value
      * 
      * @small
      *
