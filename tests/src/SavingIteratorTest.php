@@ -4,7 +4,6 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
 use Generator;
-use IteratorIterator;
 use MaxGoryunov\SavingIterator\Fakes\TimesCalled;
 use MaxGoryunov\SavingIterator\Fakes\TransparentIterator;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
@@ -17,6 +16,7 @@ class SavingIteratorTest extends TestCase
 {
 
     /**
+     * @covers ::__construct
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -29,15 +29,15 @@ class SavingIteratorTest extends TestCase
      */
     public function testIteratesWithGivenIterator(): void
     {
-        $input    = [10, 9, 8, 7, 6, 5];
-        $iterator = new SavingIterator(
-            new ArrayIterator($input)
+        $input    = [10, 9, 8, 7, 6, 5];;
+        $this->assertEquals(
+            $input, 
+            iterator_to_array(
+                $iterator = new SavingIterator(
+                    new ArrayIterator($input)
+                )
+            )
         );
-        $output = [];
-        foreach ($iterator as $key => $value) {
-            $output[$key] = $value;
-        }
-        $this->assertEquals($input, $output);
     }
 
     /**
@@ -48,6 +48,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::next
      * 
      * @small
+     * 
+     * @runInSeparateProcess
      *
      * @return void
      */
@@ -65,7 +67,6 @@ class SavingIteratorTest extends TestCase
         );
         for ($i = 0; $i < rand(0, 10); $i++) {
             foreach ($iterator as $key => $value) {
-
             }
         }
         $this->assertEquals(count($input), $called->value());
@@ -129,5 +130,59 @@ class SavingIteratorTest extends TestCase
             iterator_to_array($iterator),
             iterator_to_array($iterator)
         );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testIterationsGiveSameResults(): void
+    {
+        $iterator = new SavingIterator(
+            new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23])
+        );
+        $first = [];
+        foreach ($iterator as $key => $value) {
+            $first[$key] = $value;
+        }
+        $second = [];
+        foreach ($iterator as $key => $value) {
+            $second[$key] = $value;
+        }
+        $this->assertEquals($first, $second);
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testContinuesSuccessfullyAfterBeingInterrupted(): void
+    {
+        $input = [13, 15, 34, 54, 37, 654, 83];
+        $iterator = new SavingIterator(
+            new ArrayIterator($input)
+        );
+        foreach ($iterator as $value) {
+            if ($value === 90) {
+                break;
+            }
+        }
+        $this->assertEquals($input, iterator_to_array($iterator));
     }
 }

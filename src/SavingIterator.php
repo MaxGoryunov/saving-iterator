@@ -57,7 +57,7 @@ class SavingIterator implements Iterator
      */
     public function valid(): bool
     {
-        return $this->origin->valid();
+        return ($this->origin->valid()) || (key($this->saved) !== null);
     }
 
     /**
