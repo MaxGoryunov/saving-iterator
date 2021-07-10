@@ -1,6 +1,6 @@
 <?php
 
-namespace Fakes;
+namespace MaxGoryunov\SavingIterator\Fakes;
 
 class TimesCalled
 {
