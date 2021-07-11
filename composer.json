@@ -1,5 +1,5 @@
 {
-    "name": "maxgoryunov/package-name",
+    "name": "maxgoryunov/saving-iterator",
     "description": "True Caching Iterator for PHP",
     "require": {
         "php": ">=7.4"
