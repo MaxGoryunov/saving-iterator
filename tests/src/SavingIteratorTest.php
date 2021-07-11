@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use Generator;
 use MaxGoryunov\SavingIterator\Fakes\TimesCalled;
 use MaxGoryunov\SavingIterator\Fakes\TransparentIterator;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
@@ -69,6 +70,66 @@ class SavingIteratorTest extends TestCase
             }
         }
         $this->assertEquals(count($input), $called->value());
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksWithGenerator(): void
+    {
+        $limit = 6;
+        $this->assertEquals(
+            range(0, $limit), 
+            iterator_to_array(
+                new SavingIterator(
+                    (
+                        function () use ($limit): Generator
+                        {
+                            for ($i = 0; $i <= $limit; $i++) {
+                                yield $i;
+                            }
+                        }
+                    )()
+                )
+            )
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksWithGeneratorMultipleTimes(): void
+    {
+        $iterator = new SavingIterator(
+            (function (): Generator
+            {
+                for ($i = 0; $i < 10; $i++) {
+                    yield $i;
+                }
+            })()
+        );
+        $this->assertEquals(
+            iterator_to_array($iterator),
+            iterator_to_array($iterator)
+        );
     }
 
     /**
