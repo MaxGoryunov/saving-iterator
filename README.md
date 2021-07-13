@@ -13,7 +13,6 @@
 
 ## How to use
 
----
 Require it with Composer:
 
 ```bash
@@ -30,7 +29,6 @@ If you have any questions, ask them at [Discussions](https://github.com/MaxGoryu
 
 ## Decorating Iterators
 
----
 Any object with `Iterator` interface is suitable:
 
 ```PHP
@@ -51,7 +49,6 @@ $wrapped = new SavingIterator(
 
 ## Decorating Generators
 
----
 You can also use it with `Generators`. If the iterator is called twice, rewind exception will **not** be thrown.
 
 **Attention**: it is not (currently) possible to pass callable as a parameter. You have to manually invoke `Generator` function:
@@ -67,8 +64,6 @@ $numerals = new SavingIterator(numerals());
 ```
 
 ## How to contribute
-
----
 
 Fork this repository, then create a folder for it and install [Composer](https://getcomposer.org/download/) if you do not have it.
 
