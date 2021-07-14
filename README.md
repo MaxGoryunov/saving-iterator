@@ -65,7 +65,7 @@ $numerals = new SavingIterator(numerals());
 
 ## How to contribute
 
-Fork this repository, then create a folder for it and install [Composer](https://getcomposer.org/download/) if you do not have it.
+[Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo), then create a folder for it and install [Composer](https://getcomposer.org/download/) if you do not have it.
 
 Clone this repository:
 
@@ -79,4 +79,4 @@ Then run:
 composer install
 ```
 
-This command will install all dependencies required for development. Make changes and open a pull request. Your PR will be reviewed and accepted if it does not fail our build.
+This command will install all dependencies required for development. Make changes and [open a pull request](https://github.com/MaxGoryunov/saving-iterator/pulls). Your PR will be reviewed and accepted if it does not fail our build.
