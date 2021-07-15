@@ -14,11 +14,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up autoload
-      run: composer dump-autoload
+    - uses: php-actions/composer@v5
 
     - name: PHPUnit Tests
-      uses: php-actions/phpunit@v3
+      uses: php-actions/phpunit@v2
       env:
         TEST_NAME: AllTests
       with:
