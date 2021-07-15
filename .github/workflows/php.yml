@@ -22,5 +22,5 @@ jobs:
         TEST_NAME: AllTests
       with:
         bootstrap: vendor/autoload.php
-        configuration: ./phpunit.xml
+        configuration: phpunit.xml
         args: --coverage-text
