@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MaxGoryunov\\SavingIterator\\": ["", "app/"]
+            "MaxGoryunov\\SavingIterator\\": ["", "/app/"]
         }
     }
 }
