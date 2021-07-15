@@ -14,8 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: php-actions/composer@v5
-
     - name: Set up autoload
       run: composer dump-autoload
 
