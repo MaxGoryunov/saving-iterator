@@ -16,6 +16,9 @@ jobs:
 
     - uses: php-actions/composer@v5
 
+    - name: Set up autoload
+      run: composer dump-autoload
+
     - name: PHPUnit Tests
       uses: php-actions/phpunit@v3
       env:
