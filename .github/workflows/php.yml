@@ -13,12 +13,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
+    - uses: php-actions/composer@v5
+
     - name: Install Composer
       run: composer install
 
     - name: Include files for autoloading
       run: composer dump-autoload
 
-    - name: Run PHPUnit tests
-      run: ./vendor/bin/phpunit tests --bootstrap=./vendor/autoload.php
+    - name: PHPUnit Tests
+      uses: php-actions/phpunit@v3
+      env:
+        TEST_NAME: AllTests
+      with:
+        bootstrap: vendor/autoload.php
+        configuration: ./phpunit.xml
+        args: --coverage-text
