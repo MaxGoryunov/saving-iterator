@@ -2,12 +2,17 @@
 
 namespace MaxGoryunov\SavingIterator\Fakes;
 
+/**
+ * This class checks how many times a specified method was called.
+ * @template T
+ * @mixin T
+ */
 class TimesCalled
 {
     /**
      * Original object.
      * 
-     * @var object
+     * @var T
      */
     private object $origin;
 
@@ -28,9 +33,9 @@ class TimesCalled
     /**
      * Ctor.
      *
-     * @param object $origin
+     * @param T $origin
      */
-    public function __construct(object $origin, string $method)
+    public function __construct($origin, string $method)
     {
         $this->origin = $origin;
         $this->method = $method;
@@ -58,12 +63,6 @@ class TimesCalled
         if ($name === $this->method) {
             $this->times++;
         }
-
-        if ($arguments === []) {
-            $result = $this->origin->$name();
-        } else {
-            $result = $this->origin->$name($arguments);
-        }
-        return $result;
+        return $this->origin->$name(...$arguments);
     }
 }

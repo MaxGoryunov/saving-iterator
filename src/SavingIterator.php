@@ -4,26 +4,33 @@ namespace MaxGoryunov\SavingIterator\Src;
 
 use Iterator;
 
+/**
+ * Iterator which stores iterated values.
+ * 
+ * @template TKey
+ * @template TValue
+ * @implements Iterator<TKey, TValue>
+ */
 class SavingIterator implements Iterator
 {
 
     /**
      * Original iterator
      * 
-     * @var Iterator
+     * @var Iterator<TKey, TValue>
      */
     private Iterator $origin;
 
     /**
      * Cached values from the inner iterator
      * 
-     * @var array
+     * @var array<TKey, TValue>
      */
     private array $saved = [];
     /**
      * Ctor.
      *
-     * @param Iterator $iterator
+     * @param Iterator<TKey, TValue> $iterator
      */
     public function __construct(Iterator $iterator)
     {
@@ -32,6 +39,7 @@ class SavingIterator implements Iterator
 
     /**
      * {@inheritDoc}
+     * @return TValue|false
      */
     public function current(): mixed
     {
@@ -43,6 +51,7 @@ class SavingIterator implements Iterator
 
     /**
      * {@inheritDoc}
+     * @return TKey|null
      */
     public function key(): mixed
     {
