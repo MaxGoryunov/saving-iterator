@@ -24,3 +24,6 @@ jobs:
         bootstrap: vendor/autoload.php
         configuration: phpunit.xml
         args: --coverage-text
+
+    - name: PHPStan analysis
+      run: vendor\bin\phpstan analyse
