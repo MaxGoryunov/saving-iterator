@@ -26,4 +26,4 @@ jobs:
         args: --coverage-text
 
     - name: PHPStan analysis
-      run: vendor\bin\phpstan analyse
+      run: ./vendor/bin/phpstan analyse
