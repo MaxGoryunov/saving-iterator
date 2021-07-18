@@ -2,9 +2,11 @@
 
 ![PHP-Composer-Build](https://github.com/MaxGoryunov/saving-iterator/actions/workflows/php.yml/badge.svg)
 [![Latest Stable Version](http://poser.pugx.org/maxgoryunov/saving-iterator/v)](https://packagist.org/packages/maxgoryunov/saving-iterator)
-[![Maintainability](https://api.codeclimate.com/v1/badges/d721a5fca4901010520e/maintainability)](https://codeclimate.com/github/MaxGoryunov/saving-iterator/maintainability)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/?branch=main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/MaxGoryunov/saving-iterator/blob/main/LICENSE)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/d721a5fca4901010520e/maintainability)](https://codeclimate.com/github/MaxGoryunov/saving-iterator/maintainability)
+[![codecov](https://codecov.io/gh/MaxGoryunov/saving-iterator/branch/main/graph/badge.svg?token=KYRZ0UK8E8)](https://codecov.io/gh/MaxGoryunov/saving-iterator)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/?branch=main)
 
 [![Hits-of-Code](https://hitsofcode.com/github/MaxGoryunov/saving-iterator?branch=main)](https://hitsofcode.com/github/MaxGoryunov/saving-iterator/view)
 ![Lines-of-Code](https://tokei.rs/b1/github/MaxGoryunov/saving-iterator?branch=main)

@@ -24,6 +24,17 @@ jobs:
         bootstrap: vendor/autoload.php
         configuration: phpunit.xml
         args: --coverage-text
+  
+    - name: Create PHPUnit coverage files
+      run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
+        flags: tests
+        name: codecov-umbrella
+        fail_ci_if_error: true
 
     - name: PHPStan analysis
       run: ./vendor/bin/phpstan analyse
