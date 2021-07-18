@@ -49,7 +49,6 @@ class TimesCalledTest extends TestCase
     public function testCountsHowManyTimesTheMethodWasCalledAlongWIthOtherMethods(): void
     {
         $method = "key";
-        $other  = "current";
         $called = new TimesCalled(
             new ArrayIterator([16, 14, 13, 15, 12, 18]),
             $method
@@ -60,7 +59,7 @@ class TimesCalledTest extends TestCase
             $called->$method();
 
             if (($i % 2 === 0) or ($i % 3 === 0)) {
-                $called->$other();
+                $called->current();
             }
         }
 

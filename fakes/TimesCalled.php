@@ -4,10 +4,11 @@ namespace MaxGoryunov\SavingIterator\Fakes;
 
 /**
  * This class checks how many times a specified method was called.
- * @template T
+ * @template T of object
  * @mixin T
+ * @implements Indifferent<T>
  */
-class TimesCalled
+class TimesCalled implements Indifferent
 {
     /**
      * Original object.
@@ -33,9 +34,10 @@ class TimesCalled
     /**
      * Ctor.
      *
-     * @param T $origin
+     * @param T      $origin
+     * @param string $method
      */
-    public function __construct($origin, string $method)
+    public function __construct(object $origin, string $method)
     {
         $this->origin = $origin;
         $this->method = $method;
@@ -53,10 +55,7 @@ class TimesCalled
 
     /**
      * Sends calls through itself and counts how many times a specific method was called.
-     *
-     * @param string $name
-     * @param array  $arguments
-     * @return mixed
+     * {@inheritDoc}
      */
     public function __call(string $name, array $arguments): mixed
     {
