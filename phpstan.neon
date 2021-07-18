@@ -2,4 +2,7 @@ parameters:
 	level: 8
 	paths:
 		- src
+		- fakes
 		- tests
+includes:
+		- vendor/phpstan/phpstan/conf/bleedingEdge.neon

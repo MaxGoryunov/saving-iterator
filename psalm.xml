@@ -7,6 +7,9 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
+        <directory name="src" />
+        <directory name="fakes" />
+        <directory name="tests" />
         <file name="vendor/autoload.php" />
         <file name="vendor/composer/autoload_classmap.php" />
         <file name="vendor/composer/autoload_files.php" />

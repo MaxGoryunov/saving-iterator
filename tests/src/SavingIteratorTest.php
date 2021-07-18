@@ -2,6 +2,7 @@
 
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
+use Iterator;
 use ArrayIterator;
 use Generator;
 use MaxGoryunov\SavingIterator\Fakes\TimesCalled;
@@ -60,10 +61,8 @@ class SavingIteratorTest extends TestCase
             new ArrayIterator($input),
             "next"
         );
-        $iterator = new SavingIterator(
-            new TransparentIterator(
-                $called
-            )
+        $iterator = new SavingIterator(/* @phpstan-ignore-next-line */
+            new TransparentIterator($called)
         );
         for ($i = 0; $i < rand(0, 10); $i++) {
             foreach ($iterator as $key => $value) {
@@ -179,7 +178,7 @@ class SavingIteratorTest extends TestCase
             new ArrayIterator($input)
         );
         foreach ($iterator as $value) {
-            if ($value === 90) {
+            if ($value === $input[3]) {
                 break;
             }
         }
