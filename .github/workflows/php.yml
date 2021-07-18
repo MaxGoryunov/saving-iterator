@@ -27,15 +27,7 @@ jobs:
 
     - name: Create PHPUnit coverage files
       run: ./vendor/bin/phpunit --coverage-clover coverage.xml
-
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        files: coverage.xml
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: true
-        verbose: false
+      run: bash <(curl -s https://codecov.io/bash)
 
     - name: PHPStan analysis
       run: ./vendor/bin/phpstan analyse
