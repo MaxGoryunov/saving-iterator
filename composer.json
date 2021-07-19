@@ -2,7 +2,7 @@
     "name": "maxgoryunov/saving-iterator",
     "description": "True Caching Iterator for PHP",
     "require": {
-        "php": ">=7.4"
+        "php": ">=8.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.91",
@@ -14,7 +14,8 @@
     },
     "autoload": {
         "psr-4": {
-            "MaxGoryunov\\SavingIterator\\": ""
+            "MaxGoryunov\\SavingIterator\\Src\\": "src",
+            "MaxGoryunov\\SavingIterator\\Fakes\\": "fakes"
         }
     }
 }

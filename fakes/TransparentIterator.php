@@ -4,6 +4,13 @@ namespace MaxGoryunov\SavingIterator\Fakes;
 
 use Iterator;
 
+/**
+ * Wraps objects which are not interators.
+ * 
+ * @template TKey
+ * @template TValue
+ * @implements Iterator<TKey, TValue>
+ */
 class TransparentIterator implements Iterator
 {
 
@@ -12,16 +19,16 @@ class TransparentIterator implements Iterator
      * 
      * This is NOT necessarily an iterator
      * 
-     * @var object
+     * @var Iterator<TKey, TValue>|Indifferent<Iterator<TKey, TValue>>
      */
-    private object $origin;
+    private Iterator|Indifferent $origin;
 
     /**
      * Ctor.
      *
-     * @param object $iterable
+     * @param Iterator<TKey, TValue>|Indifferent<Iterator<TKey, TValue>> $iterable
      */
-    public function __construct(object $iterable)
+    public function __construct(Iterator|Indifferent $iterable)
     {
         $this->origin = $iterable;
     }
