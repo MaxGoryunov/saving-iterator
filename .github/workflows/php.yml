@@ -38,3 +38,6 @@ jobs:
 
     - name: PHPStan analysis
       run: ./vendor/bin/phpstan analyse
+
+    - name: Infection analysis
+      run: ./vendor/bin/infection --min-msi=80 --min-covered-msi=80 --threads=4
