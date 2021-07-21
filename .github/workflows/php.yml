@@ -24,7 +24,10 @@ jobs:
         bootstrap: vendor/autoload.php
         configuration: phpunit.xml
         args: --coverage-text
-  
+
+    - name: Infection analysis
+      run: ./vendor/bin/infection --min-msi=80 --min-covered-msi=80 --threads=4
+
     - name: Create PHPUnit coverage files
       run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
     - name: Upload coverage to Codecov
@@ -38,6 +41,3 @@ jobs:
 
     - name: PHPStan analysis
       run: ./vendor/bin/phpstan analyse
-
-    - name: Infection analysis
-      run: ./vendor/bin/infection XDEBUG_MODE=coverage --min-msi=80 --min-covered-msi=80 --threads=4
