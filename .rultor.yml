@@ -2,7 +2,7 @@ architect:
   - MaxGoryunov
 install:
   - "sudo apt install php-xml"
-  - "Y"
+  - "echo Y"
   - "composer install"
 merge:
   script:
