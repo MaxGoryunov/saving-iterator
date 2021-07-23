@@ -7,7 +7,7 @@ use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass MaxGoryunov\SavingIterator\Fakes\TimesCalled
+ * @coversDefaultClass MaxGoryunov\SavingIterator\Src\TimesCalled
  */
 class TimesCalledTest extends TestCase
 {

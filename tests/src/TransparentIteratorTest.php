@@ -7,7 +7,7 @@ use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass MaxGoryunov\SavingIterator\Fakes\TransparentIterator
+ * @coversDefaultClass MaxGoryunov\SavingIterator\Src\TransparentIterator
  */
 class TransparentIteratorTest extends TestCase
 {
