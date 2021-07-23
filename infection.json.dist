@@ -1,7 +1,6 @@
 {
     "source": {
         "directories": [
-            "fakes",
             "src"
         ]
     },
