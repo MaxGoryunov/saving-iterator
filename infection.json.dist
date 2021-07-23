@@ -1,0 +1,14 @@
+{
+    "source": {
+        "directories": [
+            "fakes",
+            "src"
+        ]
+    },
+    "logs": {
+        "text": "infection.log"
+    },
+    "mutators": {
+        "@default": true
+    }
+}

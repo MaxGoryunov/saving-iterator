@@ -64,9 +64,8 @@ class SavingIteratorTest extends TestCase
         $iterator = new SavingIterator(/* @phpstan-ignore-next-line */
             new TransparentIterator($called)
         );
-        for ($i = 0; $i < rand(0, 10); $i++) {
-            foreach ($iterator as $key => $value) {
-            }
+        for ($i = 0; $i < rand(2, 5); $i++) {
+            iterator_to_array($iterator);
         }
         $this->assertEquals(count($input), $called->value());
     }
