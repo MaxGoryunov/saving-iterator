@@ -11,6 +11,10 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass MaxGoryunov\SavingIterator\Src\SavingIterator
+ * 
+ * @todo #7:30min Let's introduce real fake objects which could be helpful
+ *  for testing in the future. For example, a class which would contain a
+ *  loop inside for easier Iterator checks.
  */
 class SavingIteratorTest extends TestCase
 {
@@ -24,10 +28,6 @@ class SavingIteratorTest extends TestCase
      * @covers ::next
      * 
      * @small
-     * 
-     * @todo #7:30min Let's introduce real fake objects which could be helpful
-     *  for testing in the future. For example, a class which would contain a
-     *  loop inside for easier Iterator checks.
      *
      * @return void
      */
