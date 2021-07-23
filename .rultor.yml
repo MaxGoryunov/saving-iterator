@@ -1,7 +1,6 @@
 architect:
   - MaxGoryunov
 install:
-  - "sudo apt-get update"
   - "sudo apt install php-xml"
   - "composer install"
 merge:
