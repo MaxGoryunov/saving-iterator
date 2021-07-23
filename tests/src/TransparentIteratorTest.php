@@ -1,9 +1,9 @@
 <?php
 
-namespace MaxGoryunov\SavingIterator\Tests\Fakes;
+namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
-use MaxGoryunov\SavingIterator\Fakes\TransparentIterator;
+use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
 
 /**

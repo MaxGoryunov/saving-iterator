@@ -1,6 +1,6 @@
 <?php
 
-namespace MaxGoryunov\SavingIterator\Fakes;
+namespace MaxGoryunov\SavingIterator\Src;
 
 /**
  * This class checks how many times a specified method was called.

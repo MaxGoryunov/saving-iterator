@@ -1,6 +1,6 @@
 <?php
 
-namespace MaxGoryunov\SavingIterator\Fakes;
+namespace MaxGoryunov\SavingIterator\Src;
 
 /**
  * Interface for objects on which any methods can be called.

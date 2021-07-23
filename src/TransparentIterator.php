@@ -1,6 +1,6 @@
 <?php
 
-namespace MaxGoryunov\SavingIterator\Fakes;
+namespace MaxGoryunov\SavingIterator\Src;
 
 use Iterator;
 

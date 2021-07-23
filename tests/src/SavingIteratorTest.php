@@ -2,11 +2,10 @@
 
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
-use Iterator;
 use ArrayIterator;
 use Generator;
-use MaxGoryunov\SavingIterator\Fakes\TimesCalled;
-use MaxGoryunov\SavingIterator\Fakes\TransparentIterator;
+use MaxGoryunov\SavingIterator\Src\TimesCalled;
+use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
 use PHPUnit\Framework\TestCase;
 
@@ -25,6 +24,10 @@ class SavingIteratorTest extends TestCase
      * @covers ::next
      * 
      * @small
+     * 
+     * @todo #7:30min Let's introduce real fake objects which could be helpful
+     *  for testing in the future. For example, a class which would contain a
+     *  loop inside for easier Iterator checks.
      *
      * @return void
      */

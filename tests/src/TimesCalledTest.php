@@ -1,9 +1,9 @@
 <?php
 
-namespace MaxGoryunov\SavingIterator\Tests\Fakes;
+namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
-use MaxGoryunov\SavingIterator\Fakes\TimesCalled;
+use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use PHPUnit\Framework\TestCase;
 
 /**
