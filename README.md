@@ -1,4 +1,5 @@
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
+[![DevOps By Rultor.com](http://www.rultor.com/b/MaxGoryunov/saving-iterator)](http://www.rultor.com/p/MaxGoryunov/saving-iterator)
 
 ![PHP-Composer-Build](https://github.com/MaxGoryunov/saving-iterator/actions/workflows/php.yml/badge.svg)
 [![PDD status](https://www.0pdd.com/svg?name=MaxGoryunov/saving-iterator)](https://www.0pdd.com/p?name=MaxGoryunov/saving-iterator)
