@@ -1,7 +1,7 @@
 architect:
   - MaxGoryunov
 install:
-  - "RUN docker-php-ext-install dom"
+  - "docker-php-ext-install dom"
   - "composer install"
 merge:
   script:
