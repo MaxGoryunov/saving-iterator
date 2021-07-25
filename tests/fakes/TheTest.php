@@ -16,11 +16,13 @@ class TheTest extends TestCase
      * @covers ::__construct
      * @covers ::value
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\Let
+     * 
      * @small
      *
      * @return void
      */
-    public function testReturnsSubjectsAfterApplyingContexts(): void
+    public function testReturnsSubjectAfterApplyingContext(): void
     {
         $this->assertEquals(
             ...(new Let(

@@ -19,7 +19,7 @@ class LetTest extends TestCase
      *
      * @return void
      */
-    public function testReturnsContextResults(): void
+    public function testReturnsContextResult(): void
     {
         $this->assertEquals(
             [15, 120],
