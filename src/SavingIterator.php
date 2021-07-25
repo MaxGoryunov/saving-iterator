@@ -34,7 +34,8 @@ class SavingIterator implements Iterator
      */
     public function __construct(Iterator $iterator)
     {
-        $this->origin = $iterator;
+        $this->origin                  = $iterator;
+        $this->saved[$iterator->key()] = $iterator->current();
     }
 
     /**
@@ -43,9 +44,6 @@ class SavingIterator implements Iterator
      */
     public function current(): mixed
     {
-        if (($this->origin->valid()) && (!isset($this->saved[$this->origin->key()]))) {
-            $this->saved[$this->origin->key()] = $this->origin->current();
-        }
         return current($this->saved);
     }
 
@@ -55,9 +53,6 @@ class SavingIterator implements Iterator
      */
     public function key(): mixed
     {
-        if (($this->origin->valid()) && (!isset($this->saved[$this->origin->key()]))) {
-            $this->saved[$this->origin->key()] = $this->origin->current();
-        }
         return key($this->saved);
     }
 
@@ -74,8 +69,11 @@ class SavingIterator implements Iterator
      */
     public function next(): void
     {
-        if ($this->origin->valid()) {
+        if ($this->origin->key() === key($this->saved)) {
             $this->origin->next();
+            if ($this->origin->valid()) {
+                $this->saved[$this->origin->key()] = $this->origin->current();
+            }
         }
         next($this->saved);
     }
