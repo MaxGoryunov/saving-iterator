@@ -148,6 +148,34 @@ class SavingIteratorTest extends TestCase
      *
      * @return void
      */
+    public function testWorksWithEmptyGenerator(): void
+    {
+        $this->assertEquals(
+            [],
+            iterator_to_array(
+                new SavingIterator(
+                    (function (): Generator {
+                        if (false) {
+                            yield 0;
+                        }
+                    })()
+                )
+            )
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
     public function testIterationsGiveSameResults(): void
     {
         $iterator = new SavingIterator(
@@ -188,5 +216,29 @@ class SavingIteratorTest extends TestCase
             }
         }
         $this->assertEquals($input, iterator_to_array($iterator));
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksWithEmptyIterator(): void
+    {
+        $this->assertEquals(
+            [],
+            iterator_to_array(
+                new SavingIterator(
+                    new ArrayIterator([])
+                )
+            )
+        );
     }
 }
