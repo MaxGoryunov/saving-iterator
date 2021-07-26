@@ -76,6 +76,9 @@ class TimesCalledTest extends TestCase
                             $method
                         ),
                         function (TimesCalled $called) use ($method, $times) {
+                            /**
+                             * @var TimesCalled<ArrayIterator<int, int>> $called
+                             */
                             for ($i = 0; $i < $times; $i++) {
                                 $called->$method();
                                 if (($i % 2 === 0) or ($i % 3 === 0)) {
