@@ -148,8 +148,8 @@ class SavingIteratorTest extends TestCase
             iterator_to_array(
                 new SavingIterator(
                     (function (): Generator {
-                        if (false) {
-                            yield 0;
+                        foreach ([] as $value) {
+                            yield $value;
                         }
                     })()
                 )
