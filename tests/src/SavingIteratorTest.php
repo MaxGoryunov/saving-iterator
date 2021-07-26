@@ -147,7 +147,7 @@ class SavingIteratorTest extends TestCase
             [],
             iterator_to_array(
                 new SavingIterator(
-                    (function (): Generator {
+                    (function (): Generator {/* @phpstan-ignore-next-line */
                         foreach ([] as $value) {
                             yield $value;
                         }
