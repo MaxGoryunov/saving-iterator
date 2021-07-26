@@ -11,9 +11,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass MaxGoryunov\SavingIterator\Src\SavingIterator
- * 
- * @todo #8:30min It is needed to test that `SavingIterator` works correctly
- *  with an empty Iterator.
  */
 class SavingIteratorTest extends TestCase
 {
