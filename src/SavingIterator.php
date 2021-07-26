@@ -7,6 +7,10 @@ use Iterator;
 /**
  * Iterator which stores iterated values.
  * 
+ * @todo #40:40min There is some code duplication for adding current iterator
+ *  value to $saved array. It would be better to extract the code into a
+ *  separate class.
+ * 
  * @template TKey
  * @template TValue
  * @implements Iterator<TKey, TValue>
@@ -34,8 +38,10 @@ class SavingIterator implements Iterator
      */
     public function __construct(Iterator $iterator)
     {
-        $this->origin                  = $iterator;
-        $this->saved[$iterator->key()] = $iterator->current();
+        $this->origin = $iterator;
+        if ($iterator->valid()) {
+            $this->saved[$iterator->key()] = $iterator->current();
+        }
     }
 
     /**
