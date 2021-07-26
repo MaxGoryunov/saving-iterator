@@ -7,6 +7,10 @@ namespace MaxGoryunov\SavingIterator\Src;
  * @template T of object
  * @mixin T
  * @implements Indifferent<T>
+ * @todo #45:15min Class MaxGoryunov\SavingIterator\Src\TimesCalled implements
+ *  generic interface MaxGoryunov\SavingIterator\Src\Scalar but does not
+ *  specify its types: T 
+ * @phpstan-ignore-next-line
  */
 class TimesCalled implements Indifferent, Scalar
 {
