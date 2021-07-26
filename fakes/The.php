@@ -3,11 +3,12 @@
 namespace MaxGoryunov\SavingIterator\Fakes;
 
 use Closure;
+use MaxGoryunov\SavingIterator\Src\Scalar;
 
 /**
  * Class for applying contexts to elements without changing them.
  */
-class The
+class The implements Scalar
 {
 
     /**

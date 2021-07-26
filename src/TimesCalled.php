@@ -8,7 +8,7 @@ namespace MaxGoryunov\SavingIterator\Src;
  * @mixin T
  * @implements Indifferent<T>
  */
-class TimesCalled implements Indifferent
+class TimesCalled implements Indifferent, Scalar
 {
     /**
      * Original object.

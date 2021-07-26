@@ -3,11 +3,12 @@
 namespace MaxGoryunov\SavingIterator\Fakes;
 
 use Closure;
+use MaxGoryunov\SavingIterator\Src\Scalar;
 
 /**
  * Allows to use context instead of creating a new variable.
  */
-class Let
+class Let implements Scalar
 {
 
     /**
