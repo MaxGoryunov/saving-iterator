@@ -26,6 +26,10 @@ class TransparentIteratorTest extends TestCase
      */
     public function testBehavesAsIterator(): void
     {
+        /**
+         * @todo #34:20min Long test methods should be rewritten in one line,
+         *  redundant variables should be removed.
+         */
         $input = [
             "apples"      => 4,
             "bananas"     => 10,
