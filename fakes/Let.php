@@ -7,6 +7,9 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
 
 /**
  * Allows to use context instead of creating a new variable.
+ * 
+ * @todo #44:25min Classes Let and The contain some repeated cdde which could
+ *  be extracted into a separate class.
  */
 class Let implements Scalar
 {

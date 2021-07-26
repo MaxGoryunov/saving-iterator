@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use MaxGoryunov\SavingIterator\Fakes\The;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
 
@@ -20,32 +21,31 @@ class TransparentIteratorTest extends TestCase
      * @covers ::rewind
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * 
      * @small
      *
      * @return void
      */
     public function testBehavesAsIterator(): void
     {
-        /**
-         * @todo #34:20min Long test methods should be rewritten in one line,
-         *  redundant variables should be removed.
-         */
-        $input = [
-            "apples"      => 4,
-            "bananas"     => 10,
-            "oranges"     => 5,
-            "tomatoes"    => 7,
-            "watermelons" => 18,
-            "plums"       => 3
-        ];
-        $output = [];
-        foreach (
-            new TransparentIterator(
-                new ArrayIterator($input)
-            ) as $key => $value
-        ) {
-            $output[$key] = $value;
-        }
-        $this->assertEquals($input, $output);
+        (new The(
+            [
+                "apples"      => 4,
+                "bananas"     => 10,
+                "oranges"     => 5,
+                "tomatoes"    => 7,
+                "watermelons" => 18,
+                "plums"       => 3
+            ],
+            fn(array $greens) => $this->assertEquals(
+                $greens,
+                iterator_to_array(
+                    new TransparentIterator(
+                        new ArrayIterator($greens)
+                    )
+                )
+            )
+        ))->value();
     }
 }

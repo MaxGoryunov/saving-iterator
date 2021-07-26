@@ -7,6 +7,10 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
 
 /**
  * Class for applying contexts to elements without changing them.
+ * 
+ * @todo #44:20min Classes Let and The do not have proper type hints in
+ *  constructor and methods. Workarounds with `@var` tags must be removed
+ *  after that. 
  */
 class The implements Scalar
 {
@@ -39,7 +43,7 @@ class The implements Scalar
      *
      * @return mixed
      */
-    public function value(): array
+    public function value(): mixed
     {
         ($this->context)($this->subject);
         return $this->subject;
