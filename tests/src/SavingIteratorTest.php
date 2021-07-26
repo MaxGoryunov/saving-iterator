@@ -27,6 +27,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * 
      * @small
      *
      * @return void
@@ -52,6 +54,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
+     * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
      * 
@@ -95,6 +99,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * 
      * @small
      *
      * @return void
@@ -126,6 +132,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
+     * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
      *
@@ -185,6 +193,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * 
      * @small
      *
      * @return void
@@ -209,6 +219,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
+     * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
      *
