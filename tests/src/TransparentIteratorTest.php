@@ -45,10 +45,5 @@ class TransparentIteratorTest extends TestCase
                 )
             )
         ))->value();
-        /**
-         * @todo #34:20min Long test methods should be rewritten in one line,
-         *  redundant variables should be removed.
-         */
-        
     }
 }
