@@ -15,9 +15,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass MaxGoryunov\SavingIterator\Src\SavingIterator
- * 
- * @todo #8:30min It is needed to test that `SavingIterator` works correctly
- *  with an empty Iterator.
  */
 class SavingIteratorTest extends TestCase
 {
@@ -164,6 +161,34 @@ class SavingIteratorTest extends TestCase
      *
      * @return void
      */
+    public function testWorksWithEmptyGenerator(): void
+    {
+        $this->assertEquals(
+            [],
+            iterator_to_array(
+                new SavingIterator(
+                    (function (): Generator {/* @phpstan-ignore-next-line */
+                        foreach ([] as $value) {
+                            yield $value;
+                        }
+                    })()
+                )
+            )
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
     public function testIterationsGiveSameResults(): void
     {
         (new The(
@@ -211,5 +236,29 @@ class SavingIteratorTest extends TestCase
                 )
             )
         ))->value();
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksWithEmptyIterator(): void
+    {
+        $this->assertEquals(
+            [],
+            iterator_to_array(
+                new SavingIterator(
+                    new ArrayIterator([])
+                )
+            )
+        );
     }
 }
