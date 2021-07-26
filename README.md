@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/MaxGoryunov/saving-iterator/blob/master/LICENSE)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d721a5fca4901010520e/maintainability)](https://codeclimate.com/github/MaxGoryunov/saving-iterator/maintainability)
-[![codecov](https://codecov.io/gh/MaxGoryunov/saving-iterator/branch/master/graph/badge.svg?token=KYRZ0UK8E8)](https://codecov.io/gh/MaxGoryunov/saving-iterator)
+[![codecov](https://codecov.io/gh/MaxGoryunov/saving-iterator/branch/master/graph/badge.svg?token=KYRZ0UK8E8)](https://codecov.io/gh/MaxGoryunov/saving-iterator?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/?branch=master)
 
 [![Hits-of-Code](https://hitsofcode.com/github/MaxGoryunov/saving-iterator?branch=master)](https://hitsofcode.com/github/MaxGoryunov/saving-iterator/view)
