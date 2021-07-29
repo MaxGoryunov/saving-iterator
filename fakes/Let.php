@@ -7,9 +7,6 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
 
 /**
  * Allows to use context instead of creating a new variable.
- * @template X subject type.
- * @template Y context result type.
- * @implements Scalar<Y>
  * 
  * @todo #44:25min Classes Let and The contain some repeated cdde which could
  *  be extracted into a separate class.
