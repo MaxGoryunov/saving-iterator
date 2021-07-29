@@ -3,7 +3,6 @@
 namespace MaxGoryunov\SavingIterator\Fakes;
 
 use Closure;
-use MaxGoryunov\SavingIterator\Src\Scalar;
 
 /**
  * Allows to use context instead of creating a new variable.
@@ -11,39 +10,21 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
  * @todo #44:25min Classes Let and The contain some repeated cdde which could
  *  be extracted into a separate class.
  */
-class Let implements Scalar
+class Let extends SurveyEnvelope
 {
 
     /**
      * Ctor.
-     * 
-     * @param mixed   $subject
-     * @param Closure $context
-     */
-    public function __construct(
-        /**
-         * Element to be put into the context.
-         * 
-         * @var mixed
-         */
-        private mixed $subject,
-
-        /**
-         * Context for the element.
-         * 
-         * @var Closure
-         */
-        private Closure $context
-    ) {
-    }
-
-    /**
-     * Returns result of applying context to element.
      *
-     * @return mixed
+     * @param mixed   $subject element to be put into context
+     * @param Closure $context context for element
      */
-    public function value(): mixed
+    public function __construct(mixed $subject, Closure $context)
     {
-        return ($this->context)($this->subject);
+        parent::__construct(
+            $subject,
+            $context,
+            fn(mixed $subject, Closure $context): mixed => $context($subject)
+        );
     }
 }

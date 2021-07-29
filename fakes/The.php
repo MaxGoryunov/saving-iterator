@@ -3,7 +3,6 @@
 namespace MaxGoryunov\SavingIterator\Fakes;
 
 use Closure;
-use MaxGoryunov\SavingIterator\Src\Scalar;
 
 /**
  * Class for applying contexts to elements without changing them.
@@ -12,40 +11,25 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
  *  constructor and methods. Workarounds with `@var` tags must be removed
  *  after that. 
  */
-class The implements Scalar
+class The extends SurveyEnvelope
 {
 
     /**
      * Ctor.
-     * 
-     * @param mixed   $subject
+     *
+     * @param mixed $subject
      * @param Closure $context
      */
-    public function __construct(
-        /**
-         * Element to be put into the context.
-         * 
-         * @var mixed
-         */
-        private mixed $subject,
-
-        /**
-         * Context for the element.
-         * 
-         * @var Closure
-         */
-        private Closure $context
-    ) {
-    }
-
-    /**
-     * Applies context to subject and returns subject.
-     *
-     * @return mixed
-     */
-    public function value(): mixed
+    public function __construct(mixed $subject, Closure $context)
     {
-        ($this->context)($this->subject);
-        return $this->subject;
+        parent::__construct(
+            $subject,
+            $context,
+            function (mixed $subject, Closure $context): mixed
+            {
+                $context($subject);
+                return $subject;
+            }
+        );
     }
 }
