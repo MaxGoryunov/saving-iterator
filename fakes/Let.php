@@ -10,7 +10,7 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
  * 
  * @todo #44:25min Classes Let and The contain some repeated cdde which could
  *  be extracted into a separate class.
- * @template x subject type
+ * @template X subject type
  * @template Y result type
  * @implements \MaxGoryunov\SavingIterator\Src\Scalar<Y>
  */
