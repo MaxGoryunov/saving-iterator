@@ -8,9 +8,6 @@ namespace MaxGoryunov\SavingIterator\Src;
  * @mixin T
  * @implements Indifferent<T>
  * @implements \MaxGoryunov\SavingIterator\Src\Scalar<int>
- * @todo #45:15min Class MaxGoryunov\SavingIterator\Src\TimesCalled implements
- *  generic interface MaxGoryunov\SavingIterator\Src\Scalar but does not
- *  specify its types: T 
  */
 class TimesCalled implements Indifferent, Scalar
 {
