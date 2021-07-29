@@ -1,5 +1,3 @@
-# @todo #7:10min add fakes folder back for PHPStan checks when it will be
-#  created.
 parameters:
 	level: 8
 	paths:
