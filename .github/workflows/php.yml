@@ -30,12 +30,12 @@ jobs:
       run: XDEBUG_MODE=coverage ./vendor/bin/infection --min-msi=65 --min-covered-msi=80 --threads=4
 
     - name: Create PHPUnit coverage files
-      run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
+      run: "XDEBUG_MODE=coverage  ./vendor/bin/phpunit --coverage-clover=coverage.xml"
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.xml
+        file: coverage.xml
         flags: tests
         name: codecov-umbrella
         fail_ci_if_error: true
