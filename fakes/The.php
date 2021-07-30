@@ -10,7 +10,9 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
  * 
  * @todo #44:20min Classes Let and The do not have proper type hints in
  *  constructor and methods. Workarounds with `@var` tags must be removed
- *  after that. 
+ *  after that.
+ * @template T subject type
+ * @implements \MaxGoryunov\SavingIterator\Src\Scalar<T>
  */
 class The implements Scalar
 {
