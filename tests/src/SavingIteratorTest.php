@@ -8,6 +8,7 @@ use InfiniteIterator;
 use Iterator;
 use LimitIterator;
 use MaxGoryunov\SavingIterator\Fakes\The;
+use MaxGoryunov\SavingIterator\Src\Indifferent;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
@@ -74,11 +75,10 @@ class SavingIteratorTest extends TestCase
                         new ArrayIterator($input),
                         "next"
                     ),
-                    fn(TimesCalled $called): array => iterator_to_array(
+                    fn(Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
-                                    /* @phpstan-ignore-next-line */
                                     new TransparentIterator($called)
                                 )
                             ),
@@ -301,7 +301,7 @@ class SavingIteratorTest extends TestCase
                         new ArrayIterator($input),
                         "current"
                     ),
-                    fn(TimesCalled $called): array => iterator_to_array(
+                    fn(Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
