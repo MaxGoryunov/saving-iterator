@@ -8,6 +8,7 @@ use InfiniteIterator;
 use Iterator;
 use LimitIterator;
 use MaxGoryunov\SavingIterator\Fakes\The;
+use MaxGoryunov\SavingIterator\Src\Indifferent;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
@@ -15,6 +16,13 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass MaxGoryunov\SavingIterator\Src\SavingIterator
+ * 
+ * @todo #51:30min It seems that The and Let new typehints have a negative
+ *  effect on PHPStan in a way that when type coming to The or Let is not
+ *  typehinted as plain `mixed` or `Closure` PHPStan starts complaining about
+ *  types for `TransparentIterator` for example. It should probably be solved
+ *  by prefixing tags for PHPStan with `phpstan`. It also causes IDE to
+ *  complain about incorrect types(X or T or Y instead of some expected type).
  */
 class SavingIteratorTest extends TestCase
 {
@@ -74,11 +82,11 @@ class SavingIteratorTest extends TestCase
                         new ArrayIterator($input),
                         "next"
                     ),
-                    fn(TimesCalled $called): array => iterator_to_array(
+                    fn(Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
-                                    /* @phpstan-ignore-next-line */
+                                    /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called)
                                 )
                             ),
@@ -272,5 +280,49 @@ class SavingIteratorTest extends TestCase
                 )
             )
         );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
+     * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testFillsCacheValueOnlyIfItIsNotStoredYet(): void
+    {
+        (new The(
+            [4, 3, 6, 3, 7, 8],
+            fn(array $input) => $this->assertEquals(
+                count($input),
+                (new The(
+                    new TimesCalled(
+                        new ArrayIterator($input),
+                        "current"
+                    ),
+                    fn(Indifferent $called): array => iterator_to_array(
+                        new LimitIterator(
+                            new InfiniteIterator(
+                                new SavingIterator(
+                                    /** @phpstan-ignore-next-line */
+                                    new TransparentIterator($called)
+                                )
+                            ),
+                            0,
+                            count($input) * 2
+                        )
+                    )
+                ))->value()->value()
+            )
+        ))->value();
     }
 }

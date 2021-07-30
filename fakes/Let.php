@@ -9,6 +9,9 @@ use Closure;
  * 
  * @todo #44:25min Classes Let and The contain some repeated cdde which could
  *  be extracted into a separate class.
+ * @template X subject type
+ * @template Y result type
+ * @implements \MaxGoryunov\SavingIterator\Src\Scalar<Y>
  */
 class Let extends SurveyEnvelope
 {
@@ -16,6 +19,8 @@ class Let extends SurveyEnvelope
     /**
      * Ctor.
      *
+     * @phpstan-param X             $subject repeated element
+     * @phpstan-param Closure(X): Y $context context for element
      * @param mixed   $subject element to be put into context
      * @param Closure $context context for element
      */

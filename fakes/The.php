@@ -7,9 +7,8 @@ use Closure;
 /**
  * Class for applying contexts to elements without changing them.
  * 
- * @todo #44:20min Classes Let and The do not have proper type hints in
- *  constructor and methods. Workarounds with `@var` tags must be removed
- *  after that. 
+ * @template T subject type
+ * @implements \MaxGoryunov\SavingIterator\Src\Scalar<T>
  */
 class The extends SurveyEnvelope
 {
@@ -17,6 +16,8 @@ class The extends SurveyEnvelope
     /**
      * Ctor.
      *
+     * @phpstan-param T                 $subject repeating element
+     * @phpstan-param Closure(T): mixed $context context for element
      * @param mixed $subject
      * @param Closure $context
      */
