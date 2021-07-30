@@ -7,8 +7,6 @@ use Closure;
 /**
  * Allows to use context instead of creating a new variable.
  * 
- * @todo #44:25min Classes Let and The contain some repeated cdde which could
- *  be extracted into a separate class.
  * @template X subject type
  * @template Y result type
  * @extends SurveyEnvelope<X, Y>
