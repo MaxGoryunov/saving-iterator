@@ -273,4 +273,47 @@ class SavingIteratorTest extends TestCase
             )
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
+     * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testFillsCacheValueOnlyIfItIsNotStoredYet(): void
+    {
+        (new The(
+            [4, 3, 6, 3, 7, 8],
+            fn(array $input) => $this->assertEquals(
+                count($input),
+                (new The(
+                    new TimesCalled(
+                        new ArrayIterator($input),
+                        "current"
+                    ),
+                    fn(TimesCalled $called): array => iterator_to_array(
+                        new LimitIterator(
+                            new InfiniteIterator(
+                                new SavingIterator(
+                                    new TransparentIterator($called)
+                                )
+                            ),
+                            0,
+                            count($input) * 2
+                        )
+                    )
+                ))->value()->value()
+            )
+        ))->value();
+    }
 }
