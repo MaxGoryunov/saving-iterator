@@ -9,6 +9,8 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
  * Class for wrapping divergent program flows. It allows to structure a program
  * in such a way that there will be no need for a variable if it exists only in
  * order to be used in two places.
+ * @todo #52:20min Create test file for this class and maybe change tests for
+ *  `Let` and `The`.
  * @template X subject type
  * @template Y result type
  * @implements \MaxGoryunov\SavingIterator\Src\Scalar<Y>
