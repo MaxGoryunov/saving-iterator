@@ -11,7 +11,7 @@ use Closure;
  *  be extracted into a separate class.
  * @template X subject type
  * @template Y result type
- * @implements \MaxGoryunov\SavingIterator\Src\Scalar<Y>
+ * @extends SurveyEnvelope<X, Y>
  */
 class Let extends SurveyEnvelope
 {

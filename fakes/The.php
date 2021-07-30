@@ -8,7 +8,7 @@ use Closure;
  * Class for applying contexts to elements without changing them.
  * 
  * @template T subject type
- * @implements \MaxGoryunov\SavingIterator\Src\Scalar<T>
+ * @extends SurveyEnvelope<T, T>
  */
 class The extends SurveyEnvelope
 {

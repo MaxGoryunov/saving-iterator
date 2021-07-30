@@ -11,7 +11,7 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
  * order to be used in two places.
  * @template X subject type
  * @template Y result type
- * @implements Scalar<Y>
+ * @implements \MaxGoryunov\SavingIterator\Src\Scalar<Y>
  */
 abstract class SurveyEnvelope implements Scalar
 {
