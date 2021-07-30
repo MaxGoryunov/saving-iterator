@@ -16,6 +16,13 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass MaxGoryunov\SavingIterator\Src\SavingIterator
+ * 
+ * @todo #51:30min It seems that The and Let new typehints have a negative
+ *  effect on PHPStan in a way that when type coming to The or Let is not
+ *  typehinted as plain `mixed` or `Closure` PHPStan starts complaining about
+ *  types for `TransparentIterator` for example. It should probably be solved
+ *  by prefixing tags for PHPStan with `phpstan`. It also causes IDE to
+ *  complain about incorrect types(X or T or Y instead of some expected type).
  */
 class SavingIteratorTest extends TestCase
 {
@@ -79,6 +86,7 @@ class SavingIteratorTest extends TestCase
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
+                                    /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called)
                                 )
                             ),
@@ -305,6 +313,7 @@ class SavingIteratorTest extends TestCase
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
+                                    /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called)
                                 )
                             ),

@@ -10,7 +10,7 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
  * 
  * @todo #44:25min Classes Let and The contain some repeated cdde which could
  *  be extracted into a separate class.
- * @template x subject type
+ * @template X subject type
  * @template Y result type
  * @implements \MaxGoryunov\SavingIterator\Src\Scalar<Y>
  */
@@ -20,21 +20,21 @@ class Let implements Scalar
     /**
      * Ctor.
      * 
-     * @param mixed   $subject
-     * @param Closure $context
+     * @param X             $subject
+     * @param Closure(X): Y $context
      */
     public function __construct(
         /**
          * Element to be put into the context.
          * 
-         * @var mixed
+         * @var X
          */
         private mixed $subject,
 
         /**
          * Context for the element.
          * 
-         * @var Closure
+         * @var Closure(X): Y
          */
         private Closure $context
     ) {
@@ -43,7 +43,7 @@ class Let implements Scalar
     /**
      * Returns result of applying context to element.
      *
-     * @return mixed
+     * @return Y
      */
     public function value(): mixed
     {
