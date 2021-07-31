@@ -6,11 +6,6 @@ use Iterator;
 
 /**
  * Iterator which stores iterated values.
- * 
- * @todo #40:40min There is some code duplication for adding current iterator
- *  value to $saved array. It would be better to extract the code into a
- *  separate class.
- * 
  * @template TKey
  * @template TValue
  * @implements Iterator<TKey, TValue>
@@ -39,9 +34,6 @@ class SavingIterator implements Iterator
     public function __construct(Iterator $iterator)
     {
         $this->origin = $iterator;
-        if ($iterator->valid()) {
-            $this->saved[$iterator->key()] = $iterator->current();
-        }
     }
 
     /**
@@ -50,7 +42,7 @@ class SavingIterator implements Iterator
      */
     public function current(): mixed
     {
-        return current($this->saved);
+        return $this->saved[$this->key()];
     }
 
     /**
@@ -59,6 +51,9 @@ class SavingIterator implements Iterator
      */
     public function key(): mixed
     {
+        if ($this->origin->valid()) {
+            $this->saved[$this->origin->key()] ??= $this->origin->current();
+        }
         return key($this->saved);
     }
 
@@ -75,11 +70,8 @@ class SavingIterator implements Iterator
      */
     public function next(): void
     {
-        if ($this->origin->key() === key($this->saved)) {
+        if ($this->origin->valid()) {
             $this->origin->next();
-            if ($this->origin->valid()) {
-                $this->saved[$this->origin->key()] = $this->origin->current();
-            }
         }
         next($this->saved);
     }
