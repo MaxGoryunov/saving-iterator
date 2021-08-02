@@ -3,7 +3,7 @@ codecov:
 # @todo #52:15min add codecov strict analysis for 100% coverage.
 coverage:
   status:
-    project:
+    patch:
       default:
         target: auto
         threshold: 10%
