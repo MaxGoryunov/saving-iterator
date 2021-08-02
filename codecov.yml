@@ -1,8 +1,12 @@
 codecov:
   require_ci_to_pass: yes
-
+# @todo #52:15min add codecov strict analysis for 100% coverage.
 coverage:
   status:
+    project:
+      default:
+        target: auto
+        threshold: 10%
     project:
       default:
         target: auto
