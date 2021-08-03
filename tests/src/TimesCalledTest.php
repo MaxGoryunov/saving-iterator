@@ -19,6 +19,7 @@ class TimesCalledTest extends TestCase
      * @covers ::__call
      * @covers ::value
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Fakes\Let
      * 
@@ -55,6 +56,7 @@ class TimesCalledTest extends TestCase
      * @covers ::__call
      * @covers ::value
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Fakes\Let
      * 

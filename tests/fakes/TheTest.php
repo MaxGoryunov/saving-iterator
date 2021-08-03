@@ -16,6 +16,7 @@ class TheTest extends TestCase
      * @covers ::__construct
      * @covers ::value
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\Let
      * 
      * @small
