@@ -35,6 +35,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
@@ -63,6 +64,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
@@ -107,6 +109,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
@@ -141,6 +144,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
@@ -201,6 +205,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
@@ -228,6 +233,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
@@ -290,6 +296,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
      * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator

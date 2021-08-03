@@ -15,6 +15,8 @@ class LetTest extends TestCase
      * @covers ::__construct
      * @covers ::value
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
+     * 
      * @small
      *
      * @return void

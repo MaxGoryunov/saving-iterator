@@ -21,6 +21,7 @@ class TransparentIteratorTest extends TestCase
      * @covers ::rewind
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * 
      * @small
