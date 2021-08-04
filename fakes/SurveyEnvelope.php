@@ -32,21 +32,24 @@ abstract class SurveyEnvelope implements Scalar
         /**
          * Element to be used in some context.
          * 
-         * @var X
+         * @phpstan-var X
+         * @var mixed
          */
         private mixed $subject,
 
         /**
          * Context for element.
          * 
-         * @var Closure(X): mixed
+         * @phpstan-var Closure(X): mixed
+         * @var Closure
          */
         private Closure $context,
 
         /**
          * way of combining element and context.
          * 
-         * @var Closure(X, Closure(X): mixed): Y
+         * @phpstan-var Closure(X, Closure(X): mixed): Y
+         * @var Closure
          */
         private Closure $usage
     ) {
@@ -55,7 +58,8 @@ abstract class SurveyEnvelope implements Scalar
     /**
      * Returns result of applying context to element.
      *
-     * @return Y
+     * @phpstan-return Y
+     * @return mixed
      */
     public final function value(): mixed
     {
