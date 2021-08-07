@@ -42,7 +42,7 @@ jobs:
         fail_ci_if_error: true
 
     - name: Check minimum coverage
-      run: "vendor/bin/coverage-check coverage.xml 95 --only-percentage"
+      run: "vendor/bin/coverage-check coverage.xml 100 --only-percentage"
 
     - name: PHPStan analysis
       run: ./vendor/bin/phpstan analyse
