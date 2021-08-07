@@ -26,6 +26,8 @@ jobs:
         args: --coverage-text
 
     - name: Infection analysis
+      env:
+        INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
       run: XDEBUG_MODE=coverage ./vendor/bin/infection --min-msi=80 --min-covered-msi=80 --threads=4 --configuration=./infection.json.dist
 
     - name: Create PHPUnit coverage files
