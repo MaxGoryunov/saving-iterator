@@ -11,7 +11,8 @@
         "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^4.8",
         "phpmd/phpmd": "^2.10",
-        "friendsofphp/php-cs-fixer": "^3.0"
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "rregeer/phpunit-coverage-check": "^0.3.1"
     },
     "autoload": {
         "psr-4": {
