@@ -6,6 +6,8 @@ use Iterator;
 
 /**
  * Storage for Iterator values.
+ * @template TKey
+ * @template TValue
  */
 interface Storage
 {
@@ -13,14 +15,16 @@ interface Storage
     /**
      * Returns object with added values from iterator.
      *
-     * @param Iterator $iterator
+     * @phpstan-param Iterator<TKey, TValue> $source
+     * @param Iterator $source iterator from which the values are taken.
      * @return static
      */
-    public function added(Iterator $iterator): static;
+    public function added(Iterator $source): static;
 
     /**
      * Current key.
      *
+     * @phpstan-return TKey
      * @return mixed
      */
     public function key(): mixed;
@@ -28,6 +32,7 @@ interface Storage
     /**
      * Current value.
      *
+     * @phpstan-return TValue
      * @return mixed
      */
     public function value(): mixed;
