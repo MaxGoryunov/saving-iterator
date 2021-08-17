@@ -7,7 +7,7 @@ use Iterator;
 /**
  * Base storage implementation.
  */
-final class BaseStorage
+final class BaseStorage implements Storage
 {
 
     /**
@@ -30,9 +30,7 @@ final class BaseStorage
      */
     public function added(Iterator $source): static
     {
-        if ($source->valid()) {
-            $this->stored[$source->key()] = $source->current();
-        }
+        $this->stored[$source->key()] = $source->current();
         return $this;
     }
 
@@ -50,5 +48,15 @@ final class BaseStorage
     public function key(): mixed
     {
         return key($this->stored);
+    }
+
+    public function rewind(): static
+    {
+        return $this;
+    }
+
+    public function next(): static
+    {
+        return $this;
     }
 }

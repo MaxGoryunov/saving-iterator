@@ -42,7 +42,7 @@ interface Storage
      *
      * @return static
      */
-    public function reset(): static;
+    public function rewind(): static;
 
     /**
      * Moves pointer to next key-value pair.
