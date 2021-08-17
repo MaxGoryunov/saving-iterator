@@ -6,6 +6,7 @@ use Iterator;
 
 /**
  * Base storage implementation.
+ * @todo #66:15min Remove this unused class and its test.
  */
 final class BaseStorage implements Storage
 {
