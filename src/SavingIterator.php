@@ -14,26 +14,30 @@ class SavingIterator implements Iterator
 {
 
     /**
-     * Original iterator
-     * 
-     * @var Iterator<TKey, TValue>
-     */
-    private Iterator $origin;
-
-    /**
-     * Cached values from the inner iterator
-     * 
-     * @var array<TKey, TValue>
-     */
-    private array $saved = [];
-    /**
      * Ctor.
-     *
-     * @param Iterator<TKey, TValue> $iterator
+     * 
+     * @phpstan-var Iterator<TKey, TValue>
+     * @phpstan-var AddingIterator<TKey, TValue>
+     * @param Iterator       $origin original iterator.
+     * @param AddingIterator $target iterator to which the values are saved.
      */
-    public function __construct(Iterator $iterator)
-    {
-        $this->origin = $iterator;
+    public function __construct(
+        /**
+         * Original iterator.
+         *
+         * @phpstan-var Iterator<TKey, TValue>
+         * @var Iterator
+         */
+        private Iterator $origin,
+
+        /**
+         * Iterator to which the values are saved.
+         *
+         * @phpstan-var AddingIterator<TKey, TValue>
+         * @var AddingIterator
+         */
+        private AddingIterator $target
+    ) {
     }
 
     /**
@@ -42,7 +46,8 @@ class SavingIterator implements Iterator
      */
     public function current(): mixed
     {
-        return $this->saved[$this->key()];
+        $this->target = $this->target->from($this->origin);
+        return $this->target->current();
     }
 
     /**
@@ -51,10 +56,8 @@ class SavingIterator implements Iterator
      */
     public function key(): mixed
     {
-        if ($this->origin->valid()) {
-            $this->saved[$this->origin->key()] ??= $this->origin->current();
-        }
-        return key($this->saved);
+        $this->target = $this->target->from($this->origin);
+        return $this->target->key();
     }
 
     /**
@@ -62,7 +65,7 @@ class SavingIterator implements Iterator
      */
     public function valid(): bool
     {
-        return ($this->origin->valid()) || (key($this->saved) !== null);
+        return ($this->origin->valid()) || ($this->target->valid());
     }
 
     /**
@@ -73,7 +76,7 @@ class SavingIterator implements Iterator
         if ($this->origin->valid()) {
             $this->origin->next();
         }
-        next($this->saved);
+        $this->target->next();
     }
 
     /**
@@ -81,6 +84,6 @@ class SavingIterator implements Iterator
      */
     public function rewind(): void
     {
-        reset($this->saved);
+        $this->target->rewind();
     }
 }
