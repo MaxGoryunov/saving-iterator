@@ -16,8 +16,8 @@ class SavingIterator implements Iterator
     /**
      * Ctor.
      * 
-     * @phpstan-var Iterator<TKey, TValue>
-     * @phpstan-var AddingIterator<TKey, TValue>
+     * @phpstan-param Iterator<TKey, TValue>       $origin
+     * @phpstan-param AddingIterator<TKey, TValue> $target
      * @param Iterator       $origin original iterator.
      * @param AddingIterator $target iterator to which the values are saved.
      */
