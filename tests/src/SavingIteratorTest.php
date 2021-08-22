@@ -31,6 +31,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -61,6 +62,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      * 
@@ -107,6 +109,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -143,6 +146,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -175,6 +179,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * 
      * @small
      *
      * @return void
@@ -206,6 +212,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -235,6 +242,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -273,6 +281,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * 
      * @small
      *
      * @return void
@@ -302,6 +312,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
      * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
