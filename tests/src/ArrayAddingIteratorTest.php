@@ -4,6 +4,8 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
+use MaxGoryunov\SavingIterator\Src\TimesCalled;
+use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -61,5 +63,29 @@ final class ArrayAddingIteratorTest extends TestCase
             iterator_to_array($origin),
             iterator_to_array($iterator)
         );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::from
+     * 
+     * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
+     * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testAddsValueOnlyIfItIsNotPreviouslyStored(): void
+    {
+        $called = new TimesCalled(
+            new ArrayIterator([45, 2, 8, 82, 5, 12]),
+            "current"
+        );
+        $source = new TransparentIterator($called);
+        (new ArrayAddingIterator())
+            ->from($source)
+            ->from($source);
+        $this->assertEquals(1, $called->value());
     }
 }
