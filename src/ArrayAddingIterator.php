@@ -17,13 +17,13 @@ final class ArrayAddingIterator implements AddingIterator
      * Ctor.
      * 
      * @phpstan-param array<TKey, TValue> $added
-     * @param array $added added values.
+     * @param mixed[] $added added values.
      */
     public function __construct(
         /**
          * Added values.
          *
-         * @var array
+         * @var mixed[]
          */
         private array $added = []
     ) {
@@ -54,6 +54,7 @@ final class ArrayAddingIterator implements AddingIterator
 
     /**
      * {@inheritDoc}
+     * @phpstan-return int|string|null
      */
     public function key(): mixed
     {

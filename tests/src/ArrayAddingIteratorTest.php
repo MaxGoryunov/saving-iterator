@@ -82,6 +82,7 @@ final class ArrayAddingIteratorTest extends TestCase
             new ArrayIterator([45, 2, 8, 82, 5, 12]),
             "current"
         );
+        /** @phpstan-ignore-next-line */
         $source = new TransparentIterator($called);
         (new ArrayAddingIterator())
             ->from($source)
