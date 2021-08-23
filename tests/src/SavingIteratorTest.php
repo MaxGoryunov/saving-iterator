@@ -8,6 +8,7 @@ use InfiniteIterator;
 use Iterator;
 use LimitIterator;
 use MaxGoryunov\SavingIterator\Fakes\The;
+use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\Indifferent;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
@@ -30,6 +31,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -43,7 +45,8 @@ class SavingIteratorTest extends TestCase
                 $nums,
                 iterator_to_array(
                     new SavingIterator(
-                        new ArrayIterator($nums)
+                        new ArrayIterator($nums),
+                        new ArrayAddingIterator()
                     )
                 )
             )
@@ -59,6 +62,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      * 
@@ -82,7 +86,8 @@ class SavingIteratorTest extends TestCase
                             new InfiniteIterator(
                                 new SavingIterator(
                                     /** @phpstan-ignore-next-line */
-                                    new TransparentIterator($called)
+                                    new TransparentIterator($called),
+                                    new ArrayAddingIterator()
                                 )
                             ),
                             0,
@@ -104,6 +109,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -122,7 +128,8 @@ class SavingIteratorTest extends TestCase
                             for ($i = 0; $i <= $limit; $i++) {
                                 yield $i;
                             }
-                        })()
+                        })(),
+                        new ArrayAddingIterator()
                     )
                 )
             )
@@ -139,6 +146,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -153,7 +161,8 @@ class SavingIteratorTest extends TestCase
                     for ($i = 0; $i < 10; $i++) {
                         yield $i;
                     }
-                })()
+                })(),
+                new ArrayAddingIterator()
             ),
             fn(Iterator $iterator) => $this->assertEquals(
                 iterator_to_array($iterator),
@@ -169,6 +178,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
+     * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -184,7 +195,8 @@ class SavingIteratorTest extends TestCase
                         foreach ([] as $value) {
                             yield $value;
                         }
-                    })()
+                    })(),
+                    new ArrayAddingIterator()
                 )
             )
         );
@@ -200,6 +212,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -209,7 +222,8 @@ class SavingIteratorTest extends TestCase
     {
         (new The(
             new SavingIterator(
-                new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23])
+                new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23]),
+                new ArrayAddingIterator()
             ),
             fn(Iterator $iterator) => $this->assertEquals(
                 iterator_to_array($iterator),
@@ -228,6 +242,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -242,7 +257,8 @@ class SavingIteratorTest extends TestCase
                 iterator_to_array(
                     (new The(
                         new SavingIterator(
-                            new ArrayIterator($input)
+                            new ArrayIterator($input),
+                            new ArrayAddingIterator()
                         ),
                         function (Iterator $iterator) use ($input): void {
                             foreach ($iterator as $value) {
@@ -265,6 +281,8 @@ class SavingIteratorTest extends TestCase
      * @covers ::key
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * 
      * @small
      *
      * @return void
@@ -275,7 +293,8 @@ class SavingIteratorTest extends TestCase
             [],
             iterator_to_array(
                 new SavingIterator(
-                    new ArrayIterator([])
+                    new ArrayIterator([]),
+                    new ArrayAddingIterator()
                 )
             )
         );
@@ -293,6 +312,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
      * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *
@@ -314,7 +334,8 @@ class SavingIteratorTest extends TestCase
                             new InfiniteIterator(
                                 new SavingIterator(
                                     /** @phpstan-ignore-next-line */
-                                    new TransparentIterator($called)
+                                    new TransparentIterator($called),
+                                    new ArrayAddingIterator()
                                 )
                             ),
                             0,
