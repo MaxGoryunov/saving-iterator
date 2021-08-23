@@ -46,6 +46,10 @@ class SavingIterator implements Iterator
      */
     public function current(): mixed
     {
+        /**
+         * @todo #66:25min Codebeat complains about similar code in two methods.
+         *  It should be refactored.
+         */
         $this->target = $this->target->from($this->origin);
         return $this->target->current();
     }
