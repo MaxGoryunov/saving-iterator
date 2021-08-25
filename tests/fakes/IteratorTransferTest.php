@@ -15,6 +15,9 @@ final class IteratorTransferTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::toTarget
+     * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * 
      * @small
      *

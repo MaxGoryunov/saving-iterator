@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use MaxGoryunov\SavingIterator\Fakes\IteratorTransfer;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
@@ -53,15 +54,13 @@ final class ArrayAddingIteratorTest extends TestCase
          * @todo #66:40min Add a fake class for putting the values into Adding
          *  Iterator from source.
          */
-        $origin   = new ArrayIterator([8, 20, 5, 1, 65, 2, 6]);
-        $iterator = (new ArrayAddingIterator())->from($origin);
-        for ($i = 0; $i < $origin->count() - 1; $i++) {
-            $origin->next();
-            $iterator = $iterator->from($origin);
-        }
+        $origin = new ArrayIterator([8, 20, 5, 1, 65, 2, 6]);
         $this->assertEquals(
             iterator_to_array($origin),
-            iterator_to_array($iterator)
+            iterator_to_array(
+                (new IteratorTransfer($origin))
+                    ->toTarget(new ArrayAddingIterator())
+            )
         );
     }
 
@@ -88,5 +87,23 @@ final class ArrayAddingIteratorTest extends TestCase
             ->from($source)
             ->from($source);
         $this->assertEquals(1, $called->value());
+    }
+
+    /**
+     * @covers ::__construct
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testReturnsAddedValuesWithIteratorToArray(): void
+    {
+        $input = [4, 3, 94, 25, 63, 6, 72, 7];
+        $this->assertEquals(
+            $input,
+            iterator_to_array(
+                new ArrayAddingIterator([4, 3, 94, 25, 63, 6, 72, 7])
+            )
+        );
     }
 }
