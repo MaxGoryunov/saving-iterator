@@ -41,6 +41,17 @@ class SavingIterator implements Iterator
     }
 
     /**
+     * Returns target after adding a value from origin.
+     *
+     * @return AddingIterator
+     */
+    private function added(): AddingIterator
+    {
+        $this->target = $this->target->from($this->origin);
+        return $this->target;
+    }
+
+    /**
      * {@inheritDoc}
      * @return TValue|false
      */
@@ -51,7 +62,7 @@ class SavingIterator implements Iterator
          *  It should be refactored.
          */
         $this->target = $this->target->from($this->origin);
-        return $this->target->current();
+        return $this->added()->current();
     }
 
     /**
@@ -60,8 +71,7 @@ class SavingIterator implements Iterator
      */
     public function key(): mixed
     {
-        $this->target = $this->target->from($this->origin);
-        return $this->target->key();
+        return $this->added()->key();
     }
 
     /**
