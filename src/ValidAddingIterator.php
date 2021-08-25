@@ -6,6 +6,9 @@ use Iterator;
 
 /**
  * Adding iterator which only adds values if source is valid.
+ * @template TKey
+ * @template TValue
+ * @implements AddingIterator<TKey, TValue>
  */
 final class ValidAddingIterator implements AddingIterator
 {
@@ -13,12 +16,14 @@ final class ValidAddingIterator implements AddingIterator
     /**
      * Ctor.
      * 
+     * @phpstan-param AddingIterator<TKey, TValue> $origin
      * @param AddingIterator $origin original adding iterator.
      */
     public function __construct(
         /**
          * Original adding iterator.
          *
+         * @phpstan-var AddingIterator<TKey, TValue>
          * @var AddingIterator
          */
         private AddingIterator $origin
