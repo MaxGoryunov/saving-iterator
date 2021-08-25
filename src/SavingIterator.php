@@ -47,6 +47,10 @@ class SavingIterator implements Iterator
      */
     private function added(): AddingIterator
     {
+        /**
+         * @todo #85:40min There is a private function in this class. It should
+         *  be removed without creating the code duplication problem again.
+         */
         $this->target = $this->target->from($this->origin);
         return $this->target;
     }
@@ -57,11 +61,6 @@ class SavingIterator implements Iterator
      */
     public function current(): mixed
     {
-        /**
-         * @todo #66:25min Codebeat complains about similar code in two methods.
-         *  It should be refactored.
-         */
-        $this->target = $this->target->from($this->origin);
         return $this->added()->current();
     }
 
