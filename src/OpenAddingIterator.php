@@ -7,6 +7,9 @@ use Iterator;
 
 /**
  * Adding iterator which stores values in a user provided iterator.
+ * @template TKey
+ * @template TValue
+ * @implements AddingIterator<TKey, TValue>
  */
 final class OpenAddingIterator implements AddingIterator
 {
@@ -14,12 +17,14 @@ final class OpenAddingIterator implements AddingIterator
     /**
      * Ctor.
      * 
+     * @phpstan-param Iterator<TKey, TValue>&ArrayAccess<TKey, TValue> $added
      * @param Iterator&ArrayAccess $added iterator with stored values.
      */
     public function __construct(
         /**
          * Iterator with stored values.
          * 
+         * @phpstan-var Iterator<TKey, TValue>&ArrayAccess<TKey, TValue>
          * @var Iterator&ArrayAccess
          */
         private Iterator|ArrayAccess $added
