@@ -1,0 +1,9 @@
+errors:
+  - maximthehedgehog@yandex.ru
+alerts:
+  suppress:
+    - on-found-puzzle
+    - on-lost-puzzle
+    - on-scope
+tags:
+  - bug
