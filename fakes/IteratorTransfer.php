@@ -34,6 +34,7 @@ final class IteratorTransfer
      */
     public function toTarget(AddingIterator $target): AddingIterator
     {
+        $this->origin->rewind();
         while ($this->origin->valid()) {
             $target = $target->from($this->origin);
             $this->origin->next();
