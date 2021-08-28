@@ -40,4 +40,22 @@ class TheTest extends TestCase
             ))->value()
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::do
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testReturnsSubjectWithDynamicContext(): void
+    {
+        $nums = range(2, 6);
+        $this->assertEquals(
+            $nums,
+            (new The($nums, fn($nums) => $nums))
+                ->do(fn (array $nums) => array_sum($nums))
+        );
+    }
 }
