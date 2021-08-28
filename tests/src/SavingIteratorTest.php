@@ -23,6 +23,7 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -101,6 +102,7 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -138,6 +140,7 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -173,6 +176,7 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -204,6 +208,7 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -234,6 +239,7 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -275,6 +281,7 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -302,6 +309,7 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
