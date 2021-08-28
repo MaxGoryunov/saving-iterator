@@ -50,10 +50,6 @@ final class ArrayAddingIteratorTest extends TestCase
      */
     public function testWorksAsIteratorWithAddedValues(): void
     {
-        /**
-         * @todo #66:40min Add a fake class for putting the values into Adding
-         *  Iterator from source.
-         */
         $origin = new ArrayIterator([8, 20, 5, 1, 65, 2, 6]);
         $this->assertEquals(
             iterator_to_array($origin),
