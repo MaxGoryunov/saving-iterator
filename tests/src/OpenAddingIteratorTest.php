@@ -31,4 +31,33 @@ final class OpenAddingIteratorTest extends TestCase
                 ->current()
         );
     }
+
+    /**
+     * @covers ::__connstruct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * @covers ::rewind
+     * @covers ::valid
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksAsIteratorWithAddedValues(): void
+    {
+        /**
+         * @todo #83:15min Replace algorithm with a fake class.
+         */
+        $origin   = new ArrayIterator([34, 0, 39, 7, 65, 82, 79]);
+        $iterator = (new OpenAddingIterator(new ArrayIterator([])));
+        while ($origin->valid()) {
+            $iterator = $iterator->from($origin);
+            $origin->next();
+        }
+        $this->assertEquals(
+            iterator_to_array($origin),
+            iterator_to_array($iterator)
+        );
+    }
 }
