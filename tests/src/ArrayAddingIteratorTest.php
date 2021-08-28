@@ -44,6 +44,8 @@ final class ArrayAddingIteratorTest extends TestCase
      * @covers ::rewind
      * @covers ::next
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\IteratorTransfer
+     * 
      * @small
      *
      * @return void
@@ -87,6 +89,11 @@ final class ArrayAddingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * @covers ::valid
+     * @covers ::rewind
      * 
      * @small
      *
