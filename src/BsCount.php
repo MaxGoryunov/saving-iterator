@@ -19,7 +19,7 @@ final class BsCount implements Count
          *
          * @var int
          */
-        private int $count
+        private int $count = 0
     ) {
     }
 
@@ -28,7 +28,7 @@ final class BsCount implements Count
      */
     public function increment(): Count
     {
-        return $this;
+        return new self($this->count + 1);
     }
 
     /**
