@@ -6,13 +6,22 @@ use Closure;
 
 /**
  * Allows to use context instead of creating a new variable.
- * 
+ * @todo #92:30min Remove extension of SurveyEnvelope from this class because
+ *  it is not needed.
  * @template X subject type
  * @template Y result type
  * @extends SurveyEnvelope<X, Y>
+ * @implements Block<Y>
  */
-class Let extends SurveyEnvelope
+class Let extends SurveyEnvelope implements Block
 {
+
+    /**
+     * Subject for context.
+     *
+     * @var mixed
+     */
+    private mixed $subject;
 
     /**
      * Ctor.
@@ -29,5 +38,14 @@ class Let extends SurveyEnvelope
             $context,
             fn(mixed $subject, Closure $context): mixed => $context($subject)
         );
+        $this->subject = $subject;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function do(Closure $context): mixed
+    {
+        return $context($this->subject);
     }
 }

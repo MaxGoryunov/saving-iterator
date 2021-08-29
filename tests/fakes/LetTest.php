@@ -33,4 +33,22 @@ class LetTest extends TestCase
             ))->value()
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::do
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testReturnsSubjectWithDynamicContext(): void
+    {
+        $nums = range(1, 5);
+        $this->assertEquals(
+            array_sum($nums),
+            (new Let($nums, fn ($nums) => $nums))
+                ->do(fn (array $nums) => array_sum($nums))
+        );
+    }
 }
