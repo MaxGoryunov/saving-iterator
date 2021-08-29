@@ -70,6 +70,10 @@ class TransparentIterator implements Iterator
      */
     public function rewind(): void
     {
+        /**
+         * @todo #95:15min Reset functionality for encapsulated iterator is not 
+         *  covered.
+         */
         $this->origin->rewind();
     }
 }
