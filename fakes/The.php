@@ -6,7 +6,6 @@ use Closure;
 
 /**
  * Class for applying contexts to elements without changing them.
- * @todo #95:20min Tests do not cover cases when context is called on subject.
  * @template T subject type
  * @extends SurveyEnvelope<T, T>
  */
