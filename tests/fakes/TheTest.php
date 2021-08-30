@@ -5,6 +5,7 @@ namespace MaxGoryunov\SavingIterator\Tests\Fakes;
 use MaxGoryunov\SavingIterator\Fakes\Let;
 use MaxGoryunov\SavingIterator\Fakes\The;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @coversDefaultClass MaxGoryunov\SavingIterator\Fakes\The
@@ -38,6 +39,29 @@ class TheTest extends TestCase
                     ))->value()
                 ]
             ))->value()
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::value
+     * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testCallsContextOnSubject(): void
+    {
+        $name = "John";
+        $this->assertEquals(
+            $name,
+            (new The(
+                new stdClass(),
+                fn (stdClass $obj) => $obj->name = $name
+            ))
+                ->value()->name
         );
     }
 }
