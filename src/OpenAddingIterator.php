@@ -36,6 +36,13 @@ final class OpenAddingIterator implements AddingIterator
      */
     public function from(Iterator $source): AddingIterator
     {
+        /**
+         * @todo #83:20min Cover that Iterator works with an immutable
+         *  iterator.
+         */
+        /**
+         * @todo #83:20min Assert that iterator does not add values if they are already stored.
+         */
         $updated = clone $this->added;
         $updated[$source->key()] ??= $source->current();
         return new self($updated);
@@ -78,6 +85,9 @@ final class OpenAddingIterator implements AddingIterator
      */
     public function rewind(): void
     {
+        /**
+         * @todo #83:20min Assert that iterator rewinds original iterator.
+         */
         $this->added->rewind();
     }
 }
