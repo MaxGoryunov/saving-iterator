@@ -17,6 +17,8 @@ final class ValidAddingIteratorTest extends TestCase
      * @covers ::__construct
      * @covers ::from
      * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * 
      * @small
      *
      * @return void
