@@ -34,6 +34,7 @@ final class OpenAddingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::from
      * @covers ::current
      * @covers ::key
      * @covers ::next
