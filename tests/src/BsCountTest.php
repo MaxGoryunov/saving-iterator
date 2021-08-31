@@ -6,7 +6,7 @@ use MaxGoryunov\SavingIterator\Src\BsCount;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass MaxGoryunov\SavingIterator\Src\Count
+ * @coversDefaultClass MaxGoryunov\SavingIterator\Src\BsCount
  */
 final class BsCountTest extends TestCase
 {

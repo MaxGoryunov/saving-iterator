@@ -4,6 +4,7 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
+use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
@@ -71,6 +72,7 @@ final class ArrayAddingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
      * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * 
      * @small
      *
@@ -80,6 +82,7 @@ final class ArrayAddingIteratorTest extends TestCase
     {
         $called = new TimesCalled(
             new ArrayIterator([45, 2, 8, 82, 5, 12]),
+            new BsCount(),
             "current"
         );
         /** @phpstan-ignore-next-line */
