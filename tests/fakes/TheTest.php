@@ -45,6 +45,8 @@ class TheTest extends TestCase
      * @covers ::__construct
      * @covers ::do
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
+     * 
      * @small
      *
      * @return void
