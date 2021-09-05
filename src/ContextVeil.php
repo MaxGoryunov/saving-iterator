@@ -4,6 +4,9 @@ namespace MaxGoryunov\SavingIterator\Src;
 
 /**
  * Veil which applies context to origin if the condition is met.
+ * @template T of object origin type.
+ * @implements Indifferent<T>
+ * @mixin T
  */
 final class ContextVeil implements Indifferent
 {
@@ -11,15 +14,17 @@ final class ContextVeil implements Indifferent
     /**
      * Ctor.
      * 
-     * @param mixed $origin original element.
+     * @phpstan-param T $origin
+     * @param object $origin original element.
      */
     public function __construct(
         /**
          * Original element.
          *
-         * @var mixed
+         * @phpstan-var T
+         * @var object
          */
-        private mixed $origin
+        private object $origin
     ) {
     }
 
