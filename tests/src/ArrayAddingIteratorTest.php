@@ -92,8 +92,29 @@ final class ArrayAddingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * @covers ::valid
      * @covers ::rewind
+     * @covers ::valid
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testGivesSameResultsOverDifferentIterations(): void
+    {
+        $iterator = new ArrayAddingIterator([4, 3, 85, 48, 19, 53]);
+        $this->assertEquals(
+            iterator_to_array($iterator),
+            iterator_to_array($iterator)
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * @covers ::rewind
+     * @covers ::valid
      * 
      * @small
      *
