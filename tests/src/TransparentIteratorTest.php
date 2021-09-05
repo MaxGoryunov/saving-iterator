@@ -49,4 +49,32 @@ class TransparentIteratorTest extends TestCase
             )
         ))->value();
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * @covers ::rewind
+     * @covers ::valid
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testRewindsInnerIterator(): void
+    {
+        /**
+         * @todo #103:40min Add a fake class or try to write a matcher for
+         *  testing iterator rewinds. It often seems to be the method about
+         *  which Infection complains.
+         */
+        $iterator = new TransparentIterator(
+            new ArrayIterator([3, 87, 36, 93, 6, 82, 4])
+        );
+        $this->assertEquals(
+            iterator_to_array($iterator),
+            iterator_to_array($iterator)
+        );
+    }
 }
