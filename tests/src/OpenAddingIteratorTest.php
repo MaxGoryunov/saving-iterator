@@ -4,6 +4,8 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
 use MaxGoryunov\SavingIterator\Src\OpenAddingIterator;
+use MaxGoryunov\SavingIterator\Src\TimesCalled;
+use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -60,5 +62,62 @@ final class OpenAddingIteratorTest extends TestCase
             iterator_to_array($origin),
             iterator_to_array($iterator)
         );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::from
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * @covers ::rewind
+     * @covers ::valid
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testRewindsStoredIterator(): void
+    {
+        $iterator = new OpenAddingIterator(
+            new ArrayIterator([4, 72, 7, 26, 46, 92, 14])
+        );
+        $this->assertEquals(
+            iterator_to_array($iterator),
+            iterator_to_array($iterator)
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::from
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * @covers ::rewind
+     * @covers ::valid
+     * 
+     * @small
+     * 
+     * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
+     * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     *
+     * @return void
+     */
+    public function testDoesNotStoreValuesIfTheyAreAlreadyStored(): void
+    {
+        $called = new TimesCalled(
+            new ArrayIterator([56, 82, 5, 27, 92, 38]),
+            "current"
+        );
+        /** @phpstan-ignore-next-line */
+        $transparent = new TransparentIterator($called);
+        (new OpenAddingIterator(
+            new ArrayIterator()
+        ))
+            ->from($transparent)
+            ->from($transparent)
+            ->from($transparent);
+        $this->assertEquals(1, $called->value());
     }
 }
