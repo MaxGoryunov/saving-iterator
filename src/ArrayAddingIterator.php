@@ -76,9 +76,6 @@ final class ArrayAddingIterator implements AddingIterator
      */
     public function rewind(): void
     {
-        /**
-         * @todo #95:15min Reset behaviour for array is not covered.
-         */
         reset($this->added);
     }
 }
