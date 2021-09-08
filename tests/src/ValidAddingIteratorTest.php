@@ -31,4 +31,48 @@ final class ValidAddingIteratorTest extends TestCase
             $iterator->from(new ArrayIterator())
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::from
+     * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testAddsValuesIfSourceIsValid(): void
+    {
+        $iterator = new ValidAddingIterator(new ArrayAddingIterator());
+        $this->assertNotSame(
+            $iterator,
+            $iterator->from(new ArrayIterator([34, 7, 23, 81, 75, 16]))
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::valid
+     * @covers ::next
+     * @covers ::rewind
+     * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testBehavesAsIterator(): void
+    {
+        $input = [34, 7, 85, 72, 54, 71, 8];
+        $this->assertEquals(
+            $input,
+            iterator_to_array(
+                new ValidAddingIterator(new ArrayAddingIterator($input))
+            )
+        );
+    }
 }
