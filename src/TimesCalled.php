@@ -11,37 +11,38 @@ namespace MaxGoryunov\SavingIterator\Src;
  */
 class TimesCalled implements Indifferent, Scalar
 {
-    /**
-     * Original object.
-     * 
-     * @var T
-     */
-    private object $origin;
-
-    /**
-     * Method to pay attention to.
-     * 
-     * @var string
-     */
-    private string $method;
-
-    /**
-     * How many times the method was called.
-     * 
-     * @var int
-     */
-    private int $times = 0;
 
     /**
      * Ctor.
-     *
-     * @param T      $origin
-     * @param string $method
+     * 
+     * @phpstan-param T $origin
+     * @param object $origin original object.
+     * @param Count  $count  how many times the method was called.
+     * @param string $method method to pay attention to.
      */
-    public function __construct(object $origin, string $method)
-    {
-        $this->origin = $origin;
-        $this->method = $method;
+    public function __construct(
+        /**
+         * Original object.
+         *
+         * @phpstan-var T
+         * @var object
+         */
+        private object $origin,
+
+        /**
+         * How many times the method was called.
+         *
+         * @var Count
+         */
+        private Count $count,
+
+        /**
+         * MEthod to pay attention to.
+         *
+         * @var string
+         */
+        private string $method
+    ) {
     }
 
     /**
@@ -51,7 +52,7 @@ class TimesCalled implements Indifferent, Scalar
      */
     public function value(): int
     {
-        return $this->times;
+        return $this->count->value();
     }
 
     /**
@@ -61,7 +62,7 @@ class TimesCalled implements Indifferent, Scalar
     public function __call(string $name, array $arguments): mixed
     {
         if ($name === $this->method) {
-            $this->times++;
+            $this->count = $this->count->increment();
         }
         return $this->origin->$name(...$arguments);
     }

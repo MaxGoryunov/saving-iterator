@@ -9,6 +9,7 @@ use Iterator;
 use LimitIterator;
 use MaxGoryunov\SavingIterator\Fakes\The;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
+use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\Indifferent;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
@@ -68,6 +69,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * 
      * @small
@@ -85,6 +87,7 @@ class SavingIteratorTest extends TestCase
                 (new The(
                     new TimesCalled(
                         new ArrayIterator($input),
+                        new BsCount(),
                         "next"
                     ),
                     fn(Indifferent $called): array => iterator_to_array(
@@ -346,6 +349,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
      * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * 
      * @small
@@ -361,6 +365,7 @@ class SavingIteratorTest extends TestCase
                 (new The(
                     new TimesCalled(
                         new ArrayIterator($input),
+                        new BsCount(),
                         "current"
                     ),
                     fn(Indifferent $called): array => iterator_to_array(
