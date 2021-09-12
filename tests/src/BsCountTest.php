@@ -47,4 +47,25 @@ final class BsCountTest extends TestCase
                 ->value()
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::increment
+     * @covers ::value
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testCountsCorrectlyIfInitialIsNotPresent(): void
+    {
+        $this->assertEquals(
+            3,
+            (new BsCount())
+                ->increment()
+                ->increment()
+                ->increment()
+                ->value()
+        );
+    }
 }
