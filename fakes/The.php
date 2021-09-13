@@ -47,7 +47,7 @@ class The extends SurveyEnvelope implements Block
     /**
      * {@inheritDoc}
      */
-    public function do(Closure $context): mixed
+    public function act(Closure $context): mixed
     {
         $context($this->subject);
         return $this->subject;

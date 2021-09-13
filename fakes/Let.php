@@ -44,7 +44,7 @@ class Let extends SurveyEnvelope implements Block
     /**
      * {@inheritDoc}
      */
-    public function do(Closure $context): mixed
+    public function act(Closure $context): mixed
     {
         return $context($this->subject);
     }

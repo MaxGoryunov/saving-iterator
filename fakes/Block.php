@@ -19,5 +19,5 @@ interface Block
      * @phpstan-return T
      * @return mixed
      */
-    public function do(Closure $context): mixed;
+    public function act(Closure $context): mixed;
 }

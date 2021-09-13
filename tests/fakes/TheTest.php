@@ -58,7 +58,7 @@ class TheTest extends TestCase
         $this->assertEquals(
             $nums,
             (new The($nums, fn($nums) => $nums))
-                ->do(fn (array $nums) => array_sum($nums))
+                ->act(fn (array $nums) => array_sum($nums))
         );
     }
 

@@ -50,7 +50,7 @@ class LetTest extends TestCase
         $this->assertEquals(
             array_sum($nums),
             (new Let($nums, fn ($nums) => $nums))
-                ->do(fn (array $nums) => array_sum($nums))
+                ->act(fn (array $nums) => array_sum($nums))
         );
     }
 }
