@@ -5,6 +5,7 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 use ArrayIterator;
 use MaxGoryunov\SavingIterator\Fakes\Let;
 use MaxGoryunov\SavingIterator\Fakes\The;
+use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use PHPUnit\Framework\TestCase;
 
@@ -22,6 +23,7 @@ class TimesCalledTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Fakes\Let
+     * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * 
      * @small
      *
@@ -31,13 +33,14 @@ class TimesCalledTest extends TestCase
     {
         (new The(
             rand(0, 20),
-            fn(int $times) => $this->assertEquals(
+            fn (int $times) => $this->assertEquals(
                 $times,
                 (new Let(
                     "current",
-                    fn(string $method): int => (new The(
+                    fn (string $method): int => (new The(
                         new TimesCalled(
                             new ArrayIterator([16, 14, 13, 15, 12, 18, 84]),
+                            new BsCount(),
                             $method
                         ),
                         function (TimesCalled $called) use ($method, $times) {
@@ -59,6 +62,7 @@ class TimesCalledTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Fakes\Let
+     * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * 
      * @small
      *
@@ -68,13 +72,14 @@ class TimesCalledTest extends TestCase
     {
         (new The(
             rand(0, 20),
-            fn(int $times) => $this->assertEquals(
+            fn (int $times) => $this->assertEquals(
                 $times,
                 (new Let(
                     "key",
-                    fn(string $method): int => (new The(
+                    fn (string $method): int => (new The(
                         new TimesCalled(
                             new ArrayIterator([16, 14, 13, 15, 12, 18]),
+                            new BsCount(),
                             $method
                         ),
                         function (TimesCalled $called) use ($method, $times) {
@@ -83,7 +88,7 @@ class TimesCalledTest extends TestCase
                              */
                             for ($i = 0; $i < $times; $i++) {
                                 $called->$method();
-                                if (($i % 2 === 0) or ($i % 3 === 0)) {
+                                if (($i % 2 === 0) || ($i % 3 === 0)) {
                                     $called->current();
                                 }
                             }
