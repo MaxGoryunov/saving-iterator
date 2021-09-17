@@ -2,6 +2,8 @@
 
 namespace MaxGoryunov\SavingIterator\Src;
 
+use Closure;
+
 /**
  * Veil which applies context to origin if the condition is met.
  * @template T of object origin type.
@@ -24,7 +26,24 @@ final class ContextVeil implements Indifferent
          * @phpstan-var T
          * @var object
          */
-        private object $origin
+        private object $origin,
+
+        /**
+         * Context for the element.
+         * Modifies the element and returns the result.
+         *
+         * @phpstan-var Closure(T): T
+         * @var Closure
+         */
+        private Closure $context,
+
+        /**
+         * Methods on which the element must be modified.\
+         * Does not accept nulls as values.
+         *
+         * @var array<string, mixed>
+         */
+        private array $methods
     ) {
     }
 
@@ -33,6 +52,9 @@ final class ContextVeil implements Indifferent
      */
     public function __call(string $name, array $arguments): mixed
     {
+        if (isset($this->methods[$name])) {
+            $this->origin = ($this->context)($this->origin);
+        }
         return $this->origin->$name(...$arguments);
     }
 }
