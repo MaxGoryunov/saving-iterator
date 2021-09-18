@@ -35,17 +35,11 @@ final class ArrayAddingIterator implements AddingIterator
     public function from(Iterator $source): AddingIterator
     {
         /**
-         * @todo #66:20min Add a decorator for AddingIterator which does not
-         *  allow to add values if source is not valid.
-         */
-        /**
          * @todo #83:20min Current approach mutates existing object. If it is
          *  not reassigned but instead passed to some method variable which
          *  holds a reference to this object with be in an invalid state.
          */
-        if ($source->valid()) {
-            $this->added[$source->key()] ??= $source->current();
-        }
+        $this->added[$source->key()] ??= $source->current();
         return new self($this->added);
     }
 
