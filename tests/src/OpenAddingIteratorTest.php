@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\OpenAddingIterator;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
@@ -100,6 +101,7 @@ final class OpenAddingIteratorTest extends TestCase
      * @small
      * 
      * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
+     * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
      *
      * @return void
@@ -108,6 +110,7 @@ final class OpenAddingIteratorTest extends TestCase
     {
         $called = new TimesCalled(
             new ArrayIterator([56, 82, 5, 27, 92, 38]),
+            new BsCount(),
             "current"
         );
         /** @phpstan-ignore-next-line */
