@@ -1,0 +1,11 @@
+language: php
+php:
+  - '8.0'
+install:
+  - composer install
+script:
+  - vendor/bin/phpunit --coverage-text --configuration phpunit.xml
+  - XDEBUG_MODE=coverage ./vendor/bin/infection --min-msi=90 --min-covered-msi=90 --threads=4 --configuration=./infection.json.dist
+  - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
+  - vendor/bin/coverage-check coverage.xml 100 --only-percentage
+  - ./vendor/bin/phpstan analyse
