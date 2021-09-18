@@ -6,7 +6,6 @@ use Iterator;
 
 /**
  * Iterator which can add values.
- * @todo #66:30min Add implementation for this interface.
  * @template TKey
  * @template TValue
  * @extends Iterator<TKey, TValue>
