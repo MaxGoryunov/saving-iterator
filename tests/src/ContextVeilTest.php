@@ -4,6 +4,7 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
 use Iterator;
+use MaxGoryunov\SavingIterator\Src\AddingIterator;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\ContextVeil;
 use PHPUnit\Framework\TestCase;
@@ -45,6 +46,8 @@ final class ContextVeilTest extends TestCase
      * @covers ::__Construct
      * @covers ::__call
      * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * 
      * @small
      *
      * @return void
@@ -58,7 +61,7 @@ final class ContextVeilTest extends TestCase
         $source = new ArrayIterator([52, 26, 73, 8, 34, 7, 26]);
         $veil = new ContextVeil(
             new ArrayAddingIterator(),
-            fn (ArrayAddingIterator $iterator) => $iterator->from($source),
+            fn (AddingIterator $iterator) => $iterator->from($source),
             ["current" => true]
         );
         $this->assertEquals(
