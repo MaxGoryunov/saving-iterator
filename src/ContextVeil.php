@@ -16,8 +16,13 @@ final class ContextVeil implements Indifferent
     /**
      * Ctor.
      * 
-     * @phpstan-param T $origin
-     * @param object $origin original element.
+     * @phpstan-param T                    $origin
+     * @phpstan-param Closure(T): T        $context
+     * @phpstan-param array<string, mixed> $methods
+     * @param object               $origin  original element.
+     * @param Closure              $context context for the element.
+     * @param array<string, mixed> $methods methods on which the element must
+     * be modified.
      */
     public function __construct(
         /**
