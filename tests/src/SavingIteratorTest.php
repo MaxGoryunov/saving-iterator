@@ -7,6 +7,7 @@ use Generator;
 use InfiniteIterator;
 use Iterator;
 use LimitIterator;
+use MaxGoryunov\SavingIterator\Fakes\Repeat;
 use MaxGoryunov\SavingIterator\Fakes\The;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\BsCount;
