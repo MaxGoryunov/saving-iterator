@@ -44,6 +44,26 @@ class TheTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::act
+     * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testReturnsSubjectWithDynamicContext(): void
+    {
+        $nums = range(2, 6);
+        $this->assertEquals(
+            $nums,
+            (new The($nums, fn($nums) => $nums))
+                ->act(fn (array $nums) => array_sum($nums))
+        );
+    }
+
+    /**
+     * @covers ::__construct
      * @covers ::value
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
