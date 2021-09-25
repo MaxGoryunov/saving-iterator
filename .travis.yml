@@ -14,3 +14,5 @@ script:
   - vendor/bin/coverage-check coverage.xml 100 --only-percentage
   # PHPStan analysis
   - ./vendor/bin/phpstan analyse
+after_script:
+  - bash <(curl -s https://codecov.io/bash)
