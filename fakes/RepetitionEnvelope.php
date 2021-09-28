@@ -48,7 +48,7 @@ abstract class RepetitionEnvelope implements Repetition
      * @phpstan-return Y[]
      * @return mixed[]
      */
-    public function times(int $count): array
+    final public function times(int $count): array
     {
         return array_map(
             $this->context,

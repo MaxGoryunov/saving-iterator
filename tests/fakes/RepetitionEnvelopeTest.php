@@ -12,9 +12,6 @@ use stdClass;
 final class RepetitionEnvelopeTest extends TestCase
 {
     /**
-     * @covers ::__construct
-     * @covers ::times
-     *
      * @small
      *
      * @return void
