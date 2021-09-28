@@ -46,12 +46,10 @@ class SavingIterator implements Iterator
             fn (AddingIterator $stored): AddingIterator => $stored->from(
                 $this->origin
             ),
-            [
-                "current" => true,
-                "key"     => true
-            ]
+            array_flip(["current", "key"])
         );
     }
+
     /**
      * {@inheritDoc}
      * @return TValue|false
