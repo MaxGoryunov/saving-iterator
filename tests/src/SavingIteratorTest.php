@@ -25,7 +25,6 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -36,6 +35,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      *
@@ -71,6 +71,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      * 
@@ -112,7 +113,6 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -123,6 +123,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      *
@@ -153,7 +154,6 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -164,6 +164,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      *
@@ -192,7 +193,6 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -201,6 +201,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      *
@@ -227,7 +228,6 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -238,6 +238,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      *
@@ -261,7 +262,6 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -272,6 +272,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      *
@@ -306,7 +307,6 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -315,6 +315,7 @@ class SavingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      *
@@ -337,7 +338,6 @@ class SavingIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::added
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
@@ -351,6 +351,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * 
      * @small
      *

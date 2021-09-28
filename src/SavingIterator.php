@@ -48,7 +48,7 @@ class SavingIterator implements Iterator
             ),
             [
                 "current" => true,
-                "key" => true
+                "key"     => true
             ]
         );
     }
