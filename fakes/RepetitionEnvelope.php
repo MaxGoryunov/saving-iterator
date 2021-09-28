@@ -6,13 +6,14 @@ use Closure;
 
 /**
  * Repeats some process several times and returns its result.
+ * @todo #109:30min Add Rewinding repetition or repetition which converts
+ *  iterator to array for rewind tests and use it in iterator tests.
  * @template X subject type
  * @template Y result type
- * @implements Repeat<Y>
+ * @implements Repetition<Y>
  */
-abstract class RepeatEnvelope implements Repeat
+abstract class RepetitionEnvelope implements Repetition
 {
-
     /**
      * Ctor.
      *

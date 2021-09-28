@@ -2,20 +2,19 @@
 
 namespace MaxGoryunov\SavingIterator\Tests\Fakes;
 
-use MaxGoryunov\SavingIterator\Fakes\RepeatEnvelope;
+use MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
- * @covers MaxGoryunov\SavingIterator\Fakes\RepeatEnvelope
+ * @covers MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
  */
-final class RepeatTest extends TestCase
+final class RepetitionEnvelopeTest extends TestCase
 {
-
     /**
      * @covers ::__construct
      * @covers ::times
-     * 
+     *
      * @small
      *
      * @return void
@@ -26,7 +25,7 @@ final class RepeatTest extends TestCase
         $this->assertCount(
             $times,
             $this->getMockForAbstractClass(
-                RepeatEnvelope::class,
+                RepetitionEnvelope::class,
                 [
                     new stdClass(),
                     fn (stdClass $std) => $std->name = "Jane"

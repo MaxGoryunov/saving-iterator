@@ -6,9 +6,8 @@ namespace MaxGoryunov\SavingIterator\Fakes;
  * Some repeating process.
  * @template T result type
  */
-interface Repeat
+interface Repetition
 {
-
     /**
      * Returns an array of results.
      * Number of values in the result array is the same as $count.
