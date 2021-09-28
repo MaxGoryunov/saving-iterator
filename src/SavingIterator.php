@@ -14,6 +14,16 @@ class SavingIterator implements Iterator
 {
 
     /**
+     * Veil for Adding Iterator.
+     * Veil is added so that 'from' method is not called manually on methods 
+     * 'current' and 'key'.
+     *
+     * @phpstan-var Indifferent<AddingIterator<TKey, TValue>>
+     * @var Indifferent
+     */
+    private Indifferent $target;
+
+    /**
      * Ctor.
      * 
      * @phpstan-param Iterator<TKey, TValue>       $origin
@@ -29,31 +39,15 @@ class SavingIterator implements Iterator
          * @var Iterator
          */
         private Iterator $origin,
-
-        /**
-         * Iterator to which the values are saved.
-         *
-         * @phpstan-var AddingIterator<TKey, TValue>
-         * @var AddingIterator
-         */
-        private AddingIterator $target
+        AddingIterator $target
     ) {
-    }
-
-    /**
-     * Returns target after adding a value from origin.
-     *
-     * @phpstan-return AddingIterator<TKey, TValue>
-     * @return AddingIterator
-     */
-    private function added(): AddingIterator
-    {
-        /**
-         * @todo #85:40min There is a private function in this class. It should
-         *  be removed without creating the code duplication problem again.
-         */
-        $this->target = $this->target->from($this->origin);
-        return $this->target;
+        $this->target = new ContextVeil(
+            $target,
+            fn (AddingIterator $stored): AddingIterator => $stored->from(
+                $this->origin
+            ),
+            array_flip(["current", "key"])
+        );
     }
 
     /**
@@ -62,7 +56,7 @@ class SavingIterator implements Iterator
      */
     public function current(): mixed
     {
-        return $this->added()->current();
+        return $this->target->current();
     }
 
     /**
@@ -71,7 +65,7 @@ class SavingIterator implements Iterator
      */
     public function key(): mixed
     {
-        return $this->added()->key();
+        return $this->target->key();
     }
 
     /**
