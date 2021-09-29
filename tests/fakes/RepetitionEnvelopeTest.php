@@ -2,6 +2,8 @@
 
 namespace MaxGoryunov\SavingIterator\Tests\Fakes;
 
+use ArrayIterator;
+use Iterator;
 use MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -29,6 +31,30 @@ final class RepetitionEnvelopeTest extends TestCase
                 ]
             )
                 ->times($times)
+        );
+    }
+
+    /**
+     * @small
+     *
+     * @return void
+     */
+    public function testReturnsActualResults(): void
+    {
+        $source = new ArrayIterator([4, 76, 28, 83, 95, 9, 27]);
+        $this->assertEquals(
+            [
+                iterator_to_array($source),
+                iterator_to_array($source)
+            ],
+            $this->getMockForAbstractClass(
+                RepetitionEnvelope::class,
+                [
+                    $source,
+                    fn (Iterator $source): array => iterator_to_array($source)
+                ]
+            )
+                ->times(2)
         );
     }
 }

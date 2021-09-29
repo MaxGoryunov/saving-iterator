@@ -52,7 +52,7 @@ abstract class RepetitionEnvelope implements Repetition
     {
         return array_map(
             $this->context,
-            array_fill(0, $count, $this->subject)
+            array_fill_keys(range(0, $count - 1), $this->subject)
         );
     }
 }
