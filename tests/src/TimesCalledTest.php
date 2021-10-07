@@ -33,25 +33,31 @@ class TimesCalledTest extends TestCase
     {
         (new The(
             rand(0, 20),
+            fn (int $times) => $times
+        ))->act(
             fn (int $times) => $this->assertEquals(
                 $times,
                 (new Let(
                     "current",
+                    fn (string $method): int => (int) $method
+                ))->act(
                     fn (string $method): int => (new The(
                         new TimesCalled(
                             new ArrayIterator([16, 14, 13, 15, 12, 18, 84]),
                             new BsCount(),
                             $method
                         ),
+                        fn (TimesCalled $times) => $times
+                    ))->act(
                         function (TimesCalled $called) use ($method, $times) {
                             for ($i = 0; $i < $times; $i++) {
                                 $called->$method();
                             }
                         }
-                    ))->value()->value()
-                ))->value()
+                    )->value()
+                )
             )
-        ))->value();
+        );
     }
 
     /**
@@ -72,16 +78,22 @@ class TimesCalledTest extends TestCase
     {
         (new The(
             rand(0, 20),
+            fn (int $times) => $times
+        ))->act(
             fn (int $times) => $this->assertEquals(
                 $times,
                 (new Let(
                     "key",
+                    fn (string $method): int => (int) $method
+                ))->act(
                     fn (string $method): int => (new The(
                         new TimesCalled(
                             new ArrayIterator([16, 14, 13, 15, 12, 18]),
                             new BsCount(),
                             $method
                         ),
+                        fn (TimesCalled $times) => $times
+                    ))->act(
                         function (TimesCalled $called) use ($method, $times) {
                             /**
                              * @var TimesCalled<ArrayIterator<int, int>> $called
@@ -93,9 +105,9 @@ class TimesCalledTest extends TestCase
                                 }
                             }
                         }
-                    ))->value()->value()
-                ))->value()
+                    )->value()
+                )
             )
-        ))->value();
+        );
     }
 }
