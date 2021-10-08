@@ -37,6 +37,8 @@ class TimesCalledTest extends TestCase
                 $times,
                 (new Let(
                     "current",
+                    fn (string $method): int => (int) $method
+                ))->act(
                     fn (string $method): int => (new The(
                         new TimesCalled(
                             new ArrayIterator([16, 14, 13, 15, 12, 18, 84]),
@@ -49,7 +51,7 @@ class TimesCalledTest extends TestCase
                             }
                         }
                     ))->value()->value()
-                ))->value()
+                )
             )
         ))->value();
     }
@@ -76,6 +78,8 @@ class TimesCalledTest extends TestCase
                 $times,
                 (new Let(
                     "key",
+                    fn (string $method): int => (int) $method
+                ))->act(
                     fn (string $method): int => (new The(
                         new TimesCalled(
                             new ArrayIterator([16, 14, 13, 15, 12, 18]),
@@ -94,7 +98,7 @@ class TimesCalledTest extends TestCase
                             }
                         }
                     ))->value()->value()
-                ))->value()
+                )
             )
         ))->value();
     }
