@@ -60,14 +60,11 @@ $wrapped = new SavingIterator(
 );
 ```
 
-If you do not want nulls to be stored inside your Iterator, use `ValidAddingIterator`:
+If you do not want to store nulls in your `AddingIterator` then use `ValidAddingIterator`:
 
 ```PHP
-$valid = new SavingIterator(
-    new ArrayIterator([34, 8, 12]),
-    new ValidAddingIterator(
-        new ArrayAddingIterator()
-    )
+$valid = new ValidAddingIterator(
+    new ArrayAddingIterator()
 );
 ```
 
