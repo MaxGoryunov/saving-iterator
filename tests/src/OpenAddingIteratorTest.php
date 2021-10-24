@@ -45,6 +45,8 @@ final class OpenAddingIteratorTest extends TestCase
      * @covers ::rewind
      * @covers ::valid
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\IteratorTransfer
+     * 
      * @small
      *
      * @return void
