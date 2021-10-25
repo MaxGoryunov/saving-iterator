@@ -123,4 +123,22 @@ final class OpenAddingIteratorTest extends TestCase
             ->from($transparent);
         $this->assertEquals(1, $called->value());
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::from
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * @covers ::rewind
+     * @covers ::valid
+     * 
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksWithNewIteratorAfterValueAddition(): void
+    {
+
+    }
 }
