@@ -6,7 +6,7 @@ namespace MaxGoryunov\SavingIterator\Src;
  * Contexts which change the subject.
  * @template T of mixed
  */
-interface Reactions
+interface Reaction
 {
 
     /**
