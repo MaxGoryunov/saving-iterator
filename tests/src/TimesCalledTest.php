@@ -75,7 +75,7 @@ class TimesCalledTest extends TestCase
     public function testCountsHowManyTimesTheMethodWasCalledAlongWIthOtherMethods(): void
     {
         (new The(
-            rand(0, 20)
+            8
         ))->act(
             fn (int $times) => $this->assertEquals(
                 $times,
