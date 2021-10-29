@@ -28,7 +28,8 @@ class TheTest extends TestCase
     {
         $this->assertEquals(
             ...(new Let(
-                [1, 2, 3, 4, 5],
+                [1, 2, 3, 4, 5]
+            ))->act(
                 fn(array $nums): array => [
                     $nums,
                     (new The(
@@ -38,7 +39,7 @@ class TheTest extends TestCase
                         ]
                     ))->value()
                 ]
-            ))->value()
+            )
         );
     }
 
