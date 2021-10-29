@@ -32,8 +32,7 @@ class TimesCalledTest extends TestCase
     public function testCountsHowManyTimesTheMethodWasCalled(): void
     {
         (new The(
-            rand(0, 20),
-            fn (int $times) => $times
+            rand(0, 20)
         ))->act(
             fn (int $times) => $this->assertEquals(
                 $times,
@@ -46,8 +45,7 @@ class TimesCalledTest extends TestCase
                             new ArrayIterator([16, 14, 13, 15, 12, 18, 84]),
                             new BsCount(),
                             $method
-                        ),
-                        fn (TimesCalled $times) => $times
+                        )
                     ))->act(
                         function (TimesCalled $called) use ($method, $times) {
                             for ($i = 0; $i < $times; $i++) {
@@ -77,8 +75,7 @@ class TimesCalledTest extends TestCase
     public function testCountsHowManyTimesTheMethodWasCalledAlongWIthOtherMethods(): void
     {
         (new The(
-            rand(0, 20),
-            fn (int $times) => $times
+            rand(0, 20)
         ))->act(
             fn (int $times) => $this->assertEquals(
                 $times,
@@ -91,8 +88,7 @@ class TimesCalledTest extends TestCase
                             new ArrayIterator([16, 14, 13, 15, 12, 18]),
                             new BsCount(),
                             $method
-                        ),
-                        fn (TimesCalled $times) => $times
+                        )
                     ))->act(
                         function (TimesCalled $called) use ($method, $times) {
                             /**
