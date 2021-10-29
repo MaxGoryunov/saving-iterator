@@ -36,8 +36,7 @@ class TimesCalledTest extends TestCase
             fn (int $times) => $this->assertEquals(
                 $times,
                 (new Let(
-                    "current",
-                    fn (string $method): int => (int) $method
+                    "current"
                 ))->act(
                     fn (string $method): int => (new The(
                         new TimesCalled(
@@ -77,8 +76,7 @@ class TimesCalledTest extends TestCase
             fn (int $times) => $this->assertEquals(
                 $times,
                 (new Let(
-                    "key",
-                    fn (string $method): int => (int) $method
+                    "key"
                 ))->act(
                     fn (string $method): int => (new The(
                         new TimesCalled(
