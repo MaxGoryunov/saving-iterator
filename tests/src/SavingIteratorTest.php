@@ -8,6 +8,7 @@ use InfiniteIterator;
 use Iterator;
 use LimitIterator;
 use MaxGoryunov\SavingIterator\Fakes\Repeat;
+use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Fakes\The;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\BsCount;
@@ -173,6 +174,10 @@ class SavingIteratorTest extends TestCase
      */
     public function testWorksWithGeneratorMultipleTimes(): void
     {
+        /**
+         * @todo #129:30min Remove usage of The, Let and redundant variables
+         *  where RpIteratorToArray was introduced.
+         */
         (new The(
             new SavingIterator(
                 (function (): Generator
@@ -186,8 +191,8 @@ class SavingIteratorTest extends TestCase
                 )
             ),
             fn(Iterator $iterator) => $this->assertEquals(
-                iterator_to_array($iterator),
-                iterator_to_array($iterator)
+                ...(new RpIteratorToArray($iterator))
+                    ->times(2)
             )
         ))->value();
     }
@@ -255,8 +260,8 @@ class SavingIteratorTest extends TestCase
                 )
             ),
             fn(Iterator $iterator) => $this->assertEquals(
-                iterator_to_array($iterator),
-                iterator_to_array($iterator)
+                ...(new RpIteratorToArray($iterator))
+                    ->times(2)
             )
         ))->value();
     }

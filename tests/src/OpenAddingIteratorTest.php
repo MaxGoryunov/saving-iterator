@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\OpenAddingIterator;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
@@ -80,12 +81,13 @@ final class OpenAddingIteratorTest extends TestCase
      */
     public function testRewindsStoredIterator(): void
     {
-        $iterator = new OpenAddingIterator(
-            new ArrayIterator([4, 72, 7, 26, 46, 92, 14])
-        );
         $this->assertEquals(
-            iterator_to_array($iterator),
-            iterator_to_array($iterator)
+            ...(new RpIteratorToArray(
+                new OpenAddingIterator(
+                    new ArrayIterator([4, 72, 7, 26, 46, 92, 14])
+                )
+            ))
+                ->times(2)
         );
     }
 
