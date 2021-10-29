@@ -34,9 +34,14 @@ final class ArrayAddingIterator implements AddingIterator
      */
     public function from(Iterator $source): AddingIterator
     {
-        $updated = $this->added;
-        $updated[$source->key()] ??= $source->current();
-        return new self($updated);
+        return new self(
+            array_merge(
+                $this->added,
+                (isset($this->added[$source->key()]))
+                ? []
+                : [$source->key() => $source->current()]
+            )
+        );
     }
 
     /**
