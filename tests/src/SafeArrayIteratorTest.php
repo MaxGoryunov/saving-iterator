@@ -30,4 +30,42 @@ final class SafeArrayIteratorTest extends TestCase
             $iterator[$key]
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::offsetUnset
+     * @covers ::offsetExists
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testUnsetsValues(): void
+    {
+        $iterator       = new SafeArrayIterator();
+        $key            = "bananas";
+        $value          = 6;
+        $iterator[$key] = $value;
+        unset($iterator[$key]);
+        $this->assertFalse(
+            $iterator->offsetExists($key)
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::count
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testCountReturnsActualNumberOfElementsInIterator(): void
+    {
+        $count = 5;
+        $this->assertCount(
+            $count,
+            (new SafeArrayIterator(range(1, 5)))
+        );
+    }
 }

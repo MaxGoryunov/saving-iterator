@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Src;
 
 use ArrayAccess;
+use Countable;
 
 /**
  * Safe array iterator. Copies array when cloned.
@@ -12,7 +13,7 @@ use ArrayAccess;
  * 
  * @since 0.3
  */
-final class SafeArrayIterator implements ArrayAccess
+final class SafeArrayIterator implements ArrayAccess, Countable
 {
 
     /**
@@ -57,7 +58,7 @@ final class SafeArrayIterator implements ArrayAccess
      */
     public function offsetExists(mixed $offset): bool
     {
-        return array_key_exists($offset, $this->stored);
+        return isset($this->stored[$offset]);
     }
 
     /**
@@ -67,5 +68,13 @@ final class SafeArrayIterator implements ArrayAccess
     public function offsetUnset(mixed $offset): void
     {
         unset($this->stored);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function count(): int
+    {
+        return count($this->stored);
     }
 }
