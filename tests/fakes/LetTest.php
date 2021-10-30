@@ -13,7 +13,7 @@ class LetTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::value
+     * @covers ::act
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * 
