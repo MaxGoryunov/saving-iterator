@@ -14,6 +14,9 @@ final class RpIteratorToArrayTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::times
+     *
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
      *
      * @small
      *

@@ -167,6 +167,8 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
      * @small
      *
@@ -245,6 +247,8 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
      * @small
      *

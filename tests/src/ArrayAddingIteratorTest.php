@@ -98,6 +98,9 @@ final class ArrayAddingIteratorTest extends TestCase
      * @covers ::next
      * @covers ::rewind
      * @covers ::valid
+     *
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
      * @small
      *
