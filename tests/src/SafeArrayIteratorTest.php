@@ -2,6 +2,7 @@
 
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
+use ArrayIterator;
 use MaxGoryunov\SavingIterator\Src\SafeArrayIterator;
 use PHPUnit\Framework\TestCase;
 
@@ -68,4 +69,50 @@ final class SafeArrayIteratorTest extends TestCase
             (new SafeArrayIterator(range(1, 5)))
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::valid
+     * @covers ::next
+     * @covers ::rewind
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksAsIterator(): void
+    {
+        $input = [83, 86, 36, 83, 5, 8, 75];
+        $this->assertEquals(
+            $input,
+            iterator_to_array(
+                new SafeArrayIterator($input)
+            )
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::valid
+     * @covers ::next
+     * @covers ::rewind
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testIterationsGiveSameResults(): void
+    {
+        $iterator = new SafeArrayIterator([7, 73, 45, 9, 24, 72, 6]);
+        $this->assertEquals(
+            iterator_to_array($iterator),
+            iterator_to_array($iterator)
+        );
+    }
+
+    
 }

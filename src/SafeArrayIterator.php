@@ -4,16 +4,18 @@ namespace MaxGoryunov\SavingIterator\Src;
 
 use ArrayAccess;
 use Countable;
+use Iterator;
 
 /**
  * Safe array iterator. Copies array when cloned.
  * @template TKey
  * @template TValue
  * @implements ArrayAccess<TKey, TValue>
+ * @implements Iterator<TKey, TValue>
  * 
  * @since 0.3
  */
-final class SafeArrayIterator implements ArrayAccess, Countable
+final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 {
 
     /**
@@ -76,5 +78,47 @@ final class SafeArrayIterator implements ArrayAccess, Countable
     public function count(): int
     {
         return count($this->stored);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @phpstan-return TValue
+     */
+    public function current(): mixed
+    {
+        return current($this->stored);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @phpstan-return TKey
+     */
+    public function key(): mixed
+    {
+        return key($this->stored);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function next(): void
+    {
+        next($this->stored);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function valid(): bool
+    {
+        return key($this->stored) !== null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function rewind(): void
+    {
+        reset($this->stored);
     }
 }
