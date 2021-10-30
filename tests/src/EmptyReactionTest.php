@@ -14,7 +14,6 @@ use stdClass;
 final class EmptyReactionTest extends TestCase
 {
     /**
-     * @covers ::__construct
      * @covers ::edited
      *
      * @small
@@ -32,7 +31,6 @@ final class EmptyReactionTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
      * @covers ::edited
      *
      * @small
