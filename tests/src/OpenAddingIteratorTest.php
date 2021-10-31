@@ -3,9 +3,11 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use Iterator;
 use MaxGoryunov\SavingIterator\Fakes\IteratorTransfer;
 use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\OpenAddingIterator;
+use MaxGoryunov\SavingIterator\Src\SafeArrayIterator;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
@@ -134,13 +136,31 @@ final class OpenAddingIteratorTest extends TestCase
      * @covers ::next
      * @covers ::rewind
      * @covers ::valid
-     * 
+     *
+     * @uses MaxGoryunov\SavingIterator\Src\SafeArrayIterator
+     *
      * @small
      *
      * @return void
      */
     public function testWorksWithNewIteratorAfterValueAddition(): void
     {
-
+        $origin = new SafeArrayIterator(
+            [
+                "apples"  => 16,
+                "bananas" => 8,
+                "oranges" => 3
+            ]
+        );
+        $this->assertNotEquals(
+            ...array_map(
+                fn (Iterator $iterator) => iterator_to_array($iterator),
+                [
+                    $origin,
+                    (new OpenAddingIterator($origin))
+                        ->from(new ArrayIterator(["plums" => 13]))
+                ]
+            )
+        );
     }
 }

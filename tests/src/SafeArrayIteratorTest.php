@@ -34,6 +34,7 @@ final class SafeArrayIteratorTest extends TestCase
 
     /**
      * @covers ::__construct
+     * @covers ::offsetSet
      * @covers ::offsetUnset
      * @covers ::offsetExists
      *
