@@ -41,11 +41,15 @@ class SavingIterator implements Iterator
         private Iterator $origin,
         AddingIterator $target
     ) {
+        /** @phpstan-ignore-next-line */
         $this->target = new ContextVeil(
             $target,
-            fn (AddingIterator $stored): AddingIterator => $stored->from(
+            fn (AddingIterator $stored) =>
+            ($this->origin->valid())
+            ? $stored->from(
                 $this->origin
-            ),
+            )
+            : $stored,
             array_flip(["current", "key"])
         );
     }

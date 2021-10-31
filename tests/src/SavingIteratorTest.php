@@ -47,14 +47,12 @@ class SavingIteratorTest extends TestCase
     {
         (new The(
             [10, 9, 8, 7, 6, 5],
-            fn(array $nums) => $this->assertEquals(
+            fn (array $nums) => $this->assertEquals(
                 $nums,
                 iterator_to_array(
                     new SavingIterator(
                         new ArrayIterator($nums),
-                        new ValidAddingIterator(
-                            new ArrayAddingIterator()
-                        )
+                        new ArrayAddingIterator()
                     )
                 )
             )
@@ -85,7 +83,7 @@ class SavingIteratorTest extends TestCase
     {
         (new The(
             [1, 2, 3, 4, 5, 6],
-            fn(array $input) => $this->assertEquals(
+            fn (array $input) => $this->assertEquals(
                 count($input),
                 (new The(
                     new TimesCalled(
@@ -93,15 +91,13 @@ class SavingIteratorTest extends TestCase
                         new BsCount(),
                         "next"
                     ),
-                    fn(Indifferent $called): array => iterator_to_array(
+                    fn (Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
                                     /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called),
-                                    new ValidAddingIterator(
-                                        new ArrayAddingIterator()
-                                    )
+                                    new ArrayAddingIterator()
                                 )
                             ),
                             0,
@@ -135,19 +131,16 @@ class SavingIteratorTest extends TestCase
     {
         (new The(
             6,
-            fn(int $limit) => $this->assertEquals(
+            fn (int $limit) => $this->assertEquals(
                 range(0, $limit),
                 iterator_to_array(
                     new SavingIterator(
-                        (function () use ($limit): Generator
-                        {
+                        (function () use ($limit): Generator {
                             for ($i = 0; $i <= $limit; $i++) {
                                 yield $i;
                             }
                         })(),
-                        new ValidAddingIterator(
-                            new ArrayAddingIterator()
-                        )
+                        new ArrayAddingIterator()
                     )
                 )
             )
@@ -182,15 +175,12 @@ class SavingIteratorTest extends TestCase
          */
         (new The(
             new SavingIterator(
-                (function (): Generator
-                {
+                (function (): Generator {
                     for ($i = 0; $i < 10; $i++) {
                         yield $i;
                     }
                 })(),
-                new ValidAddingIterator(
-                    new ArrayAddingIterator()
-                )
+                new ArrayAddingIterator()
             ),
             fn(Iterator $iterator) => $this->assertEquals(
                 ...(new RpIteratorToArray($iterator))
@@ -226,9 +216,7 @@ class SavingIteratorTest extends TestCase
                             yield $value;
                         }
                     })(),
-                    new ValidAddingIterator(
-                        new ArrayAddingIterator()
-                    )
+                    new ArrayAddingIterator()
                 )
             )
         );
@@ -259,9 +247,7 @@ class SavingIteratorTest extends TestCase
         (new The(
             new SavingIterator(
                 new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23]),
-                new ValidAddingIterator(
-                    new ArrayAddingIterator()
-                )
+                new ArrayAddingIterator()
             ),
             fn(Iterator $iterator) => $this->assertEquals(
                 ...(new RpIteratorToArray($iterator))
@@ -292,15 +278,13 @@ class SavingIteratorTest extends TestCase
     {
         (new The(
             [13, 15, 34, 54, 37, 654, 83],
-            fn(array $input) => $this->assertEquals(
+            fn (array $input) => $this->assertEquals(
                 $input,
                 iterator_to_array(
                     (new The(
                         new SavingIterator(
                             new ArrayIterator($input),
-                            new ValidAddingIterator(
-                                new ArrayAddingIterator()
-                            )
+                            new ArrayAddingIterator()
                         ),
                         function (Iterator $iterator) use ($input): void {
                             foreach ($iterator as $value) {
@@ -338,9 +322,7 @@ class SavingIteratorTest extends TestCase
             iterator_to_array(
                 new SavingIterator(
                     new ArrayIterator([]),
-                    new ValidAddingIterator(
-                        new ArrayAddingIterator()
-                    )
+                    new ArrayAddingIterator()
                 )
             )
         );
@@ -371,7 +353,7 @@ class SavingIteratorTest extends TestCase
     {
         (new The(
             [4, 3, 6, 3, 7, 8],
-            fn(array $input) => $this->assertEquals(
+            fn (array $input) => $this->assertEquals(
                 count($input),
                 (new The(
                     new TimesCalled(
@@ -379,15 +361,13 @@ class SavingIteratorTest extends TestCase
                         new BsCount(),
                         "current"
                     ),
-                    fn(Indifferent $called): array => iterator_to_array(
+                    fn (Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
                                     /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called),
-                                    new ValidAddingIterator(
-                                        new ArrayAddingIterator()
-                                    )
+                                    new ArrayAddingIterator()
                                 )
                             ),
                             0,
