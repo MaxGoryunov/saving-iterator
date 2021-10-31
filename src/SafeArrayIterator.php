@@ -5,6 +5,7 @@ namespace MaxGoryunov\SavingIterator\Src;
 use ArrayAccess;
 use Countable;
 use Iterator;
+use Serializable;
 
 /**
  * Safe array iterator. Copies array when cloned.
@@ -15,7 +16,7 @@ use Iterator;
  * 
  * @since 0.3
  */
-final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
+final class SafeArrayIterator implements ArrayAccess, Countable, Iterator, Serializable
 {
 
     /**
@@ -82,7 +83,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
-     * @phpstan-return TValue
+     * @phpstan-return TValue|false
      */
     public function current(): mixed
     {
@@ -91,7 +92,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
-     * @phpstan-return TKey
+     * @phpstan-return TKey|null
      */
     public function key(): mixed
     {
@@ -120,5 +121,21 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
     public function rewind(): void
     {
         reset($this->stored);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serialize(): string|null
+    {
+        return serialize($this->stored);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function unserialize($data): void
+    {
+        $this->stored = unserialize($data);
     }
 }

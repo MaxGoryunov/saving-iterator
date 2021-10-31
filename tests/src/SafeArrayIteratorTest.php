@@ -114,5 +114,28 @@ final class SafeArrayIteratorTest extends TestCase
         );
     }
 
-    
+    /**
+     * @covers ::__construct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::valid
+     * @covers ::next
+     * @covers ::rewind
+     * @covers ::serialize
+     * @covers ::unserialize
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testSerializationWorks(): void
+    {
+        $iterator = new SafeArrayIterator(([72, 8, 84, 37, 94, 27, 4]));
+        $this->assertEquals(
+            iterator_to_array($iterator),
+            iterator_to_array(
+                unserialize(serialize($iterator))
+            )
+        );
+    }
 }
