@@ -52,9 +52,7 @@ class SavingIteratorTest extends TestCase
                 iterator_to_array(
                     new SavingIterator(
                         new ArrayIterator($nums),
-                        new ValidAddingIterator(
-                            new ArrayAddingIterator()
-                        )
+                        new ArrayAddingIterator()
                     )
                 )
             )
@@ -100,9 +98,7 @@ class SavingIteratorTest extends TestCase
                             new InfiniteIterator(
                                 new SavingIterator(
                                     new TransparentIterator($called),
-                                    new ValidAddingIterator(
-                                        new ArrayAddingIterator()
-                                    )
+                                    new ArrayAddingIterator()
                                 )
                             ),
                             0,
@@ -146,9 +142,7 @@ class SavingIteratorTest extends TestCase
                                 yield $i;
                             }
                         })(),
-                        new ValidAddingIterator(
-                            new ArrayAddingIterator()
-                        )
+                        new ArrayAddingIterator()
                     )
                 )
             )
@@ -182,9 +176,7 @@ class SavingIteratorTest extends TestCase
                         yield $i;
                     }
                 })(),
-                new ValidAddingIterator(
-                    new ArrayAddingIterator()
-                )
+                new ArrayAddingIterator()
             )
         ))->act(
             fn (Iterator $iterator) => $this->assertEquals(
@@ -221,9 +213,7 @@ class SavingIteratorTest extends TestCase
                             yield $value;
                         }
                     })(),
-                    new ValidAddingIterator(
-                        new ArrayAddingIterator()
-                    )
+                    new ArrayAddingIterator()
                 )
             )
         );
@@ -252,9 +242,7 @@ class SavingIteratorTest extends TestCase
         (new The(
             new SavingIterator(
                 new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23]),
-                new ValidAddingIterator(
-                    new ArrayAddingIterator()
-                )
+                new ArrayAddingIterator()
             )
         ))->act(
             fn (Iterator $iterator) => $this->assertEquals(
@@ -293,9 +281,7 @@ class SavingIteratorTest extends TestCase
                     (new The(
                         new SavingIterator(
                             new ArrayIterator($input),
-                            new ValidAddingIterator(
-                                new ArrayAddingIterator()
-                            )
+                            new ArrayAddingIterator()
                         )
                     ))->act(
                         function (Iterator $iterator) use ($input): void {
@@ -334,9 +320,7 @@ class SavingIteratorTest extends TestCase
             iterator_to_array(
                 new SavingIterator(
                     new ArrayIterator([]),
-                    new ValidAddingIterator(
-                        new ArrayAddingIterator()
-                    )
+                    new ArrayAddingIterator()
                 )
             )
         );
@@ -382,9 +366,7 @@ class SavingIteratorTest extends TestCase
                             new InfiniteIterator(
                                 new SavingIterator(
                                     new TransparentIterator($called),
-                                    new ValidAddingIterator(
-                                        new ArrayAddingIterator()
-                                    )
+                                    new ArrayAddingIterator()
                                 )
                             ),
                             0,
