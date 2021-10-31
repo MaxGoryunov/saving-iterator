@@ -40,13 +40,14 @@ If you have any questions, ask them at [Discussions](https://github.com/MaxGoryu
 
 ## Decorating Iterators
 
-Any object with `Iterator` interface is suitable:
+In order to use `SavingIterator` you need to provide a source and a target. Any object with `Iterator` interface is a suitable source. Target needs to be an `AddingIterator`(usually `ArrayAddingIterator` is enough):
 
 ```PHP
 $squares = new SavingIterator(
     new SquaringIterator(
         [1, 2, 3, 4, 5, 6]
-    )
+    ),
+    new ArrayAddingIterator()
 );
 ```
 
@@ -54,7 +55,16 @@ If the origin object is not an `Iterator` then wrap it in `TransparentIterator`:
 
 ```PHP
 $wrapped = new SavingIterator(
-    new TransparentIterator($origin)
+    new TransparentIterator($origin),
+    new ArrayAddingIterator()
+);
+```
+
+If you do not want to store nulls in your `AddingIterator` then use `ValidAddingIterator`:
+
+```PHP
+$valid = new ValidAddingIterator(
+    new ArrayAddingIterator()
 );
 ```
 
@@ -71,7 +81,10 @@ function numerals(): Generator {
     }
 }
 
-$numerals = new SavingIterator(numerals());
+$numerals = new SavingIterator(
+    numerals(),
+    new ArrayAddingIterator()
+);
 ```
 
 ## How to contribute
