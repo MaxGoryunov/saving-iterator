@@ -15,7 +15,7 @@ class TheTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::value
+     * @covers ::act
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\Let
@@ -33,11 +33,12 @@ class TheTest extends TestCase
                 fn(array $nums): array => [
                     $nums,
                     (new The(
-                        $nums,
+                        $nums
+                    ))->act(
                         fn(array $nums): array => [
                             array_sum($nums), array_product($nums)
                         ]
-                    ))->value()
+                    )
                 ]
             )
         );
@@ -58,14 +59,14 @@ class TheTest extends TestCase
         $nums = range(2, 6);
         $this->assertEquals(
             $nums,
-            (new The($nums, fn($nums) => $nums))
+            (new The($nums))
                 ->act(fn (array $nums) => array_sum($nums))
         );
     }
 
     /**
      * @covers ::__construct
-     * @covers ::value
+     * @covers ::act
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * 
@@ -79,10 +80,11 @@ class TheTest extends TestCase
         $this->assertEquals(
             $name,
             (new The(
-                new stdClass(),
-                fn (stdClass $obj) => $obj->name = $name
+                new stdClass()
             ))
-                ->value()->name
+                ->act(
+                    fn (stdClass $obj) => $obj->name = $name
+                )->name
         );
     }
 }
