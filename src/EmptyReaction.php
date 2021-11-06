@@ -17,7 +17,6 @@ final class EmptyReaction implements Reaction
      */
     public function edited(mixed $subject, string $method): mixed
     {
-
         return ($method !== "")
         ? $subject
         : throw new BadMethodCallException(
