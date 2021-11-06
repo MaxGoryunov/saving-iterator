@@ -6,8 +6,6 @@ install:
 script:
   # PHPUnit tests
   - vendor/bin/phpunit --coverage-text --configuration phpunit.xml
-  # Infection report
-  - XDEBUG_MODE=coverage ./vendor/bin/infection --min-msi=90 --min-covered-msi=90 --threads=4 --configuration=./infection.json.dist
   # Coverage files
   - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
   # Coverage check

@@ -81,9 +81,6 @@ final class OpenAddingIterator implements AddingIterator
      */
     public function rewind(): void
     {
-        /**
-         * @todo #83:20min Assert that iterator rewinds original iterator.
-         */
         $this->added->rewind();
     }
 }
