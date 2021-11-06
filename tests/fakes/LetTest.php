@@ -13,7 +13,7 @@ class LetTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::value
+     * @covers ::act
      * 
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * 
@@ -26,11 +26,12 @@ class LetTest extends TestCase
         $this->assertEquals(
             [15, 120],
             (new Let(
-                [1, 2, 3, 4, 5],
+                [1, 2, 3, 4, 5]
+            ))->act(
                 fn(array $nums): array => [
                     array_sum($nums), array_product($nums)
                 ]
-            ))->value()
+            )
         );
     }
 
@@ -49,7 +50,7 @@ class LetTest extends TestCase
         $nums = range(1, 5);
         $this->assertEquals(
             array_sum($nums),
-            (new Let($nums, fn ($nums) => $nums))
+            (new Let($nums))
                 ->act(fn (array $nums) => array_sum($nums))
         );
     }

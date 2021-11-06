@@ -45,19 +45,18 @@ class SavingIteratorTest extends TestCase
     public function testIteratesWithGivenIterator(): void
     {
         (new The(
-            [10, 9, 8, 7, 6, 5],
-            fn(array $nums) => $this->assertEquals(
+            [10, 9, 8, 7, 6, 5]
+        ))->act(
+            fn (array $nums) => $this->assertEquals(
                 $nums,
                 iterator_to_array(
                     new SavingIterator(
                         new ArrayIterator($nums),
-                        new ValidAddingIterator(
-                            new ArrayAddingIterator()
-                        )
+                        new ArrayAddingIterator()
                     )
                 )
             )
-        ))->value();
+        );
     }
 
     /**
@@ -83,33 +82,32 @@ class SavingIteratorTest extends TestCase
     public function testDoesNotCallOriginIfValuesAreInCache(): void
     {
         (new The(
-            [1, 2, 3, 4, 5, 6],
-            fn(array $input) => $this->assertEquals(
+            [1, 2, 3, 4, 5, 6]
+        ))->act(
+            fn (array $input) => $this->assertEquals(
                 count($input),
                 (new The(
                     new TimesCalled(
                         new ArrayIterator($input),
                         new BsCount(),
                         "next"
-                    ),
-                    fn(Indifferent $called): array => iterator_to_array(
+                    )
+                ))->act(
+                    fn (Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
-                                    /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called),
-                                    new ValidAddingIterator(
-                                        new ArrayAddingIterator()
-                                    )
+                                    new ArrayAddingIterator()
                                 )
                             ),
                             0,
                             count($input) * rand(2, 4)
                         )
                     )
-                ))->value()->value()
+                )->value()
             )
-        ))->value();
+        );
     }
 
     /**
@@ -133,24 +131,22 @@ class SavingIteratorTest extends TestCase
     public function testWorksWithGenerator(): void
     {
         (new The(
-            6,
-            fn(int $limit) => $this->assertEquals(
+            6
+        ))->act(
+            fn (int $limit) => $this->assertEquals(
                 range(0, $limit),
                 iterator_to_array(
                     new SavingIterator(
-                        (function () use ($limit): Generator
-                        {
+                        (function () use ($limit): Generator {
                             for ($i = 0; $i <= $limit; $i++) {
                                 yield $i;
                             }
                         })(),
-                        new ValidAddingIterator(
-                            new ArrayAddingIterator()
-                        )
+                        new ArrayAddingIterator()
                     )
                 )
             )
-        ))->value();
+        );
     }
 
     /**
@@ -175,21 +171,19 @@ class SavingIteratorTest extends TestCase
     {
         (new The(
             new SavingIterator(
-                (function (): Generator
-                {
+                (function (): Generator {
                     for ($i = 0; $i < 10; $i++) {
                         yield $i;
                     }
                 })(),
-                new ValidAddingIterator(
-                    new ArrayAddingIterator()
-                )
-            ),
-            fn(Iterator $iterator) => $this->assertEquals(
+                new ArrayAddingIterator()
+            )
+        ))->act(
+            fn (Iterator $iterator) => $this->assertEquals(
                 iterator_to_array($iterator),
                 iterator_to_array($iterator)
             )
-        ))->value();
+        );
     }
 
     /**
@@ -219,9 +213,7 @@ class SavingIteratorTest extends TestCase
                             yield $value;
                         }
                     })(),
-                    new ValidAddingIterator(
-                        new ArrayAddingIterator()
-                    )
+                    new ArrayAddingIterator()
                 )
             )
         );
@@ -250,15 +242,14 @@ class SavingIteratorTest extends TestCase
         (new The(
             new SavingIterator(
                 new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23]),
-                new ValidAddingIterator(
-                    new ArrayAddingIterator()
-                )
-            ),
-            fn(Iterator $iterator) => $this->assertEquals(
+                new ArrayAddingIterator()
+            )
+        ))->act(
+            fn (Iterator $iterator) => $this->assertEquals(
                 iterator_to_array($iterator),
                 iterator_to_array($iterator)
             )
-        ))->value();
+        );
     }
 
     /**
@@ -282,17 +273,17 @@ class SavingIteratorTest extends TestCase
     public function testContinuesSuccessfullyAfterBeingInterrupted(): void
     {
         (new The(
-            [13, 15, 34, 54, 37, 654, 83],
-            fn(array $input) => $this->assertEquals(
+            [13, 15, 34, 54, 37, 654, 83]
+        ))->act(
+            fn (array $input) => $this->assertEquals(
                 $input,
                 iterator_to_array(
                     (new The(
                         new SavingIterator(
                             new ArrayIterator($input),
-                            new ValidAddingIterator(
-                                new ArrayAddingIterator()
-                            )
-                        ),
+                            new ArrayAddingIterator()
+                        )
+                    ))->act(
                         function (Iterator $iterator) use ($input): void {
                             foreach ($iterator as $value) {
                                 if ($value === $input[3]) {
@@ -300,10 +291,10 @@ class SavingIteratorTest extends TestCase
                                 }
                             }
                         }
-                    ))->value()
+                    )
                 )
             )
-        ))->value();
+        );
     }
 
     /**
@@ -329,9 +320,7 @@ class SavingIteratorTest extends TestCase
             iterator_to_array(
                 new SavingIterator(
                     new ArrayIterator([]),
-                    new ValidAddingIterator(
-                        new ArrayAddingIterator()
-                    )
+                    new ArrayAddingIterator()
                 )
             )
         );
@@ -361,32 +350,31 @@ class SavingIteratorTest extends TestCase
     public function testFillsCacheValueOnlyIfItIsNotStoredYet(): void
     {
         (new The(
-            [4, 3, 6, 3, 7, 8],
-            fn(array $input) => $this->assertEquals(
+            [4, 3, 6, 3, 7, 8]
+        ))->act(
+            fn (array $input) => $this->assertEquals(
                 count($input),
                 (new The(
                     new TimesCalled(
                         new ArrayIterator($input),
                         new BsCount(),
                         "current"
-                    ),
-                    fn(Indifferent $called): array => iterator_to_array(
+                    )
+                ))->act(
+                    fn (Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
-                                    /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called),
-                                    new ValidAddingIterator(
-                                        new ArrayAddingIterator()
-                                    )
+                                    new ArrayAddingIterator()
                                 )
                             ),
                             0,
                             count($input) * 2
                         )
                     )
-                ))->value()->value()
+                )->value()
             )
-        ))->value();
+        );
     }
 }
