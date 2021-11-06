@@ -46,7 +46,8 @@ class SavingIteratorTest extends TestCase
     public function testIteratesWithGivenIterator(): void
     {
         (new The(
-            [10, 9, 8, 7, 6, 5],
+            [10, 9, 8, 7, 6, 5]
+        ))->act(
             fn (array $nums) => $this->assertEquals(
                 $nums,
                 iterator_to_array(
@@ -56,7 +57,7 @@ class SavingIteratorTest extends TestCase
                     )
                 )
             )
-        ))->value();
+        );
     }
 
     /**
@@ -82,7 +83,8 @@ class SavingIteratorTest extends TestCase
     public function testDoesNotCallOriginIfValuesAreInCache(): void
     {
         (new The(
-            [1, 2, 3, 4, 5, 6],
+            [1, 2, 3, 4, 5, 6]
+        ))->act(
             fn (array $input) => $this->assertEquals(
                 count($input),
                 (new The(
@@ -90,12 +92,12 @@ class SavingIteratorTest extends TestCase
                         new ArrayIterator($input),
                         new BsCount(),
                         "next"
-                    ),
+                    )
+                ))->act(
                     fn (Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
-                                    /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called),
                                     new ArrayAddingIterator()
                                 )
@@ -104,9 +106,9 @@ class SavingIteratorTest extends TestCase
                             count($input) * rand(2, 4)
                         )
                     )
-                ))->value()->value()
+                )->value()
             )
-        ))->value();
+        );
     }
 
     /**
@@ -130,7 +132,8 @@ class SavingIteratorTest extends TestCase
     public function testWorksWithGenerator(): void
     {
         (new The(
-            6,
+            6
+        ))->act(
             fn (int $limit) => $this->assertEquals(
                 range(0, $limit),
                 iterator_to_array(
@@ -144,7 +147,7 @@ class SavingIteratorTest extends TestCase
                     )
                 )
             )
-        ))->value();
+        );
     }
 
     /**
@@ -181,12 +184,13 @@ class SavingIteratorTest extends TestCase
                     }
                 })(),
                 new ArrayAddingIterator()
-            ),
+            )
+        ))->act(
             fn(Iterator $iterator) => $this->assertEquals(
                 ...(new RpIteratorToArray($iterator))
                     ->times(2)
             )
-        ))->value();
+        );
     }
 
     /**
@@ -248,12 +252,13 @@ class SavingIteratorTest extends TestCase
             new SavingIterator(
                 new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23]),
                 new ArrayAddingIterator()
-            ),
+            )
+        ))->act(
             fn(Iterator $iterator) => $this->assertEquals(
                 ...(new RpIteratorToArray($iterator))
                     ->times(2)
             )
-        ))->value();
+        );
     }
 
     /**
@@ -277,7 +282,8 @@ class SavingIteratorTest extends TestCase
     public function testContinuesSuccessfullyAfterBeingInterrupted(): void
     {
         (new The(
-            [13, 15, 34, 54, 37, 654, 83],
+            [13, 15, 34, 54, 37, 654, 83]
+        ))->act(
             fn (array $input) => $this->assertEquals(
                 $input,
                 iterator_to_array(
@@ -285,7 +291,8 @@ class SavingIteratorTest extends TestCase
                         new SavingIterator(
                             new ArrayIterator($input),
                             new ArrayAddingIterator()
-                        ),
+                        )
+                    ))->act(
                         function (Iterator $iterator) use ($input): void {
                             foreach ($iterator as $value) {
                                 if ($value === $input[3]) {
@@ -293,10 +300,10 @@ class SavingIteratorTest extends TestCase
                                 }
                             }
                         }
-                    ))->value()
+                    )
                 )
             )
-        ))->value();
+        );
     }
 
     /**
@@ -352,7 +359,8 @@ class SavingIteratorTest extends TestCase
     public function testFillsCacheValueOnlyIfItIsNotStoredYet(): void
     {
         (new The(
-            [4, 3, 6, 3, 7, 8],
+            [4, 3, 6, 3, 7, 8]
+        ))->act(
             fn (array $input) => $this->assertEquals(
                 count($input),
                 (new The(
@@ -360,12 +368,12 @@ class SavingIteratorTest extends TestCase
                         new ArrayIterator($input),
                         new BsCount(),
                         "current"
-                    ),
+                    )
+                ))->act(
                     fn (Indifferent $called): array => iterator_to_array(
                         new LimitIterator(
                             new InfiniteIterator(
                                 new SavingIterator(
-                                    /** @phpstan-ignore-next-line */
                                     new TransparentIterator($called),
                                     new ArrayAddingIterator()
                                 )
@@ -374,8 +382,8 @@ class SavingIteratorTest extends TestCase
                             count($input) * 2
                         )
                     )
-                ))->value()->value()
+                )->value()
             )
-        ))->value();
+        );
     }
 }

@@ -39,7 +39,8 @@ class TransparentIteratorTest extends TestCase
                 "tomatoes"    => 7,
                 "watermelons" => 18,
                 "plums"       => 3
-            ],
+            ]
+        ))->act(
             fn(array $greens) => $this->assertEquals(
                 $greens,
                 iterator_to_array(
@@ -48,7 +49,7 @@ class TransparentIteratorTest extends TestCase
                     )
                 )
             )
-        ))->value();
+        );
     }
 
     /**
