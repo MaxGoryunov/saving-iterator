@@ -36,11 +36,7 @@ final class OpenAddingIterator implements AddingIterator
      */
     public function from(Iterator $source): AddingIterator
     {
-        /**
-         * @todo #83:20min Cover that Iterator works with an immutable
-         *  iterator.
-         */
-        $updated = clone $this->added;
+        $updated                   = clone $this->added;
         $updated[$source->key()] ??= $source->current();
         return new self($updated);
     }
