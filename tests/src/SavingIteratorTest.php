@@ -7,7 +7,6 @@ use Generator;
 use InfiniteIterator;
 use Iterator;
 use LimitIterator;
-use MaxGoryunov\SavingIterator\Fakes\Repeat;
 use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Fakes\The;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
@@ -16,7 +15,6 @@ use MaxGoryunov\SavingIterator\Src\Indifferent;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
-use MaxGoryunov\SavingIterator\Src\ValidAddingIterator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -172,24 +170,13 @@ class SavingIteratorTest extends TestCase
      */
     public function testWorksWithGeneratorMultipleTimes(): void
     {
-        /**
-         * @todo #129:30min Remove usage of The, Let and redundant variables
-         *  where RpIteratorToArray was introduced.
-         */
-        (new The(
-            new SavingIterator(
-                (function (): Generator {
-                    for ($i = 0; $i < 10; $i++) {
-                        yield $i;
-                    }
-                })(),
-                new ArrayAddingIterator()
-            )
-        ))->act(
-            fn(Iterator $iterator) => $this->assertEquals(
-                ...(new RpIteratorToArray($iterator))
-                    ->times(2)
-            )
+        $this->assertEquals(
+            ...(new RpIteratorToArray(
+                new SavingIterator(
+                    (fn (): Generator => yield from range(0, 9))(),
+                    new ArrayAddingIterator()
+                )
+            ))->times(2)
         );
     }
 
@@ -248,16 +235,13 @@ class SavingIteratorTest extends TestCase
      */
     public function testIterationsGiveSameResults(): void
     {
-        (new The(
-            new SavingIterator(
-                new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23]),
-                new ArrayAddingIterator()
-            )
-        ))->act(
-            fn(Iterator $iterator) => $this->assertEquals(
-                ...(new RpIteratorToArray($iterator))
-                    ->times(2)
-            )
+        $this->assertEquals(
+            ...(new RpIteratorToArray(
+                new SavingIterator(
+                    new ArrayIterator([1, 15, 73, 234, 65, 23, 71, 76, 9, 23]),
+                    new ArrayAddingIterator()
+                )
+            ))->times(2)
         );
     }
 
