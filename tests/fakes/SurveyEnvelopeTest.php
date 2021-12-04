@@ -28,10 +28,11 @@ final class SurveyEnvelopeTest extends TestCase
                 SurveyEnvelope::class,
                 [
                     3,
-                    fn (int $num): int => $num * 2,
                     fn (int $num, Closure $func): int => $func($num)
                 ]
-            )->value()
+            )->act(
+                fn (int $num): int => $num * 2
+            )
         );
     }
 }
