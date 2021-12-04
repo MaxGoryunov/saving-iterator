@@ -26,10 +26,6 @@ final class ContextVeilTest extends TestCase
      */
     public function testReturnsOriginMethodResults(): void
     {
-        /**
-         * @todo #94:30min Add a way to provide context which does not do
-         *  anything.
-         */
         $origin = new ArrayIterator([23, 6, 26, 8, 4, 76, 94, 5]);
         $veil   = new ContextVeil(
             $origin,

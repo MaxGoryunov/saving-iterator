@@ -43,7 +43,7 @@ final class ContextVeil implements Indifferent
         private Closure $context,
 
         /**
-         * Methods on which the element must be modified.\
+         * Methods on which the element must be modified.
          * Does not accept nulls as values.
          *
          * @var array<string, mixed>
