@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Fakes\The;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
@@ -58,6 +59,9 @@ class TransparentIteratorTest extends TestCase
      * @covers ::next
      * @covers ::rewind
      * @covers ::valid
+     *
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
      * @small
      *
@@ -65,12 +69,13 @@ class TransparentIteratorTest extends TestCase
      */
     public function testRewindsInnerIterator(): void
     {
-        $iterator = new TransparentIterator(
-            new ArrayIterator([3, 87, 36, 93, 6, 82, 4])
-        );
         $this->assertEquals(
-            iterator_to_array($iterator),
-            iterator_to_array($iterator)
+            ...(new RpIteratorToArray(
+                new TransparentIterator(
+                    new ArrayIterator([3, 87, 36, 93, 6, 82, 4])
+                )
+            ))
+                ->times(2)
         );
     }
 }

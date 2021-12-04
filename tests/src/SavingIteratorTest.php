@@ -8,6 +8,7 @@ use InfiniteIterator;
 use Iterator;
 use LimitIterator;
 use MaxGoryunov\SavingIterator\Fakes\Repeat;
+use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Fakes\The;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\BsCount;
@@ -162,6 +163,8 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
      * @small
      *
@@ -169,6 +172,10 @@ class SavingIteratorTest extends TestCase
      */
     public function testWorksWithGeneratorMultipleTimes(): void
     {
+        /**
+         * @todo #129:30min Remove usage of The, Let and redundant variables
+         *  where RpIteratorToArray was introduced.
+         */
         (new The(
             new SavingIterator(
                 (function (): Generator {
@@ -179,9 +186,9 @@ class SavingIteratorTest extends TestCase
                 new ArrayAddingIterator()
             )
         ))->act(
-            fn (Iterator $iterator) => $this->assertEquals(
-                iterator_to_array($iterator),
-                iterator_to_array($iterator)
+            fn(Iterator $iterator) => $this->assertEquals(
+                ...(new RpIteratorToArray($iterator))
+                    ->times(2)
             )
         );
     }
@@ -232,6 +239,8 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
      * @small
      *
@@ -245,9 +254,9 @@ class SavingIteratorTest extends TestCase
                 new ArrayAddingIterator()
             )
         ))->act(
-            fn (Iterator $iterator) => $this->assertEquals(
-                iterator_to_array($iterator),
-                iterator_to_array($iterator)
+            fn(Iterator $iterator) => $this->assertEquals(
+                ...(new RpIteratorToArray($iterator))
+                    ->times(2)
             )
         );
     }
