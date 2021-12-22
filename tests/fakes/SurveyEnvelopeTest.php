@@ -14,8 +14,8 @@ final class SurveyEnvelopeTest extends TestCase
 
     /**
      * @covers ::__construct
-     * @covers ::value
-     * 
+     * @covers ::act
+     *
      * @small
      *
      * @return void
