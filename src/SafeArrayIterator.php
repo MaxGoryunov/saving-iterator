@@ -16,7 +16,7 @@ use Serializable;
  * 
  * @since 0.3
  */
-final class SafeArrayIterator implements ArrayAccess, Countable, Iterator, Serializable
+final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 {
 
     /**
@@ -125,17 +125,19 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator, Seria
 
     /**
      * {@inheritDoc}
+     * @phpstan-return array<TKey, TValue>
      */
-    public function serialize(): string|null
+    public function __serialize(): array
     {
-        return serialize($this->stored);
+        return $this->stored;
     }
 
     /**
      * {@inheritDoc}
+     * @phpstan-param array<TKey, TValue> $data data for deserialization
      */
-    public function unserialize($data): void
+    public function __unserialize(array $data): void
     {
-        $this->stored = unserialize($data);
+        $this->stored = $data;
     }
 }
