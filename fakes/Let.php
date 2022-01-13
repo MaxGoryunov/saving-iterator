@@ -6,35 +6,23 @@ use Closure;
 
 /**
  * Allows to use context instead of creating a new variable.
- * @todo #124:90min Move common functionality from Let and The to the parent
- *  class.
  * @template X subject type
  * @template Y result type
- * @implements Block<Y>
+ * @extends SurveyEnvelope<X, Y>
  */
-class Let implements Block
+class Let extends SurveyEnvelope
 {
 
     /**
      * Ctor.
      *
+     * @phpstan-param X $subject
      * @param mixed $subject element for context.
      */
-    public function __construct(
-        /**
-         * Subject for context.
-         *
-         * @var mixed
-         */
-        private mixed $subject
-    ) {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function act(Closure $context): mixed
-    {
-        return $context($this->subject);
+    public function __construct(mixed $subject) {
+        parent::__construct(
+            $subject,
+            fn ($subject, Closure $context): mixed => $context($subject) 
+        );
     }
 }

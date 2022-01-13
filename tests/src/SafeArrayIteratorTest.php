@@ -122,8 +122,8 @@ final class SafeArrayIteratorTest extends TestCase
      * @covers ::valid
      * @covers ::next
      * @covers ::rewind
-     * @covers ::serialize
-     * @covers ::unserialize
+     * @covers ::__serialize
+     * @covers ::__unserialize
      *
      * @small
      *
