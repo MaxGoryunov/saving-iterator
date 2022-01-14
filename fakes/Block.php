@@ -14,7 +14,7 @@ interface Block
     /**
      * Returns result of applying context to subject.
      *
-     * @phpstan-param Closure(mixed): T $context 
+     * @phpstan-param Closure(mixed): mixed $context
      * @param Closure $context
      * @phpstan-return T
      * @return mixed

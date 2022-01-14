@@ -7,9 +7,9 @@ use Closure;
 /**
  * Class for applying contexts to elements without changing them.
  * @template T subject type
- * @implements Block<mixed>
+ * @extends SurveyEnvelope<T, T>
  */
-class The implements Block
+class The extends SurveyEnvelope
 {
 
     /**
@@ -18,22 +18,13 @@ class The implements Block
      * @phpstan-param T $subject
      * @param mixed $subject repeating element.
      */
-    public function __construct(
-        /**
-         * Subject for a context.
-         *
-         * @var mixed
-         */
-        private mixed $subject
-    ) {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function act(Closure $context): mixed
-    {
-        $context($this->subject);
-        return $this->subject;
+    public function __construct(mixed $subject) {
+        parent::__construct(
+            $subject,
+            function (mixed $subject, Closure $context): mixed {
+                $context($subject);
+                return $subject;
+            }
+        );
     }
 }
