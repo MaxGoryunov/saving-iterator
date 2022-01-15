@@ -61,15 +61,12 @@ final class ContextVeilTest extends TestCase
         $veil = new ContextVeil(
             new ArrayAddingIterator(),
             new ClosureReaction(
-                function (
+                fn (
                     AddingIterator $iterator,
                     string $method
-                ) use ($source) {
-                    if ($method === "current") {
-                        return $iterator->from($source);
-                    }
-                    return $iterator;
-                }
+                ) => ($method === "current")
+                ? $iterator->from($source)
+                : $iterator
             )
         );
         $this->assertEquals(
