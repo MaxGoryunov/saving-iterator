@@ -36,6 +36,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * 
      * @small
      *
@@ -71,6 +72,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * 
      * @small
      * 
@@ -122,6 +124,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * 
      * @small
      *
@@ -161,6 +164,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
@@ -191,6 +195,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * 
      * @small
      *
@@ -226,6 +231,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
@@ -258,6 +264,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * 
      * @small
      *
@@ -301,6 +308,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * 
      * @small
      *
@@ -335,6 +343,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * 
      * @small
      *
