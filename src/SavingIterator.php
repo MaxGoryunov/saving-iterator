@@ -42,6 +42,7 @@ class SavingIterator implements Iterator
         private Iterator $origin,
         AddingIterator $target
     ) {
+        $methods = array_flip(["current", "key"]);
         /** @phpstan-ignore-next-line */
         $this->target = new ContextVeil(
             $target,
@@ -49,10 +50,7 @@ class SavingIterator implements Iterator
                 fn (AddingIterator $stored, string $method) => (
                     ($this->origin->valid())
                     && (isset(
-                        [
-                            "current" => true,
-                            "key" => true
-                        ][$method]
+                        $methods[$method]
                     ))
                 ) ? $stored->from(
                     $this->origin

@@ -21,6 +21,8 @@ final class ContextVeilTest extends TestCase
      * @covers ::__construct
      * @covers ::__call
      * 
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
+     * 
      * @small
      *
      * @return void
@@ -43,6 +45,7 @@ final class ContextVeilTest extends TestCase
      * @covers ::__call
      * 
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * 
      * @small
      *
