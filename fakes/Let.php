@@ -6,46 +6,23 @@ use Closure;
 
 /**
  * Allows to use context instead of creating a new variable.
- * @todo #92:30min Remove extension of SurveyEnvelope from this class because
- *  it is not needed.
  * @template X subject type
  * @template Y result type
  * @extends SurveyEnvelope<X, Y>
- * @implements Block<Y>
  */
-class Let extends SurveyEnvelope implements Block
+class Let extends SurveyEnvelope
 {
-
-    /**
-     * Subject for context.
-     *
-     * @var mixed
-     */
-    private mixed $subject;
 
     /**
      * Ctor.
      *
-     * @phpstan-param X             $subject repeated element
-     * @phpstan-param Closure(X): Y $context context for element
-     * @param mixed   $subject element to be put into context
-     * @param Closure $context context for element
+     * @phpstan-param X $subject
+     * @param mixed $subject element for context.
      */
-    public function __construct(mixed $subject, Closure $context)
-    {
+    public function __construct(mixed $subject) {
         parent::__construct(
             $subject,
-            $context,
-            fn(mixed $subject, Closure $context): mixed => $context($subject)
+            fn ($subject, Closure $context): mixed => $context($subject) 
         );
-        $this->subject = $subject;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function act(Closure $context): mixed
-    {
-        return $context($this->subject);
     }
 }

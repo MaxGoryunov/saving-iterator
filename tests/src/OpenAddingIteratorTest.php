@@ -3,8 +3,12 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
+use Iterator;
+use MaxGoryunov\SavingIterator\Fakes\IteratorTransfer;
 use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\OpenAddingIterator;
+use MaxGoryunov\SavingIterator\Src\SafeArrayIterator;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
 use MaxGoryunov\SavingIterator\Src\TransparentIterator;
 use PHPUnit\Framework\TestCase;
@@ -44,24 +48,25 @@ final class OpenAddingIteratorTest extends TestCase
      * @covers ::rewind
      * @covers ::valid
      * 
+     * @uses MaxGoryunov\SavingIterator\Fakes\IteratorTransfer
+     * 
      * @small
      *
      * @return void
      */
     public function testWorksAsIteratorWithAddedValues(): void
     {
-        /**
-         * @todo #83:15min Replace algorithm with a fake class.
-         */
-        $origin   = new ArrayIterator([34, 0, 39, 7, 65, 82, 79]);
-        $iterator = (new OpenAddingIterator(new ArrayIterator([])));
-        while ($origin->valid()) {
-            $iterator = $iterator->from($origin);
-            $origin->next();
-        }
+        $origin = new ArrayIterator([34, 0, 39, 7, 65, 82, 79]);
         $this->assertEquals(
             iterator_to_array($origin),
-            iterator_to_array($iterator)
+            iterator_to_array(
+                (new IteratorTransfer($origin))
+                    ->toTarget(
+                        new OpenAddingIterator(
+                            new ArrayIterator()
+                        )
+                    )
+            )
         );
     }
 
@@ -73,19 +78,23 @@ final class OpenAddingIteratorTest extends TestCase
      * @covers ::next
      * @covers ::rewind
      * @covers ::valid
-     * 
+     *
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
+     *
      * @small
      *
      * @return void
      */
     public function testRewindsStoredIterator(): void
     {
-        $iterator = new OpenAddingIterator(
-            new ArrayIterator([4, 72, 7, 26, 46, 92, 14])
-        );
         $this->assertEquals(
-            iterator_to_array($iterator),
-            iterator_to_array($iterator)
+            ...(new RpIteratorToArray(
+                new OpenAddingIterator(
+                    new ArrayIterator([4, 72, 7, 26, 46, 92, 14])
+                )
+            ))
+                ->times(2)
         );
     }
 
@@ -122,5 +131,41 @@ final class OpenAddingIteratorTest extends TestCase
             ->from($transparent)
             ->from($transparent);
         $this->assertEquals(1, $called->value());
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::from
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     * @covers ::rewind
+     * @covers ::valid
+     *
+     * @uses MaxGoryunov\SavingIterator\Src\SafeArrayIterator
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksWithNewIteratorAfterValueAddition(): void
+    {
+        $origin = new SafeArrayIterator(
+            [
+                "apples"  => 16,
+                "bananas" => 8,
+                "oranges" => 3
+            ]
+        );
+        $this->assertNotEquals(
+            ...array_map(
+                fn (Iterator $iterator) => iterator_to_array($iterator),
+                [
+                    $origin,
+                    (new OpenAddingIterator($origin))
+                        ->from(new ArrayIterator(["plums" => 13]))
+                ]
+            )
+        );
     }
 }

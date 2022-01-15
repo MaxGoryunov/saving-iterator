@@ -16,13 +16,10 @@ final class ContextVeil implements Indifferent
     /**
      * Ctor.
      * 
-     * @phpstan-param T                    $origin
-     * @phpstan-param Closure(T): T        $context
-     * @phpstan-param array<string, mixed> $methods
-     * @param object               $origin  original element.
-     * @param Closure              $context context for the element.
-     * @param array<string, mixed> $methods methods on which the element must
-     * be modified.
+     * @phpstan-param T           $origin
+     * @phpstan-param Reaction<T> $reaction
+     * @param object   $origin   original element.
+     * @param Reaction $reaction reaction for the element.
      */
     public function __construct(
         /**
@@ -34,21 +31,12 @@ final class ContextVeil implements Indifferent
         private object $origin,
 
         /**
-         * Context for the element.
-         * Modifies the element and returns the result.
+         * Reaction for the element.
          *
-         * @phpstan-var Closure(T): T
-         * @var Closure
+         * @phpstan-var Reaction<T>
+         * @var Reaction
          */
-        private Closure $context,
-
-        /**
-         * Methods on which the element must be modified.\
-         * Does not accept nulls as values.
-         *
-         * @var array<string, mixed>
-         */
-        private array $methods
+        private Reaction $reaction
     ) {
     }
 
@@ -57,9 +45,7 @@ final class ContextVeil implements Indifferent
      */
     public function __call(string $name, array $arguments): mixed
     {
-        if (isset($this->methods[$name])) {
-            $this->origin = ($this->context)($this->origin);
-        }
+        $this->origin = $this->reaction->edited($this->origin, $name);
         return $this->origin->$name(...$arguments);
     }
 }

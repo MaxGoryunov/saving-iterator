@@ -2,6 +2,7 @@
 
 namespace MaxGoryunov\SavingIterator\Src;
 
+use Closure;
 use Iterator;
 
 /**
@@ -41,12 +42,20 @@ class SavingIterator implements Iterator
         private Iterator $origin,
         AddingIterator $target
     ) {
+        $methods = array_flip(["current", "key"]);
+        /** @phpstan-ignore-next-line */
         $this->target = new ContextVeil(
             $target,
-            fn (AddingIterator $stored): AddingIterator => $stored->from(
-                $this->origin
-            ),
-            array_flip(["current", "key"])
+            new ClosureReaction(
+                fn (AddingIterator $stored, string $method) => (
+                    ($this->origin->valid())
+                    && (isset(
+                        $methods[$method]
+                    ))
+                ) ? $stored->from(
+                    $this->origin
+                ) : $stored
+            )
         );
     }
 
