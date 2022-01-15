@@ -4,6 +4,7 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
 use MaxGoryunov\SavingIterator\Fakes\IteratorTransfer;
+use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
@@ -97,6 +98,9 @@ final class ArrayAddingIteratorTest extends TestCase
      * @covers ::next
      * @covers ::rewind
      * @covers ::valid
+     *
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      * 
      * @small
      *
@@ -104,10 +108,11 @@ final class ArrayAddingIteratorTest extends TestCase
      */
     public function testGivesSameResultsOverDifferentIterations(): void
     {
-        $iterator = new ArrayAddingIterator([4, 3, 85, 48, 19, 53]);
         $this->assertEquals(
-            iterator_to_array($iterator),
-            iterator_to_array($iterator)
+            ...(new RpIteratorToArray(
+                new ArrayAddingIterator([4, 3, 85, 48, 19, 53])
+            ))
+                ->times(2)
         );
     }
 

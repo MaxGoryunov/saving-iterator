@@ -11,19 +11,17 @@ use MaxGoryunov\SavingIterator\Src\Scalar;
  * order to be used in two places.
  * @template X subject type
  * @template Y result type
- * @implements \MaxGoryunov\SavingIterator\Src\Scalar<Y>
+ * @implements Block<Y>
  */
-abstract class SurveyEnvelope implements Scalar
+abstract class SurveyEnvelope implements Block
 {
 
     /**
      * Ctor.
      * 
      * @phpstan-param X                                $subject
-     * @phpstan-param Closure(X): mixed                $context
      * @phpstan-param Closure(X, Closure(X): mixed): Y $usage
      * @param mixed   $subject element to be used in some context
-     * @param Closure $context context for element
      * @param Closure $usage   way of combining element and context
      */
     public function __construct(
@@ -36,14 +34,6 @@ abstract class SurveyEnvelope implements Scalar
         private mixed $subject,
 
         /**
-         * Context for element.
-         * 
-         * @phpstan-var Closure(X): mixed
-         * @var Closure
-         */
-        private Closure $context,
-
-        /**
          * way of combining element and context.
          * 
          * @phpstan-var Closure(X, Closure(X): mixed): Y
@@ -54,13 +44,10 @@ abstract class SurveyEnvelope implements Scalar
     }
 
     /**
-     * Returns result of applying context to element.
-     *
-     * @phpstan-return Y
-     * @return mixed
+     * {@inheritDoc}
      */
-    public final function value(): mixed
+    public final function act(Closure $context): mixed
     {
-        return ($this->usage)($this->subject, $this->context);
+        return ($this->usage)($this->subject, $context);
     }
 }
