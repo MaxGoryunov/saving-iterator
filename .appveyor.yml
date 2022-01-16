@@ -25,8 +25,6 @@ platform:
 install:
   # Download php-appveyor.psm1 module and invoke it to the current session
   - ps: (new-object Net.WebClient).DownloadString($Env:PHP_AVM) | iex
-
-  - ps: InstallPhpSdk     $Env:PHP_SDK_VERSION $Env:VC_VERSION $Env:PLATFORM
   - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
   - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
   - ps: Invoke-WebRequest "https://raw.githubusercontent.com/ChadSikorra/ps-install-php/master/Install-PHP.ps1" -OutFile "Install-PHP.ps1"
