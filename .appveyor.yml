@@ -45,7 +45,7 @@ test_script:
   # PHPUnit tests
   - vendor\bin\phpunit --coverage-text --configuration phpunit.xml
   # Coverage files
-  - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
+  - ./vendor/bin/phpunit --coverage-clover=coverage.xml
   # Coverage check
   - vendor/bin/coverage-check coverage.xml 100 --only-percentage
   # PHPStan analysis
