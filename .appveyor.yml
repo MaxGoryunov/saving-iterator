@@ -1,44 +1,49 @@
-build: false
+environment:
+  # Use this matrix as an example
+  matrix:
+
+    # Specify matrix item for your app
+    - PHP_VERSION: 8.0
+      php_ver_target: 8.0
+      VC_VERSION: 16 # was 15 before
+      BUILD_TYPE: nts-Win32
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+
+  PHP_AVM: https://raw.githubusercontent.com/sergeyklay/php-appveyor/master/php-appveyor.psm1
+
+# Cache PHP and tooling
+cache:
+  # The C:\Downloads directory will be used as a storage for downloaded archives.
+  # So you may want to cache it.
+  - 'C:\Downloads -> .appveyor.yml'
+
+# Specify required architecture.
+# Supported architectures are ``x86`` and ``x64``
 platform:
   - x64
-  - x86
 
-image: Visual Studio 2017
+install:
+  # Download php-appveyor.psm1 module and invoke it to the current session
+  - ps: (new-object Net.WebClient).DownloadString($Env:PHP_AVM) | iex
+  - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
+  - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
 
-## Build matrix for lowest and highest possible targets
-environment:
-  matrix:
-  - dependencies: highest
-    PHP_VERSION: 8.0
-  COMPOSER_CACHE: "%USERPROFILE%\\composer"
-  ERLANG_VERSION: 10.4
+#build_script:
+  # Your code here
+#--------------------------------
+build: false
 
-## Cache CI dependencies
-cache:
-    - '%COMPOSER_CACHE% -> composer.json'
-    - "%USERPROFILE%\\packages"
+clone_folder: c:\projects\saving-iterator
 
-## Set up environment variables
 init:
-    - SET ANSICON=121x90 (121x90)
+  - SET COMPOSER_NO_INTERACTION=1
 
 ## Install PHP and composer, and run the appropriate composer command
-install:
-    - choco config set cacheLocation "%USERPROFILE%\\packages"
-    - ps: Invoke-WebRequest "https://raw.githubusercontent.com/ChadSikorra/ps-install-php/master/Install-PHP.ps1" -OutFile "Install-PHP.ps1"
-    - ps: .\Install-PHP.ps1 -Version $Env:PHP_VERSION -Highest -Arch $Env:PLATFORM -Extensions mbstring,intl,openssl,curl,sockets
-    - cinst composer -i -y
-    - refreshenv
-    - cd %APPVEYOR_BUILD_FOLDER%
-    - SET COMPOSER_NO_INTERACTION=1
-    - SET COMPOSER_CACHE_DIR=%COMPOSER_CACHE%
-    - IF %dependencies%==lowest composer update --prefer-lowest --no-progress
-    - IF %dependencies%==current composer update --prefer-stable --no-progress
-    - IF %dependencies%==highest composer update --no-progress --prefer-dist
+#install:
 
 ## Run the actual test
 test_script:
-  - cd %APPVEYOR_BUILD_FOLDER%
+  - cd c:\projects\saving-iterator
   # PHPUnit tests
   - vendor/bin/phpunit --coverage-text --configuration phpunit.xml
   # Coverage files
