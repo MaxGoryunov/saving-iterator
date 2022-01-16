@@ -26,6 +26,12 @@ install:
   - ps: (new-object Net.WebClient).DownloadString($Env:PHP_AVM) | iex
   - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
   - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
+  - cinst composer -i -y
+  - refreshenv
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - SET COMPOSER_NO_INTERACTION=1
+  - SET COMPOSER_CACHE_DIR=%COMPOSER_CACHE%
+  - composer update --no-progress
 
 #build_script:
   # Your code here
