@@ -33,7 +33,7 @@ install:
   - refreshenv
   - mkdir C:\composer
   - cd C:\composer
-  - php -r "readfile('http://getcomposer.org/installer');" | php
+  - C:\php -r "readfile('http://getcomposer.org/installer');" | php
   - powershell -command "(Get-Item C:\composer\composer.phar).length"
   - powershell -command "'@php C:\composer\composer.phar ' + $([char]37) + '*' | Out-File C:\composer\composer.bat -Encoding ASCII"
   - SET PATH=C:\composer;%PATH%
