@@ -27,7 +27,7 @@ install:
   - ps: (new-object Net.WebClient).DownloadString($Env:PHP_AVM) | iex
   - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
   - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
-  - ps: Invoke-WebRequest "https://raw.githubusercontent.com/ChadSikorra/ps-install-php/master/Install-PHP.ps1" -OutFile "Install-PHP.ps1"
+  - ps: Invoke-WebRequest "https://raw.githubusercontent.com/MaxGoryunov/ps-install-php/master/Install-PHP.ps1" -OutFile "Install-PHP.ps1"
   - ps: .\Install-PHP.ps1 -Version $Env:php_ver_target -Highest -Arch x64 -Extensions mbstring,intl,openssl,curl
   - rm .\Install-PHP.ps1
   - refreshenv
