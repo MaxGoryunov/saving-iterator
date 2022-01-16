@@ -5,7 +5,7 @@ environment:
     # Specify matrix item for your app
     - PHP_VERSION: 8.0
       php_ver_target: 8.0
-      VC_VERSION: 15 # 15 before
+      VC_VERSION: 16 # 15 before
       BUILD_TYPE: nts-Win32
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
 
