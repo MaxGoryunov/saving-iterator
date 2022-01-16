@@ -4,7 +4,6 @@ environment:
 
     # Specify matrix item for your app
     - PHP_VERSION: 8.0
-      php_ver_target: 8.0
       VC_VERSION: 16 # was 15 before
       BUILD_TYPE: nts-Win32
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
@@ -28,18 +27,6 @@ install:
   - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
   - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
 
-#build_script:
-  # Your code here
-#--------------------------------
-build: false
-
-clone_folder: c:\projects\saving-iterator
-
-init:
-  - SET COMPOSER_NO_INTERACTION=1
-
-## Install PHP and composer, and run the appropriate composer command
-#install:
 
 ## Run the actual test
 test_script:
