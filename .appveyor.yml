@@ -45,7 +45,7 @@ init:
 test_script:
   - cd c:\projects\saving-iterator
   # PHPUnit tests
-  - vendor/bin/phpunit --coverage-text --configuration phpunit.xml
+  - vendor\bin\phpunit --coverage-text --configuration phpunit.xml
   # Coverage files
   - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
   # Coverage check
