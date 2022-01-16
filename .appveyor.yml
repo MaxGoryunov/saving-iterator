@@ -3,13 +3,10 @@ environment:
   matrix:
 
     # Specify matrix item for your app
-    - PHP_VERSION: 7.3
-      VC_VERSION: 15
+    - PHP_VERSION: 8.0
+      VC_VERSION: 16 # 15 before
       BUILD_TYPE: nts-Win32
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-
-  # Specify required PHP SDK binary tools if you need SDK
-  PHP_SDK_VERSION: 2.1.9
 
   PHP_AVM: https://raw.githubusercontent.com/sergeyklay/php-appveyor/master/php-appveyor.psm1
 
@@ -32,30 +29,11 @@ install:
   - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
   - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
 
-  # An example to install PECL extension
-  - ps: >-
-      InstallPeclExtension `
-        -Name       psr `
-        -Version    0.6.1 `
-        -PhpVersion $Env:PHP_VERSION `
-        -BuildType  $Env:BUILD_TYPE `
-        -VC         $Env:VC_VERSION `
-        -Platform   $Env:PLATFORM
-
-  # An example to enable PHP extension
-  - ps: >-
-      EnablePhpExtension `
-        -Name          my_ext `
-        -PhpPath       C:\php `       # Optional
-        -ExtPath       C:\my_ext `    # Optional
-        -PrintableName "My Extension" # Optional
-
-build_script:
+#build_script:
   # Your code here
 #--------------------------------
 build: false
-platform:
-  - x64
+
 clone_folder: c:\projects\saving-iterator
 
 environment:
