@@ -36,7 +36,6 @@ build: false
 
 ## Run the actual test
 test_script:
-  - cd c:\projects\saving-iterator
   # PHPUnit tests
   - vendor\bin\phpunit --coverage-text --configuration phpunit.xml
   # Coverage files
