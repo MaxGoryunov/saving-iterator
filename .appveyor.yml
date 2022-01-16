@@ -27,6 +27,12 @@ install:
   - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
   - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
 
+#build_script:
+  # Your code here
+#--------------------------------
+build: false
+
+
 
 ## Run the actual test
 test_script:
