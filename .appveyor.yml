@@ -26,6 +26,15 @@ install:
   - ps: (new-object Net.WebClient).DownloadString($Env:PHP_AVM) | iex
   - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
   - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
+  # An example to install PECL extension
+  - ps: >-
+      InstallPeclExtension `
+        -Name       xdebug `
+        -Version    0.6.1 `
+        -PhpVersion $Env:PHP_VERSION `
+        -BuildType  $Env:BUILD_TYPE `
+        -VC         $Env:VC_VERSION `
+        -Platform   $Env:PLATFORM
   - cinst composer -i -y
   - refreshenv
   - cd %APPVEYOR_BUILD_FOLDER%
@@ -45,7 +54,7 @@ test_script:
   # PHPUnit tests
   - vendor\bin\phpunit --coverage-text --configuration phpunit.xml
   # Coverage files
-  - ./vendor/bin/phpunit --coverage-clover=coverage.xml
+  - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
   # Coverage check
   - vendor/bin/coverage-check coverage.xml 100 --only-percentage
   # PHPStan analysis
