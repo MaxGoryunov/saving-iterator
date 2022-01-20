@@ -8,7 +8,7 @@ environment:
       BUILD_TYPE: nts-Win32
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
 
-  PHP_AVM: https://raw.githubusercontent.com/sergeyklay/php-appveyor/master/php-appveyor.psm1
+  PHP_AVM: https://raw.githubusercontent.com/MaxGoryunov/php-appveyor/master/php-appveyor.psm1
 
 # Cache PHP and tooling
 cache:
