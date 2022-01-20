@@ -36,8 +36,7 @@ install:
         -VC         $Env:VC_VERSION `
         -Platform   $Env:PLATFORM
   - cinst composer -i -y
-  - refreshenv
-  - SET XDEBUG_MODE=coverage
+  - ENV XDEBUG_MODE=coverage
   - cd %APPVEYOR_BUILD_FOLDER%
   - SET COMPOSER_NO_INTERACTION=1
   - SET COMPOSER_CACHE_DIR=%COMPOSER_CACHE%
