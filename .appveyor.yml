@@ -35,8 +35,7 @@ install:
         -BuildType  $Env:BUILD_TYPE `
         -VC         $Env:VC_VERSION `
         -Platform   $Env:PLATFORM
-  - ps: >-
-      InstallComposer
+  - cinst composer -i -y
   - SET XDEBUG_MODE=coverage
   - cd %APPVEYOR_BUILD_FOLDER%
   - SET COMPOSER_NO_INTERACTION=1
