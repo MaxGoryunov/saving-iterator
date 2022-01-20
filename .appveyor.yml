@@ -35,6 +35,9 @@ install:
         -BuildType  $Env:BUILD_TYPE `
         -VC         $Env:VC_VERSION `
         -Platform   $Env:PLATFORM
+  - ps: >-
+      EnablePhpExtension `
+        -Name          xdebug
   - cinst composer -i -y
   - SET XDEBUG_MODE=coverage
   - cd %APPVEYOR_BUILD_FOLDER%
