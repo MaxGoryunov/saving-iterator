@@ -37,6 +37,7 @@ install:
         -Platform   $Env:PLATFORM
   - cinst composer -i -y
   - refreshenv
+  - SET XDEBUG_MODE=coverage
   - cd %APPVEYOR_BUILD_FOLDER%
   - SET COMPOSER_NO_INTERACTION=1
   - SET COMPOSER_CACHE_DIR=%COMPOSER_CACHE%
@@ -54,7 +55,7 @@ test_script:
   # PHPUnit tests
   - vendor\bin\phpunit --coverage-text --configuration phpunit.xml
   # Coverage files
-  - XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
+  -  ./vendor/bin/phpunit --coverage-clover=coverage.xml
   # Coverage check
   - vendor/bin/coverage-check coverage.xml 100 --only-percentage
   # PHPStan analysis
