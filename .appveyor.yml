@@ -63,3 +63,5 @@ test_script:
   - vendor/bin/coverage-check coverage.xml 100 --only-percentage
   # PHPStan analysis
   - ./vendor/bin/phpstan analyse
+  # Infection analysis
+  - ./vendor/bin/infection --min-msi=90 --min-covered-msi=90 --threads=4 --configuration=./infection.json.dist
