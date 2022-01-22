@@ -4,7 +4,7 @@ environment:
 
     # Specify matrix item for your app
     - PHP_VERSION: 8.0
-      VC_VERSION: 16 # was 15 before
+      VC_VERSION: 16
       BUILD_TYPE: nts-Win32
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
 
@@ -51,8 +51,6 @@ install:
 #--------------------------------
 build: false
 
-
-
 ## Run the actual test
 test_script:
   # PHPUnit tests
@@ -65,3 +63,8 @@ test_script:
   - ./vendor/bin/phpstan analyse
   # Infection analysis
   - ./vendor/bin/infection --min-msi=90 --min-covered-msi=90 --threads=4 --configuration=./infection.json.dist
+
+after_test:
+  - ps: |
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "coverage.xml"
