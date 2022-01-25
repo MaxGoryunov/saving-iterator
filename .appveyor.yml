@@ -36,7 +36,7 @@ install:
         -VC         $Env:VC_VERSION `
         -Platform   $Env:PLATFORM
   - ps: >-
-      EnablePhpExtension `
+      EnableZendExtension `
         -Name          xdebug
   - cinst composer -i -y
   - SET XDEBUG_MODE=coverage
