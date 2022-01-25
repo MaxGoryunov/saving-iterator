@@ -2,6 +2,7 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/MaxGoryunov/saving-iterator)](http://www.rultor.com/p/MaxGoryunov/saving-iterator)
 
 ![PHP-Composer-Build](https://github.com/MaxGoryunov/saving-iterator/actions/workflows/php.yml/badge.svg)
+[![Build Status](https://app.travis-ci.com/MaxGoryunov/saving-iterator.svg?branch=master)](https://app.travis-ci.com/MaxGoryunov/saving-iterator)
 [![Latest Stable Version](http://poser.pugx.org/maxgoryunov/saving-iterator/v)](https://packagist.org/packages/maxgoryunov/saving-iterator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/MaxGoryunov/saving-iterator/blob/master/LICENSE)
 
