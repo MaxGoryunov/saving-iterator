@@ -1,6 +1,7 @@
 architect:
   - MaxGoryunov
 install:
+  - "sudo apt-get update"
   - "composer install"
 merge:
   script:
@@ -12,4 +13,3 @@ release:
     - "./vendor/bin/phpunit --bootstrap=vendor/autoload.php --coverage-text"
     - "XDEBUG_MODE=coverage ./vendor/bin/infection --min-msi=80 --min-covered-msi=80 --threads=4"
     - "./vendor/bin/phpstan analyse"
-  fast-forward: no
