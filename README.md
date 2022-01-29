@@ -3,6 +3,7 @@
 
 ![PHP-Composer-Build](https://github.com/MaxGoryunov/saving-iterator/actions/workflows/php.yml/badge.svg)
 [![Build Status](https://app.travis-ci.com/MaxGoryunov/saving-iterator.svg?branch=master)](https://app.travis-ci.com/MaxGoryunov/saving-iterator)
+[![Build status](https://ci.appveyor.com/api/projects/status/n4g8288u7u1xkj05/branch/master?svg=true)](https://ci.appveyor.com/project/MaxGoryunov/saving-iterator/branch/master)
 [![Latest Stable Version](http://poser.pugx.org/maxgoryunov/saving-iterator/v)](https://packagist.org/packages/maxgoryunov/saving-iterator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/MaxGoryunov/saving-iterator/blob/master/LICENSE)
 

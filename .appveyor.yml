@@ -1,0 +1,70 @@
+environment:
+  # Use this matrix as an example
+  matrix:
+
+    # Specify matrix item for your app
+    - PHP_VERSION: 8.0
+      VC_VERSION: 16
+      BUILD_TYPE: nts-Win32
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+
+  PHP_AVM: https://raw.githubusercontent.com/MaxGoryunov/php-appveyor/master/php-appveyor.psm1
+
+# Cache PHP and tooling
+cache:
+  # The C:\Downloads directory will be used as a storage for downloaded archives.
+  # So you may want to cache it.
+  - 'C:\Downloads -> .appveyor.yml'
+
+# Specify required architecture.
+# Supported architectures are ``x86`` and ``x64``
+platform:
+  - x64
+
+install:
+  # Download php-appveyor.psm1 module and invoke it to the current session
+  - ps: (new-object Net.WebClient).DownloadString($Env:PHP_AVM) | iex
+  - ps: InstallPhp        $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
+  - ps: InstallPhpDevPack $Env:PHP_VERSION $Env:BUILD_TYPE $Env:VC_VERSION $Env:PLATFORM
+  # An example to install PECL extension
+  - ps: >-
+      InstallPeclExtension `
+        -Name       xdebug `
+        -Version    3.0.3 `
+        -PhpVersion $Env:PHP_VERSION `
+        -BuildType  $Env:BUILD_TYPE `
+        -VC         $Env:VC_VERSION `
+        -Platform   $Env:PLATFORM
+  - ps: >-
+      EnableZendExtension `
+        -Name          xdebug
+  - cinst composer -i -y
+  - SET XDEBUG_MODE=coverage
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - SET COMPOSER_NO_INTERACTION=1
+  - SET COMPOSER_CACHE_DIR=%COMPOSER_CACHE%
+  - refreshenv
+  - composer update --no-progress
+
+#build_script:
+  # Your code here
+#--------------------------------
+build: false
+
+## Run the actual test
+test_script:
+  # PHPUnit tests
+  - vendor\bin\phpunit --coverage-text --configuration phpunit.xml
+  # Coverage files
+  -  ./vendor/bin/phpunit --coverage-clover=coverage.xml
+  # Coverage check
+  - vendor/bin/coverage-check coverage.xml 100 --only-percentage
+  # PHPStan analysis
+  - ./vendor/bin/phpstan analyse
+  # Infection analysis
+  - ./vendor/bin/infection --min-msi=90 --min-covered-msi=90 --threads=4 --configuration=./infection.json.dist
+
+after_test:
+  - ps: |
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+  - bash codecov.sh -f 'coverage.xml'
