@@ -1,7 +1,5 @@
 architect:
   - MaxGoryunov
-docker:
-  image: php:8.0.8-zts-buster
 install:
   - "composer install"
 merge:
