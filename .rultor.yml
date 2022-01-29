@@ -1,9 +1,9 @@
 architect:
   - MaxGoryunov
 install:
+  - "composer install"
   - "sudo apt-get update"
   - "sudo apt install php-dom"
-  - "composer install"
 merge:
   script:
     - "./vendor/bin/phpunit --bootstrap=vendor/autoload.php --coverage-text"
