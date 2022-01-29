@@ -2,6 +2,7 @@ architect:
   - MaxGoryunov
 install:
   - "sudo apt-get update"
+  - "sudo apt install php-dom"
   - "composer install"
 merge:
   script:
