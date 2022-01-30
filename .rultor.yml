@@ -5,6 +5,7 @@ install:
   - "sudo apt install -y php8.0-dom"
   - "sudo apt install -y curl"
   - "sudo apt-get install -y php8.0-mbstring"
+  - "sudo apt-get install -y php-xdebug"
   - "composer install"
 merge:
   script:
