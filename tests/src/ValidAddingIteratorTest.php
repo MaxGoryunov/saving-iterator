@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\ValidAddingIterator;
 use PHPUnit\Framework\TestCase;
@@ -75,4 +76,6 @@ final class ValidAddingIteratorTest extends TestCase
             )
         );
     }
+
+
 }
