@@ -26,7 +26,7 @@
 
 ## How to use
 
-Require it with Composer:
+Require it with [Composer](https://getcomposer.org/download/):
 
 ```bash
 composer require maxgoryunov/saving-iterator
