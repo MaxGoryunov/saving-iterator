@@ -17,9 +17,9 @@ final class ValidAddingIteratorTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::from
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
-     * 
+     *
      * @small
      *
      * @return void
@@ -36,9 +36,9 @@ final class ValidAddingIteratorTest extends TestCase
     /**
      * @covers ::__construct
      * @covers ::from
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
-     * 
+     *
      * @small
      *
      * @return void
@@ -59,9 +59,9 @@ final class ValidAddingIteratorTest extends TestCase
      * @covers ::valid
      * @covers ::next
      * @covers ::rewind
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
-     * 
+     *
      * @small
      *
      * @return void
@@ -77,5 +77,30 @@ final class ValidAddingIteratorTest extends TestCase
         );
     }
 
-
+    /**
+     * @covers ::__construct
+     * @covers ::current
+     * @covers ::key
+     * @covers ::valid
+     * @covers ::next
+     * @covers ::rewind
+     *
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testRewindsStoredIterator(): void
+    {
+        $this->assertEquals(
+            ...(new RpIteratorToArray(
+                new ValidAddingIterator(
+                    new ArrayAddingIterator([23, 6, 10, 658, 27, 3])
+                )
+            ))->times(2)
+        );
+    }
 }

@@ -4,9 +4,7 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
 use Generator;
-use InfiniteIterator;
 use Iterator;
-use LimitIterator;
 use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Fakes\The;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
@@ -30,14 +28,14 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
-     * 
+     *
      * @small
      *
      * @return void
@@ -65,7 +63,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
@@ -73,9 +71,9 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
-     * 
+     *
      * @small
-     * 
+     *
      * @runInSeparateProcess
      *
      * @return void
@@ -94,18 +92,12 @@ class SavingIteratorTest extends TestCase
                         "next"
                     )
                 ))->act(
-                    fn (Indifferent $called): array => iterator_to_array(
-                        new LimitIterator(
-                            new InfiniteIterator(
-                                new SavingIterator(
-                                    new TransparentIterator($called),
-                                    new ArrayAddingIterator()
-                                )
-                            ),
-                            0,
-                            count($input) * rand(2, 4)
+                    fn (Indifferent $called): array => (new RpIteratorToArray(
+                        new SavingIterator(
+                            new TransparentIterator($called),
+                            new ArrayAddingIterator()
                         )
-                    )
+                    ))->times(3)
                 )->value()
             )
         );
@@ -118,14 +110,14 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
-     * 
+     *
      * @small
      *
      * @return void
@@ -158,7 +150,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
@@ -167,7 +159,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
-     * 
+     *
      * @small
      *
      * @return void
@@ -191,12 +183,12 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
-     * 
+     *
      * @small
      *
      * @return void
@@ -225,7 +217,7 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
@@ -234,7 +226,7 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
-     * 
+     *
      * @small
      *
      * @return void
@@ -258,14 +250,14 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\The
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
-     * 
+     *
      * @small
      *
      * @return void
@@ -304,12 +296,12 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
-     * 
+     *
      * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
-     * 
+     *
      * @small
      *
      * @return void
@@ -323,59 +315,6 @@ class SavingIteratorTest extends TestCase
                     new ArrayIterator([]),
                     new ArrayAddingIterator()
                 )
-            )
-        );
-    }
-
-    /**
-     * @covers ::__construct
-     * @covers ::rewind
-     * @covers ::valid
-     * @covers ::current
-     * @covers ::key
-     * @covers ::next
-     * 
-     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
-     * @uses MaxGoryunov\SavingIterator\Fakes\The
-     * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
-     * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
-     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
-     * @uses MaxGoryunov\SavingIterator\Src\BsCount
-     * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
-     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
-     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
-     * 
-     * @small
-     *
-     * @return void
-     */
-    public function testFillsCacheValueOnlyIfItIsNotStoredYet(): void
-    {
-        (new The(
-            [4, 3, 6, 3, 7, 8]
-        ))->act(
-            fn (array $input) => $this->assertEquals(
-                count($input),
-                (new The(
-                    new TimesCalled(
-                        new ArrayIterator($input),
-                        new BsCount(),
-                        "current"
-                    )
-                ))->act(
-                    fn (Indifferent $called): array => iterator_to_array(
-                        new LimitIterator(
-                            new InfiniteIterator(
-                                new SavingIterator(
-                                    new TransparentIterator($called),
-                                    new ArrayAddingIterator()
-                                )
-                            ),
-                            0,
-                            count($input) * 2
-                        )
-                    )
-                )->value()
             )
         );
     }
