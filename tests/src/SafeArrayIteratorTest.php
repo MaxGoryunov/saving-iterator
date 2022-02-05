@@ -103,6 +103,9 @@ final class SafeArrayIteratorTest extends TestCase
      * @covers ::next
      * @covers ::rewind
      *
+     * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
+     *
      * @small
      *
      * @return void
