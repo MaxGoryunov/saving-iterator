@@ -3,6 +3,7 @@
 namespace MaxGoryunov\SavingIterator\Tests\Src;
 
 use ArrayIterator;
+use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Src\SafeArrayIterator;
 use PHPUnit\Framework\TestCase;
 
@@ -67,7 +68,7 @@ final class SafeArrayIteratorTest extends TestCase
         $count = 5;
         $this->assertCount(
             $count,
-            (new SafeArrayIterator(range(1, 5)))
+            (new SafeArrayIterator(range(1, $count)))
         );
     }
 
@@ -108,10 +109,11 @@ final class SafeArrayIteratorTest extends TestCase
      */
     public function testIterationsGiveSameResults(): void
     {
-        $iterator = new SafeArrayIterator([7, 73, 45, 9, 24, 72, 6]);
         $this->assertEquals(
-            iterator_to_array($iterator),
-            iterator_to_array($iterator)
+            ...(new RpIteratorToArray(
+                new SafeArrayIterator([7, 73, 45, 9, 24, 72, 6])
+            ))
+                ->times(2)
         );
     }
 

@@ -134,7 +134,7 @@ final class ArrayAddingIteratorTest extends TestCase
         $this->assertEquals(
             $input,
             iterator_to_array(
-                new ArrayAddingIterator([4, 3, 94, 25, 63, 6, 72, 7])
+                new ArrayAddingIterator($input)
             )
         );
     }
