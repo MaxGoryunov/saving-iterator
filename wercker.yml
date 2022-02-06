@@ -1,0 +1,50 @@
+box:
+  id: php
+  ports:
+    - "8080"
+
+dev:
+  steps:
+    - install-packages:
+        packages: git
+    - script:
+        name: install composer
+        code: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+    - script:
+        name: install dependencies
+        code: composer install --no-interaction
+    - internal/watch:
+        code: php -S 0.0.0.0:8080
+        reload: true
+
+build:
+  steps:
+    - install-packages:
+        packages: git
+    - script:
+        name: install composer
+        code: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+    - script:
+        name: install dependencies
+        code: composer install --no-interaction
+    - script:
+        name: Serve application
+        code: php -S localhost:8080 >> /dev/null &
+    - script:
+        name: PHPUnit tests
+        code: vendor/bin/phpunit --coverage-text --configuration phpunit.xml
+    - script:
+        name: Infection analysis
+        code: XDEBUG_MODE=coverage ./vendor/bin/infection --min-msi=90 --min-covered-msi=90 --threads=4 --configuration=./infection.json.dist
+    - script:
+        name: Coverage files
+        code: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
+    - script:
+        name: Coverage check
+        code: vendor/bin/coverage-check coverage.xml 100 --only-percentage
+    - script:
+        name: PHPStan analysis
+        code: ./vendor/bin/phpstan analyse
+    - script:
+        name: Upload coverage to Codecov
+        code: bash <(curl -s https://codecov.io/bash)
