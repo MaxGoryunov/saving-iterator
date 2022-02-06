@@ -23,7 +23,7 @@ build:
         packages: git
     - script:
         name: install xdebug
-        code: sudo apt-get install -y php8.1-xdebug
+        code: sudo apt-get install -y php8.0-xdebug
     - script:
         name: install composer
         code: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
