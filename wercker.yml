@@ -20,7 +20,7 @@ dev:
 build:
   steps:
     - install-packages:
-        packages: git xdebug
+        packages: git php8.0-xdebug
     - script:
         name: install composer
         code: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
