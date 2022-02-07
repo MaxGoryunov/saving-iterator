@@ -20,7 +20,13 @@ dev:
 build:
   steps:
     - install-packages:
-        packages: git php8.0-xdebug
+        packages: git
+    - script:
+        name: Install xdebug
+        code: pecl install xdebug
+    - script:
+        name: Enable xdebug
+        code: docker-php-ext-enable xdebug
     - script:
         name: install composer
         code: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
