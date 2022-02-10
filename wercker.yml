@@ -29,7 +29,7 @@ build:
         code: docker-php-ext-enable xdebug
     - script:
         name: Install zip extension
-        code: apt install zip unzip php7.4-zip
+        code: apt install zip unzip 
     - script:
         name: install composer
         code: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
