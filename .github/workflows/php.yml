@@ -26,7 +26,7 @@ jobs:
         args: --coverage-text
 
     - name: PCNTL installation
-      run: sudo apt-get install -y pcntl
+      run: php -i | grep pcntl
 
     - name: Infection analysis
       env:
