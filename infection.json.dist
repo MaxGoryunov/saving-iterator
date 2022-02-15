@@ -5,6 +5,7 @@
             "src"
         ]
     },
+    "timeout": 3,
     "logs": {
         "text": "infection.log",
         "badge": {
