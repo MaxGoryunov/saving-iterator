@@ -25,6 +25,9 @@ jobs:
         configuration: phpunit.xml
         args: --coverage-text
 
+    - name: PCNTL installation
+      run: sudo apt-get install -y php8.0-pcntl
+
     - name: Infection analysis
       env:
         INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
