@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: cimg/php:8.0.14-browsers
         auth:
-          username: 9528062003
+          username: "9528062003"
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
