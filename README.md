@@ -5,14 +5,13 @@
 [![Build Status](https://app.travis-ci.com/MaxGoryunov/saving-iterator.svg?branch=master)](https://app.travis-ci.com/MaxGoryunov/saving-iterator)
 [![Build status](https://ci.appveyor.com/api/projects/status/n4g8288u7u1xkj05/branch/master?svg=true)](https://ci.appveyor.com/project/MaxGoryunov/saving-iterator/branch/master)
 [![wercker status](https://app.wercker.com/status/f43bcadc6b1557a83b4ed20041478135/s/master "wercker status")](https://app.wercker.com/project/byKey/f43bcadc6b1557a83b4ed20041478135)
-[![Latest Stable Version](http://poser.pugx.org/maxgoryunov/saving-iterator/v)](https://packagist.org/packages/maxgoryunov/saving-iterator)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/MaxGoryunov/saving-iterator/blob/master/LICENSE)
+[![MaxGoryunov](https://circleci.com/gh/MaxGoryunov/saving-iterator.svg?style=svg)](https://app.circleci.com/pipelines/github/MaxGoryunov/saving-iterator)
 
 [![PDD status](https://www.0pdd.com/svg?name=MaxGoryunov/saving-iterator)](https://www.0pdd.com/p?name=MaxGoryunov/saving-iterator)
 [![codecov](https://codecov.io/gh/MaxGoryunov/saving-iterator/branch/master/graph/badge.svg?token=KYRZ0UK8E8)](https://codecov.io/gh/MaxGoryunov/saving-iterator)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FMaxGoryunov%2Fsaving-iterator%2Fmaster)](https://infection.github.io)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/MaxGoryunov/saving-iterator.svg)](http://isitmaintained.com/project/MaxGoryunov/saving-iterator "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/MaxGoryunov/saving-iterator.svg)](http://isitmaintained.com/project/MaxGoryunov/saving-iterator "Percentage of issues still open")
+[![Latest Stable Version](http://poser.pugx.org/maxgoryunov/saving-iterator/v)](https://packagist.org/packages/maxgoryunov/saving-iterator)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/MaxGoryunov/saving-iterator/blob/master/LICENSE)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d721a5fca4901010520e/maintainability)](https://codeclimate.com/github/MaxGoryunov/saving-iterator/maintainability)
 [![codebeat badge](https://codebeat.co/badges/b95d6d2e-f46c-4270-a474-21d3ba562e31)](https://codebeat.co/projects/github-com-maxgoryunov-saving-iterator-master)
