@@ -1,0 +1,30 @@
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.2
+
+jobs:
+  build:
+    docker:
+      - image: cimg/php:8.0.14-browsers
+        auth:
+          username: "9528062003"
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run: sudo pecl install xdebug
+      - run: sudo composer selfupdate
+      - restore_cache:
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            - composer-v1-
+      - run: composer install --no-interaction
+      - save_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      - run: ./vendor/bin/phpunit --coverage-text --configuration phpunit.xml
+      - run: XDEBUG_MODE=coverage ./vendor/bin/infection --min-msi=90 --min-covered-msi=90 --threads=4 --configuration=./infection.json.dist
+      - run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
+      - run: ./vendor/bin/coverage-check coverage.xml 100 --only-percentage
+      - run: ./vendor/bin/phpstan analyse
+      - run: bash <(curl -s https://codecov.io/bash)
