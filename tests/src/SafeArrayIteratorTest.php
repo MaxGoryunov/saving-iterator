@@ -23,6 +23,7 @@ final class SafeArrayIteratorTest extends TestCase
      */
     public function testStoresValues(): void
     {
+        /** @phpstan-var SafeArrayIterator<string, int> */
         $iterator       = new SafeArrayIterator();
         $key            = "apples";
         $value          = 18;
@@ -45,6 +46,7 @@ final class SafeArrayIteratorTest extends TestCase
      */
     public function testUnsetsValues(): void
     {
+        /** @phpstan-var SafeArrayIterator<string, int> */
         $iterator       = new SafeArrayIterator();
         $key            = "bananas";
         $value          = 6;
