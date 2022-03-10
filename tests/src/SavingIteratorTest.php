@@ -318,4 +318,30 @@ class SavingIteratorTest extends TestCase
             )
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testCorrectlyOrdersStoredItems(): void
+    {
+        $input = [45, 28, 9, 41, 97];
+        $iterator = new SavingIterator(
+            new ArrayIterator($input),
+            new ArrayAddingIterator()
+        );
+        $iterator->next();
+        $this->assertEquals(
+            $input,
+            iterator_to_array($iterator)
+        );
+    }
 }
