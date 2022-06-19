@@ -33,24 +33,23 @@ class SavingIterator implements Iterator
      * @param AddingIterator $target iterator to which the values are saved.
      */
     public function __construct(
-        /**
-         * Original iterator.
-         *
-         * @phpstan-var Iterator<TKey, TValue>
-         * @var Iterator
-         */
-        private Iterator $origin,
+        Iterator $origin,
         AddingIterator $target
     ) {
+        /**
+         * @todo #177:15min SavingIterator has most of its behavior in the
+         *  encapsulated ContextVeil. It would be better remove all other
+         *  methods and instead inherit from TransparentIterator.
+         */
         /** @phpstan-ignore-next-line */
         $this->target = new ContextVeil(
             $target,
             new ClosureReaction(
-                function (AddingIterator $stored) {
+                function (AddingIterator $stored) use ($origin) {
                     $res = $stored;
-                    if ($this->origin->valid()) {
-                        $res = $stored->from($this->origin);
-                        $this->origin->next();
+                    if ($origin->valid()) {
+                        $res = $stored->from($origin);
+                        $origin->next();
                     }
                     return $res;
                 }
@@ -81,7 +80,7 @@ class SavingIterator implements Iterator
      */
     public function valid(): bool
     {
-        return ($this->origin->valid()) || ($this->target->valid());
+        return ($this->target->valid());
     }
 
     /**
