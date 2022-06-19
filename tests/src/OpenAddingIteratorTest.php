@@ -31,9 +31,11 @@ final class OpenAddingIteratorTest extends TestCase
     public function testAddsValuesFromSource(): void
     {
         $input = [4, 29, 49, 84, 5, 28, 50];
+        /** @phpstan-var OpenAddingIterator<int, int> $iterator */
+        $iterator = new OpenAddingIterator(new ArrayIterator());
         $this->assertEquals(
             $input[0],
-            (new OpenAddingIterator(new ArrayIterator()))
+            ($iterator)
                 ->from(new ArrayIterator($input))
                 ->current()
         );
@@ -124,9 +126,11 @@ final class OpenAddingIteratorTest extends TestCase
         );
         /** @phpstan-ignore-next-line */
         $transparent = new TransparentIterator($called);
-        (new OpenAddingIterator(
+        /** @phpstan-var OpenAddingIterator<int, int> $iterator */
+        $iterator = new OpenAddingIterator(
             new ArrayIterator()
-        ))
+        );
+        ($iterator)
             ->from($transparent)
             ->from($transparent)
             ->from($transparent);
