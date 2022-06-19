@@ -42,19 +42,18 @@ class SavingIterator implements Iterator
         private Iterator $origin,
         AddingIterator $target
     ) {
-        $methods = array_flip(["current", "key"]);
         /** @phpstan-ignore-next-line */
         $this->target = new ContextVeil(
             $target,
             new ClosureReaction(
-                fn (AddingIterator $stored, string $method) => (
-                    ($this->origin->valid())
-                    && (isset(
-                        $methods[$method]
-                    ))
-                ) ? $stored->from(
-                    $this->origin
-                ) : $stored
+                function (AddingIterator $stored) {
+                    $res = $stored;
+                    if ($this->origin->valid()) {
+                        $res = $stored->from($this->origin);
+                        $this->origin->next();
+                    }
+                    return $res;
+                }
             )
         );
     }
@@ -90,9 +89,6 @@ class SavingIterator implements Iterator
      */
     public function next(): void
     {
-        if ($this->origin->valid()) {
-            $this->origin->next();
-        }
         $this->target->next();
     }
 
