@@ -326,6 +326,11 @@ class SavingIteratorTest extends TestCase
      * @covers ::current
      * @covers ::key
      * @covers ::next
+     * 
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      *
      * @small
      *
