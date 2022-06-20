@@ -2,7 +2,7 @@ architect:
   - MaxGoryunov
 install:
   - "sudo apt-get update"
-  - "sudo apt install -y php-dom"
+  - "sudo apt install -y php-xml"
   - "sudo apt-get install -y php-curl"
   - "sudo apt-get install -y php-mbstring"
   - "sudo apt-get install -y php-xdebug"
