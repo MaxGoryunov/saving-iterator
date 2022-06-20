@@ -2,10 +2,10 @@ architect:
   - MaxGoryunov
 install:
   - "sudo apt-get update"
-  - "sudo apt install -y php8.0-dom"
-  - "sudo apt-get install -y php8.0-curl"
-  - "sudo apt-get install -y php8.0-mbstring"
-  - "sudo apt-get install -y php8.0-xdebug"
+  - "sudo apt install -y php-dom"
+  - "sudo apt-get install -y php-curl"
+  - "sudo apt-get install -y php-mbstring"
+  - "sudo apt-get install -y php-xdebug"
   - "composer install"
 merge:
   script:
