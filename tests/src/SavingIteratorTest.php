@@ -11,7 +11,7 @@ use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\Indifferent;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
-use MaxGoryunov\SavingIterator\Src\TransparentIterator;
+use MaxGoryunov\SavingIterator\Src\IteratorEnvelope;
 use MaxGoryunov\SavingIterator\Src\SavingIterator;
 use PHPUnit\Framework\TestCase;
 
@@ -94,7 +94,7 @@ class SavingIteratorTest extends TestCase
                 ))->act(
                     fn (Indifferent $called): array => (new RpIteratorToArray(
                         new SavingIterator(
-                            new TransparentIterator($called),
+                            new IteratorEnvelope($called),
                             new ArrayAddingIterator()
                         )
                     ))->times(3)
