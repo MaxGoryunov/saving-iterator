@@ -2,28 +2,16 @@
 
 namespace MaxGoryunov\SavingIterator\Src;
 
-use Closure;
 use Iterator;
 
 /**
  * Iterator which stores iterated values.
  * @template TKey
  * @template TValue
- * @implements Iterator<TKey, TValue>
+ * @extends IteratorEnvelope<TKey, TValue>
  */
-class SavingIterator implements Iterator
+final class SavingIterator extends IteratorEnvelope
 {
-
-    /**
-     * Veil for Adding Iterator.
-     * Veil is added so that 'from' method is not called manually on methods 
-     * 'current' and 'key'.
-     *
-     * @phpstan-var Indifferent<AddingIterator<TKey, TValue>>
-     * @var Indifferent
-     */
-    private Indifferent $target;
-
     /**
      * Ctor.
      * 
@@ -36,66 +24,21 @@ class SavingIterator implements Iterator
         Iterator $origin,
         AddingIterator $target
     ) {
-        /**
-         * @todo #177:15min SavingIterator has most of its behavior in the
-         *  encapsulated ContextVeil. It would be better remove all other
-         *  methods and instead inherit from TransparentIterator.
-         */
-        /** @phpstan-ignore-next-line */
-        $this->target = new ContextVeil(
-            $target,
-            new ClosureReaction(
-                function (AddingIterator $stored) use ($origin) {
-                    $res = $stored;
-                    if ($origin->valid()) {
-                        $res = $stored->from($origin);
-                        $origin->next();
+        parent::__construct(
+            /** @phpstan-ignore-next-line */
+            new ContextVeil(
+                $target,
+                new ClosureReaction(
+                    function (AddingIterator $stored) use ($origin) {
+                        $res = $stored;
+                        if ($origin->valid()) {
+                            $res = $stored->from($origin);
+                            $origin->next();
+                        }
+                        return $res;
                     }
-                    return $res;
-                }
+                )
             )
         );
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return TValue|false
-     */
-    public function current(): mixed
-    {
-        return $this->target->current();
-    }
-
-    /**
-     * {@inheritDoc}
-     * @return TKey|null
-     */
-    public function key(): mixed
-    {
-        return $this->target->key();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function valid(): bool
-    {
-        return ($this->target->valid());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function next(): void
-    {
-        $this->target->next();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function rewind(): void
-    {
-        $this->target->rewind();
     }
 }
