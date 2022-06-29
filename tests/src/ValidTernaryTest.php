@@ -30,4 +30,23 @@ final class ValidTernaryTest extends TestCase
             ))->value()
         );
     }
+
+    /**
+     * @covers ::__construct
+     * @covers ::value
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testInvalidIterator(): void
+    {
+        $this->assertFalse(
+            (new ValidTernary(
+                new ArrayIterator(),
+                fn (Iterator $it) => true,
+                fn (Iterator $it) => false
+            ))->value()
+        );
+    }
 }
