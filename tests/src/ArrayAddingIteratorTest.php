@@ -8,7 +8,7 @@ use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Src\ArrayAddingIterator;
 use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
-use MaxGoryunov\SavingIterator\Src\TransparentIterator;
+use MaxGoryunov\SavingIterator\Src\IteratorEnvelope;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -69,7 +69,7 @@ final class ArrayAddingIteratorTest extends TestCase
      * @covers ::from
      * 
      * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
-     * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     * @uses MaxGoryunov\SavingIterator\Src\IteratorEnvelope
      * @uses MaxGoryunov\SavingIterator\Src\BsCount
      * 
      * @small
@@ -84,7 +84,7 @@ final class ArrayAddingIteratorTest extends TestCase
             "current"
         );
         /** @phpstan-ignore-next-line */
-        $source = new TransparentIterator($called);
+        $source = new IteratorEnvelope($called);
         (new ArrayAddingIterator())
             ->from($source)
             ->from($source);

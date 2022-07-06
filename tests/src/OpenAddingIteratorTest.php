@@ -10,7 +10,7 @@ use MaxGoryunov\SavingIterator\Src\BsCount;
 use MaxGoryunov\SavingIterator\Src\OpenAddingIterator;
 use MaxGoryunov\SavingIterator\Src\SafeArrayIterator;
 use MaxGoryunov\SavingIterator\Src\TimesCalled;
-use MaxGoryunov\SavingIterator\Src\TransparentIterator;
+use MaxGoryunov\SavingIterator\Src\IteratorEnvelope;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -113,7 +113,7 @@ final class OpenAddingIteratorTest extends TestCase
      * 
      * @uses MaxGoryunov\SavingIterator\Src\TimesCalled
      * @uses MaxGoryunov\SavingIterator\Src\BsCount
-     * @uses MaxGoryunov\SavingIterator\Src\TransparentIterator
+     * @uses MaxGoryunov\SavingIterator\Src\IteratorEnvelope
      *
      * @return void
      */
@@ -125,7 +125,7 @@ final class OpenAddingIteratorTest extends TestCase
             "current"
         );
         /** @phpstan-ignore-next-line */
-        $transparent = new TransparentIterator($called);
+        $transparent = new IteratorEnvelope($called);
         /** @phpstan-var OpenAddingIterator<int, int> $iterator */
         $iterator = new OpenAddingIterator(
             new ArrayIterator()

@@ -11,7 +11,7 @@ use Iterator;
  * @template TValue
  * @implements Iterator<TKey, TValue>
  */
-class TransparentIterator implements Iterator
+class IteratorEnvelope implements Iterator
 {
 
     /**

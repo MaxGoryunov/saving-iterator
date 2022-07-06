@@ -5,13 +5,13 @@ namespace MaxGoryunov\SavingIterator\Tests\Src;
 use ArrayIterator;
 use MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray;
 use MaxGoryunov\SavingIterator\Fakes\The;
-use MaxGoryunov\SavingIterator\Src\TransparentIterator;
+use MaxGoryunov\SavingIterator\Src\IteratorEnvelope;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass MaxGoryunov\SavingIterator\Src\TransparentIterator
+ * @coversDefaultClass MaxGoryunov\SavingIterator\Src\IteratorEnvelope
  */
-class TransparentIteratorTest extends TestCase
+class IteratorEnvelopeTest extends TestCase
 {
 
     /**
@@ -44,7 +44,7 @@ class TransparentIteratorTest extends TestCase
             fn(array $greens) => $this->assertEquals(
                 $greens,
                 iterator_to_array(
-                    new TransparentIterator(
+                    new IteratorEnvelope(
                         new ArrayIterator($greens)
                     )
                 )
@@ -71,7 +71,7 @@ class TransparentIteratorTest extends TestCase
     {
         $this->assertEquals(
             ...(new RpIteratorToArray(
-                new TransparentIterator(
+                new IteratorEnvelope(
                     new ArrayIterator([3, 87, 36, 93, 6, 82, 4])
                 )
             ))
