@@ -54,11 +54,10 @@ final class ValidTernary implements Scalar
 
     public function value(): mixed
     {
-        if ($this->origin->valid()) {
-            $path = $this->cons;
-        } else {
-            $path = $this->alter;
-        }
-        return $path($this->origin);
+        return (
+            ($this->origin->valid()) ?
+            $this->cons :
+            $this->alter
+        )($this->origin);
     }
 }
