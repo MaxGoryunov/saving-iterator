@@ -4,6 +4,7 @@ namespace MaxGoryunov\SavingIterator\Fakes;
 
 use Iterator;
 use MaxGoryunov\SavingIterator\Src\AddingIterator;
+use MaxGoryunov\SavingIterator\Src\ValidTernary;
 
 /**
  * Performs transfer of values from iterator to adding iterator.
@@ -42,8 +43,15 @@ final class IteratorTransfer
     {
         $this->origin->rewind();
         while ($this->origin->valid()) {
-            $target = $target->from($this->origin);
-            $this->origin->next();
+            $target = (new ValidTernary(
+                $this->origin,
+                function (Iterator $source) use ($target) {
+                    $target = $target->from($source);
+                    $source->next();
+                    return $target;
+                },
+                fn () => $target
+            ))->value();
         }
         return $target;
     }

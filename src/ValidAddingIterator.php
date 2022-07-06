@@ -36,15 +36,11 @@ final class ValidAddingIterator implements AddingIterator
      */
     public function from(Iterator $source): AddingIterator
     {
-        /**
-         * @todo #177:45min Check for valid source is repeated in several
-         *  classes: here, in SavingIterator and in IteratorTransfer. It would
-         *  be better to move this common checking functionality to a separate
-         *  small class and use it instead.
-         */
-        return ($source->valid())
-            ? new self($this->origin->from($source))
-            : $this;
+        return (new ValidTernary(
+            $source,
+            fn (Iterator $iter) => new self($this->origin->from($iter)),
+            fn () => $this
+        ))->value();
     }
 
     /**
