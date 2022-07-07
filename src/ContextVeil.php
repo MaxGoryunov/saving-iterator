@@ -1,13 +1,16 @@
 <?php
 
-namespace MaxGoryunov\SavingIterator\Src;
+declare(strict_types=1);
 
-use Closure;
+namespace MaxGoryunov\SavingIterator\Src;
 
 /**
  * Veil which applies context to origin if the condition is met.
+ *
  * @template T of object origin type.
+ *
  * @implements Indifferent<T>
+ *
  * @mixin T
  */
 final class ContextVeil implements Indifferent
@@ -15,9 +18,10 @@ final class ContextVeil implements Indifferent
 
     /**
      * Ctor.
-     * 
+     *
      * @phpstan-param T           $origin
      * @phpstan-param Reaction<T> $reaction
+     *
      * @param object   $origin   original element.
      * @param Reaction $reaction reaction for the element.
      */
@@ -26,6 +30,7 @@ final class ContextVeil implements Indifferent
          * Original element.
          *
          * @phpstan-var T
+         *
          * @var object
          */
         private object $origin,
@@ -34,6 +39,7 @@ final class ContextVeil implements Indifferent
          * Reaction for the element.
          *
          * @phpstan-var Reaction<T>
+         *
          * @var Reaction
          */
         private Reaction $reaction

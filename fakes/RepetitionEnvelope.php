@@ -1,13 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MaxGoryunov\SavingIterator\Fakes;
 
 use Closure;
 
 /**
  * Repeats some process several times and returns its result.
+ *
  * @template X subject type
  * @template Y result type
+ *
  * @implements Repetition<Y>
  */
 abstract class RepetitionEnvelope implements Repetition
@@ -17,6 +21,7 @@ abstract class RepetitionEnvelope implements Repetition
      *
      * @phpstan-param T             $subject
      * @phpstan-param Closure(T): Y $context
+     *
      * @param mixed   $subject element to be processed.
      * @param Closure $context context for the element.
      */
@@ -25,6 +30,7 @@ abstract class RepetitionEnvelope implements Repetition
          * Element to be processed.
          *
          * @phpstan-var X
+         *
          * @var mixed
          */
         private mixed $subject,
@@ -33,6 +39,7 @@ abstract class RepetitionEnvelope implements Repetition
          * Context for the element.
          *
          * @phpstan-var Closure(X): Y
+         *
          * @var Closure
          */
         private Closure $context
@@ -42,9 +49,9 @@ abstract class RepetitionEnvelope implements Repetition
     /**
      * Returns several results of applying context to subject.
      *
-     * @param int $count
-     * @phpstan-return Y[]
-     * @return mixed[]
+     * @phpstan-return array<Y>
+     *
+     * @return array<mixed>
      */
     final public function times(int $count): array
     {

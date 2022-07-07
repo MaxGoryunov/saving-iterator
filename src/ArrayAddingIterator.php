@@ -1,13 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MaxGoryunov\SavingIterator\Src;
 
 use Iterator;
 
 /**
  * Adding iterator which stores values in an array.
+ *
  * @template TKey
  * @template TValue
+ *
  * @implements AddingIterator<TKey, TValue>
  */
 final class ArrayAddingIterator implements AddingIterator
@@ -15,38 +19,33 @@ final class ArrayAddingIterator implements AddingIterator
 
     /**
      * Ctor.
-     * 
+     *
      * @phpstan-param array<TKey, TValue> $added
-     * @param mixed[] $added added values.
+     *
+     * @param array<mixed> $added added values.
      */
     public function __construct(
         /**
          * Added values.
          *
-         * @var mixed[]
+         * @var array<mixed>
          */
         private array $added = []
     ) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function from(Iterator $source): AddingIterator
     {
         return new self(
             array_merge(
                 $this->added,
-                (isset($this->added[$source->key()]))
+                isset($this->added[$source->key()])
                 ? []
                 : [$source->key() => $source->current()]
             )
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function current(): mixed
     {
         return current($this->added);
@@ -54,6 +53,7 @@ final class ArrayAddingIterator implements AddingIterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-return int|string|null
      */
     public function key(): mixed
@@ -61,25 +61,16 @@ final class ArrayAddingIterator implements AddingIterator
         return key($this->added);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function next(): void
     {
         next($this->added);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function valid(): bool
     {
         return $this->key() !== null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function rewind(): void
     {
         reset($this->added);

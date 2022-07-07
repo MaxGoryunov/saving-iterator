@@ -1,19 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MaxGoryunov\SavingIterator\Src;
 
 use ArrayAccess;
 use Countable;
 use Iterator;
-use Serializable;
 
 /**
  * Safe array iterator. Copies array when cloned.
+ *
  * @template TKey
  * @template TValue
+ *
  * @implements ArrayAccess<TKey, TValue>
  * @implements Iterator<TKey, TValue>
- * 
+ *
  * @since 0.3
  */
 final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
@@ -21,8 +24,9 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * Ctor.
-     * 
+     *
      * @phpstan-param array<TKey, TValue> $stored
+     *
      * @param array<mixed, mixed> $stored array for stored values.
      */
     public function __construct(
@@ -30,6 +34,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
          * Array for stored values.
          *
          * @phpstan-var array<TKey, TValue>
+         *
          * @var array
          */
         private array $stored = []
@@ -38,6 +43,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-param TKey   $offset
      * @phpstan-param TValue $value
      */
@@ -48,6 +54,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-param TKey $offset
      */
     public function offsetGet(mixed $offset): mixed
@@ -57,6 +64,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-param TKey $offset
      */
     public function offsetExists(mixed $offset): bool
@@ -66,16 +74,14 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-param TKey $offset
      */
     public function offsetUnset(mixed $offset): void
     {
-        unset($this->stored);
+        unset($this->stored[$offset]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function count(): int
     {
         return count($this->stored);
@@ -83,6 +89,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-return TValue|false
      */
     public function current(): mixed
@@ -92,6 +99,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-return TKey|null
      */
     public function key(): mixed
@@ -99,25 +107,16 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
         return key($this->stored);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function next(): void
     {
         next($this->stored);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function valid(): bool
     {
         return key($this->stored) !== null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function rewind(): void
     {
         reset($this->stored);
@@ -125,6 +124,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-return array<TKey, TValue>
      */
     public function __serialize(): array
@@ -134,6 +134,7 @@ final class SafeArrayIterator implements ArrayAccess, Countable, Iterator
 
     /**
      * {@inheritDoc}
+     *
      * @phpstan-param array<TKey, TValue> $data data for deserialization
      */
     public function __unserialize(array $data): void

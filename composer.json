@@ -11,7 +11,8 @@
         "phpmd/phpmd": "^2.10",
         "friendsofphp/php-cs-fixer": "^3.0",
         "rregeer/phpunit-coverage-check": "^0.3.1",
-        "infection/infection": "^0.26.5"
+        "infection/infection": "^0.26.5",
+        "nunomaduro/phpinsights": "^2.4"
     },
     "autoload": {
         "psr-4": {

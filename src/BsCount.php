@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MaxGoryunov\SavingIterator\Src;
 
 /**
@@ -10,7 +12,7 @@ final class BsCount implements Count
 
     /**
      * Ctor.
-     * 
+     *
      * @param int $count how many times something happened.
      */
     public function __construct(
@@ -23,17 +25,11 @@ final class BsCount implements Count
     ) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function increment(): Count
     {
         return new self($this->count + 1);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function value(): int
     {
         return $this->count;

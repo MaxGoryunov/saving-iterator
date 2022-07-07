@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MaxGoryunov\SavingIterator\Src;
 
 /**
  * Scalar object.
+ *
  * @template T
  */
 interface Scalar
