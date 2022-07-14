@@ -25,25 +25,19 @@ final class SavingIterator extends IteratorEnvelope
         AddingIterator $target
     ) {
         parent::__construct(
-            /**
-             * @todo #179:30min Consider making ValidTernary a variable. Maybe
-             *  it is possible to implement this with a constant expression.
-             */
             /** @phpstan-ignore-next-line */
             new ContextVeil(
                 $target,
                 new ClosureReaction(
-                    function (AddingIterator $stored) use ($origin) {
-                        return (new ValidTernary(
-                            $origin,
-                            function (Iterator $source) use ($stored) {
-                                $temp = $stored->from($source);
-                                $source->next();
-                                return $temp;
-                            },
-                            fn () => $stored
-                        ))->value();
-                    }
+                    fn (AddingIterator $stored) => (new ValidTernary(
+                        $origin,
+                        function (Iterator $source) use ($stored) {
+                            $temp = $stored->from($source);
+                            $source->next();
+                            return $temp;
+                        },
+                        fn () => $stored
+                    ))->value()
                 )
             )
         );
