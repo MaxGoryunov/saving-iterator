@@ -26,6 +26,11 @@ final class SavingIterator extends IteratorEnvelope
         Iterator|Closure $origin,
         AddingIterator $target
     ) {
+        /**
+         * @todo #194:15min README has to show that it is now possible to 
+         *  directly pass Generator Closures into constructor without 
+         *  having to manually call them.
+         */
         parent::__construct(
             /** @phpstan-ignore-next-line */
             new ContextVeil(
