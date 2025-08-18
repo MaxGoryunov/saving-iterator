@@ -4,7 +4,6 @@
 ![PHP-Composer-Build](https://github.com/MaxGoryunov/saving-iterator/actions/workflows/php.yml/badge.svg)
 [![Build Status](https://app.travis-ci.com/MaxGoryunov/saving-iterator.svg?branch=master)](https://app.travis-ci.com/MaxGoryunov/saving-iterator)
 [![Build status](https://ci.appveyor.com/api/projects/status/n4g8288u7u1xkj05/branch/master?svg=true)](https://ci.appveyor.com/project/MaxGoryunov/saving-iterator/branch/master)
-[![wercker status](https://app.wercker.com/status/f43bcadc6b1557a83b4ed20041478135/s/master "wercker status")](https://app.wercker.com/project/byKey/f43bcadc6b1557a83b4ed20041478135)
 [![MaxGoryunov](https://circleci.com/gh/MaxGoryunov/saving-iterator.svg?style=svg)](https://app.circleci.com/pipelines/github/MaxGoryunov/saving-iterator)
 
 [![PDD status](https://www.0pdd.com/svg?name=MaxGoryunov/saving-iterator)](https://www.0pdd.com/p?name=MaxGoryunov/saving-iterator)
@@ -16,7 +15,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d721a5fca4901010520e/maintainability)](https://codeclimate.com/github/MaxGoryunov/saving-iterator/maintainability)
 [![codebeat badge](https://codebeat.co/badges/b95d6d2e-f46c-4270-a474-21d3ba562e31)](https://codebeat.co/projects/github-com-maxgoryunov-saving-iterator-master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/993e91480dfa4239a780d5d7af528d30)](https://www.codacy.com/gh/MaxGoryunov/saving-iterator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MaxGoryunov/saving-iterator&amp;utm_campaign=Badge_Grade)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=MaxGoryunov_saving-iterator)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/maxgoryunov/saving-iterator/badge)](https://www.codefactor.io/repository/github/maxgoryunov/saving-iterator)
 
