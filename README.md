@@ -22,7 +22,11 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=bugs)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
+
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
 
 [![Hits-of-Code](https://hitsofcode.com/github/MaxGoryunov/saving-iterator?branch=master)](https://hitsofcode.com/github/MaxGoryunov/saving-iterator/view)
 ![Lines-of-Code](https://tokei.rs/b1/github/MaxGoryunov/saving-iterator?branch=master)
