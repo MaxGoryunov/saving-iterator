@@ -3,6 +3,7 @@
 
 ![PHP-Composer-Build](https://github.com/MaxGoryunov/saving-iterator/actions/workflows/php.yml/badge.svg)
 [![Build Status](https://app.travis-ci.com/MaxGoryunov/saving-iterator.svg?branch=master)](https://app.travis-ci.com/MaxGoryunov/saving-iterator)
+[![Build Status](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/build-status/master)
 [![Build status](https://ci.appveyor.com/api/projects/status/n4g8288u7u1xkj05/branch/master?svg=true)](https://ci.appveyor.com/project/MaxGoryunov/saving-iterator/branch/master)
 [![MaxGoryunov](https://circleci.com/gh/MaxGoryunov/saving-iterator.svg?style=svg)](https://app.circleci.com/pipelines/github/MaxGoryunov/saving-iterator)
 
@@ -12,11 +13,16 @@
 [![Latest Stable Version](http://poser.pugx.org/maxgoryunov/saving-iterator/v)](https://packagist.org/packages/maxgoryunov/saving-iterator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/MaxGoryunov/saving-iterator/blob/master/LICENSE)
 
+<!-- CC -> Qlty, does not support status badges yet -->
 [![Maintainability](https://api.codeclimate.com/v1/badges/d721a5fca4901010520e/maintainability)](https://codeclimate.com/github/MaxGoryunov/saving-iterator/maintainability)
-[![codebeat badge](https://codebeat.co/badges/b95d6d2e-f46c-4270-a474-21d3ba562e31)](https://codebeat.co/projects/github-com-maxgoryunov-saving-iterator-master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/993e91480dfa4239a780d5d7af528d30)](https://www.codacy.com/gh/MaxGoryunov/saving-iterator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MaxGoryunov/saving-iterator&amp;utm_campaign=Badge_Grade)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MaxGoryunov/saving-iterator/?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/maxgoryunov/saving-iterator/badge)](https://www.codefactor.io/repository/github/maxgoryunov/saving-iterator)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=bugs)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=MaxGoryunov_saving-iterator&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=MaxGoryunov_saving-iterator)
 
 [![Hits-of-Code](https://hitsofcode.com/github/MaxGoryunov/saving-iterator?branch=master)](https://hitsofcode.com/github/MaxGoryunov/saving-iterator/view)
 ![Lines-of-Code](https://tokei.rs/b1/github/MaxGoryunov/saving-iterator?branch=master)
