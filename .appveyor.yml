@@ -30,7 +30,7 @@ install:
   - ps: >-
       InstallPeclExtension `
         -Name       xdebug `
-        -Version    3.0.3 `
+        -Version    3.4.5 `
         -PhpVersion $Env:PHP_VERSION `
         -BuildType  $Env:BUILD_TYPE `
         -VC         $Env:VC_VERSION `
