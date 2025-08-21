@@ -1,48 +1,54 @@
-name: PHP Composer
+name: PHP Composer CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - uses: php-actions/composer@v5
+      - name: Setup PHP with Composer, Xdebug & tools
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: xdebug
+          tools: composer
 
-    - name: PHPUnit Tests
-      uses: php-actions/phpunit@v2
-      env:
-        TEST_NAME: AllTests
-      with:
-        bootstrap: vendor/autoload.php
-        configuration: phpunit.xml
-        args: --coverage-text
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
 
-    - name: Infection analysis
-      env:
-        INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
-      run: XDEBUG_MODE=coverage ./vendor/bin/infection --min-msi=90 --min-covered-msi=90 --threads=4 --configuration=./infection.json.dist
+      - name: Run PHPUnit tests with coverage
+        run: vendor/bin/phpunit --configuration=phpunit.xml --coverage-text
 
-    - name: Create PHPUnit coverage files
-      run: "XDEBUG_MODE=coverage  ./vendor/bin/phpunit --coverage-clover=coverage.xml"
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: coverage.xml
-        flags: tests
-        name: codecov-umbrella
-        fail_ci_if_error: true
+      - name: Infection analysis
+        env:
+          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+        run: |
+          XDEBUG_MODE=coverage ./vendor/bin/infection \
+            --min-msi=90 --min-covered-msi=90 --threads=4 \
+            --configuration=./infection.json.dist
 
-    - name: Check minimum coverage
-      run: "vendor/bin/coverage-check coverage.xml 100 --only-percentage"
+      - name: Create PHPUnit coverage report
+        run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-    - name: PHPStan analysis
-      run: ./vendor/bin/phpstan analyse
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage.xml
+          flags: tests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+
+      - name: Check minimum coverage
+        run: ./vendor/bin/coverage-check coverage.xml 100 --only-percentage
+
+      - name: PHPStan analysis
+        run: ./vendor/bin/phpstan analyse
