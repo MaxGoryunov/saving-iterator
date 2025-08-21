@@ -28,6 +28,7 @@ final class SavingIterator extends IteratorEnvelope
             /** @phpstan-ignore-next-line */
             new ContextVeil(
                 $target,
+                /** @phpstan-ignore-next-line */
                 new ClosureReaction(
                     /**
                      * @phpstan-param AddingIterator<TKey, TValue> $stored
