@@ -3,7 +3,7 @@ environment:
   matrix:
 
     # Specify matrix item for your app
-    - PHP_VERSION: 8.0
+    - PHP_VERSION: 8.1
       VC_VERSION: 16
       BUILD_TYPE: nts-Win32
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
