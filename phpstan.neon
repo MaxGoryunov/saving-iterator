@@ -4,5 +4,3 @@ parameters:
         - src
         - fakes
         - tests
-# includes:
-#         - vendor/phpstan/phpstan/conf/bleedingEdge.neon
