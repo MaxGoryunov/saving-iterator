@@ -29,6 +29,10 @@ final class SavingIterator extends IteratorEnvelope
             new ContextVeil(
                 $target,
                 new ClosureReaction(
+                    /**
+                     * @phpstan-param AddingIterator<TKey, TValue> $stored
+                     * Iterator for value storage.
+                     */
                     fn (AddingIterator $stored) => (new ValidTernary(
                         $origin,
                         function (Iterator $source) use ($stored) {
