@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  php:
+    build: .
+    container_name: php-library-test
+    volumes:
+      - .:/app
+    environment:
+      INFECTION_BADGE_API_KEY: ${INFECTION_BADGE_API_KEY}
+      CODECOV_TOKEN: ${CODECOV_TOKEN}
+    working_dir: /app
