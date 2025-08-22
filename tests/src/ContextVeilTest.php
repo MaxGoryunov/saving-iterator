@@ -32,6 +32,7 @@ final class ContextVeilTest extends TestCase
         $origin = new ArrayIterator([23, 6, 26, 8, 4, 76, 94, 5]);
         $veil   = new ContextVeil(
             $origin,
+            /** @phpstan-ignore-next-line */
             new ClosureReaction(fn (Iterator $iterator, string $method) => $iterator)
         );
         $this->assertEquals(

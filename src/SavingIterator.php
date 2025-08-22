@@ -35,7 +35,18 @@ final class SavingIterator extends IteratorEnvelope
             /** @phpstan-ignore-next-line */
             new ContextVeil(
                 $target,
+                /**
+                 * @todo #196:60min There are phpstan issues with
+                 *  ClosureReaction here and in ContextVeilTest. Now they are
+                 *  fixed by ignore-line stubs but need to be fixed according
+                 *  to phpstan ruleset.
+                 */
+                /** @phpstan-ignore-next-line */
                 new ClosureReaction(
+                    /**
+                     * @phpstan-param AddingIterator<TKey, TValue> $stored
+                     * Iterator for value storage.
+                     */
                     fn (AddingIterator $stored) => (new ValidTernary(
                         ($origin instanceof Closure) ? $origin() : $origin,
                         function (Iterator $source) use ($stored) {
