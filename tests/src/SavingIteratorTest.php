@@ -157,6 +157,46 @@ class SavingIteratorTest extends TestCase
      * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
      * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
      * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksWithGeneratorClosure(): void
+    {
+        (new The(
+            5
+        ))->act(
+            fn (int $limit) => $this->assertEquals(
+                range(0, $limit),
+                iterator_to_array(
+                    new SavingIterator(
+                        (function () use ($limit): Generator {
+                            for ($i = 0; $i <= $limit; $i++) {
+                                yield $i;
+                            }
+                        }),
+                        new ArrayAddingIterator()
+                    )
+                )
+            )
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     *
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
      * @uses MaxGoryunov\SavingIterator\Fakes\RepetitionEnvelope
      * @uses MaxGoryunov\SavingIterator\Fakes\RpIteratorToArray
      *
