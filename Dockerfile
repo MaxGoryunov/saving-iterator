@@ -1,7 +1,13 @@
 FROM php:8.1-cli
 
 RUN apt-get update && apt-get install -y \
-    git unzip zip libzip-dev libicu-dev libxml2-dev wget \
+    git \
+    libicu-dev \
+    libxml2-dev \
+    libzip-dev \
+    unzip \
+    wget \
+    zip \
     && docker-php-ext-install zip intl \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
