@@ -58,6 +58,41 @@ class SavingIteratorTest extends TestCase
     }
 
     /**
+     * @covers ::__construct
+     * @covers ::rewind
+     * @covers ::valid
+     * @covers ::current
+     * @covers ::key
+     * @covers ::next
+     *
+     * @uses MaxGoryunov\SavingIterator\Fakes\SurveyEnvelope
+     * @uses MaxGoryunov\SavingIterator\Fakes\The
+     * @uses MaxGoryunov\SavingIterator\Src\ArrayAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ValidAddingIterator
+     * @uses MaxGoryunov\SavingIterator\Src\ContextVeil
+     * @uses MaxGoryunov\SavingIterator\Src\ClosureReaction
+     *
+     * @small
+     *
+     * @return void
+     */
+    public function testWorksWithDefaultAddingIterator(): void
+    {
+        (new The(
+            [11, 12, 13, 14, 15]
+        ))->act(
+            fn (array $nums) => $this->assertEquals(
+                $nums,
+                iterator_to_array(
+                    new SavingIterator(
+                        new ArrayIterator($nums)
+                    )
+                )
+            )
+        );
+    }
+
+    /**
      * @covers ::rewind
      * @covers ::valid
      * @covers ::current
