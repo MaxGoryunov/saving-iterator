@@ -31,6 +31,7 @@ final class SavingIterator extends IteratorEnvelope
         Iterator|Closure $origin,
         AddingIterator $target = new ArrayAddingIterator()
     ) {
+        $reorigin = ($origin instanceof Closure) ? $origin() : $origin;
         /**
          * @todo #194:15min README has to show that it is now possible to 
          *  directly pass Generator Closures into constructor without 
@@ -53,7 +54,7 @@ final class SavingIterator extends IteratorEnvelope
                      * Iterator for value storage.
                      */
                     fn (AddingIterator $stored) => (new ValidTernary(
-                        ($origin instanceof Closure) ? $origin() : $origin,
+                        $reorigin,
                         function (Iterator $source) use ($stored) {
                             $temp = $stored->from($source);
                             $source->next();
