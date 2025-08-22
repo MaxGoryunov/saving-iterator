@@ -99,6 +99,24 @@ $numerals = new SavingIterator(
 );
 ```
 
+## How to run tests
+
+First, install [Docker](https://www.docker.com/). After that, run:
+
+```bash
+docker-compose build
+
+docker-compose run --rm php bash
+```
+
+After you start the container, install dependencies and run tests:
+
+```bash
+composer install
+
+vendor/bin/phpunit tests
+```
+
 ## How to contribute
 
 [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo), then create a folder for it and install [Composer](https://getcomposer.org/download/) if you do not have it.
