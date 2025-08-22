@@ -2,7 +2,9 @@
 
 namespace MaxGoryunov\SavingIterator\Src;
 
+use Closure;
 use Iterator;
+use Generator;
 
 /**
  * Iterator which stores iterated values.
@@ -20,15 +22,21 @@ final class SavingIterator extends IteratorEnvelope
     /**
      * Ctor.
      * 
-     * @phpstan-param Iterator<TKey, TValue>       $origin
+     * @phpstan-param Iterator<TKey, TValue>|Closure():Generator<TKey, TValue, void, void> $origin
      * @phpstan-param AddingIterator<TKey, TValue> $target
-     * @param Iterator       $origin original iterator.
-     * @param AddingIterator $target iterator to which the values are saved.
+     * @param Iterator|Closure $origin original iterator.
+     * @param AddingIterator   $target iterator to which the values are saved.
      */
     public function __construct(
-        Iterator $origin,
+        Iterator|Closure $origin,
         AddingIterator $target = new ArrayAddingIterator()
     ) {
+        $reorigin = ($origin instanceof Closure) ? $origin() : $origin;
+        /**
+         * @todo #194:15min README has to show that it is now possible to 
+         *  directly pass Generator Closures into constructor without 
+         *  having to manually call them.
+         */
         parent::__construct(
             /** @phpstan-ignore-next-line */
             new ContextVeil(
@@ -46,7 +54,7 @@ final class SavingIterator extends IteratorEnvelope
                      * Iterator for value storage.
                      */
                     fn (AddingIterator $stored) => (new ValidTernary(
-                        $origin,
+                        $reorigin,
                         function (Iterator $source) use ($stored) {
                             $temp = $stored->from($source);
                             $source->next();
