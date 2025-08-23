@@ -63,6 +63,17 @@ $squares = new SavingIterator(
 );
 ```
 
+It is also possible to use `SavingIterator` without providing a target. In
+this case, it will use a default `AddingIterator` storage:
+
+```PHP
+$squares = new SavingIterator(
+    new SquaringIterator(
+        [1, 2, 3, 4, 5, 6]
+    )
+);
+```
+
 If the origin object is not an `Iterator` then wrap it in `TransparentIterator`:
 
 ```PHP
