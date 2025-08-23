@@ -93,19 +93,17 @@ $valid = new ValidAddingIterator(
 
 ## Decorating Generators
 
-You can also use it with `Generators`. If the iterator is called twice, rewind exception will **not** be thrown.
-
-**Attention**: it is not (currently) possible to pass callable as a parameter. You have to manually invoke `Generator` function:
+You can also use it with `Generators`. If the iterator is called twice, rewind exception will **not** be thrown. Just pass a function which returns a `Generator` to the constructor:
 
 ```PHP
-function numerals(): Generator {
+$numerals = function (): Generator {
     for ($i = 0; $i < 10; $i++) {
         yield $i;
     }
-}
+};
 
-$numerals = new SavingIterator(
-    numerals(),
+$iter = new SavingIterator(
+    $numerals,
     new ArrayAddingIterator()
 );
 ```
