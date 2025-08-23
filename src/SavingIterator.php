@@ -32,11 +32,6 @@ final class SavingIterator extends IteratorEnvelope
         AddingIterator $target = new ArrayAddingIterator()
     ) {
         $reorigin = ($origin instanceof Closure) ? $origin() : $origin;
-        /**
-         * @todo #194:15min README has to show that it is now possible to 
-         *  directly pass Generator Closures into constructor without 
-         *  having to manually call them.
-         */
         parent::__construct(
             /** @phpstan-ignore-next-line */
             new ContextVeil(
