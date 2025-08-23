@@ -9,10 +9,6 @@ use Generator;
 /**
  * Iterator which stores iterated values.
  * 
- * @todo #195:15min README has to mention that now it is not required to
- *  create ArrayAddingIterator and pass it into the constructor because now it
- *  is a default option.
- * 
  * @template TKey
  * @template TValue
  * @extends IteratorEnvelope<TKey, TValue>
